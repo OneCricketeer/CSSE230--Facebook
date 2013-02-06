@@ -1,9 +1,12 @@
+package tests;
 import static org.junit.Assert.*;
 
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import classes.Event;
 
 
 public class Tests {

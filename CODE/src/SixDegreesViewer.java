@@ -1,4 +1,4 @@
-package gui;
+import gui.ImagePanel;
 
 import java.awt.EventQueue;
 

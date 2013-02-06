@@ -2,21 +2,34 @@ import gui.ImagePanel;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTree;
+
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultTreeCellRenderer;
 
 import com.toedter.calendar.JCalendar;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * TODO Put here a description of what this class does.
@@ -27,6 +40,8 @@ public class SixDegreesViewer {
 
 	private JFrame frmSixDegrees;
 	private JTable table;
+	private JTextField textFriendSearch;
+	private JTextField textGeneralSearch;
 
 	/**
 	 * Launch the application.
@@ -70,10 +85,12 @@ public class SixDegreesViewer {
 		tabViewer.addTab("My Page", null, panel, null);
 		panel.setLayout(null);
 
-		JTree tree = new JTree();
+		JTree tree = new JTree();		
 		tree.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		tree.setBounds(483, 11, 250, 411);
-		panel.add(tree);
+		JScrollPane treeView = new JScrollPane(tree);
+		treeView.setBounds(483, 11, 250, 411);
+		panel.add(treeView);
 
 		JPanel profilePictureFrame = new JPanel();
 		profilePictureFrame.setBackground(Color.GRAY);
@@ -165,6 +182,7 @@ public class SixDegreesViewer {
 		imagePanel2.setBounds(683, 469, 50, 50);
 		panelTab2.add(imagePanel2);
 
+
 		JPanel panelTab3 = new JPanel();
 		tabViewer.addTab("Friends", null, panelTab3, null);
 		panelTab3.setLayout(null);
@@ -172,6 +190,49 @@ public class SixDegreesViewer {
 		ImagePanel imagePanel3 = new ImagePanel();
 		imagePanel3.setBounds(683, 469, 50, 50);
 		panelTab3.add(imagePanel3);
+		
+		final JScrollPane friendsScrollPane = new JScrollPane();
+		friendsScrollPane.setBounds(10, 64, 723, 394);
+		panelTab3.add(friendsScrollPane);
+		
+		JPanel layoutPanel = new JPanel();
+		friendsScrollPane.setViewportView(layoutPanel);
+		layoutPanel.setLayout(new BorderLayout(0, 0));
+		
+		final JPanel columnPanel = new JPanel();
+			layoutPanel.add(columnPanel, BorderLayout.NORTH);
+			columnPanel.setLayout(new GridLayout(0, 1, 0, 1));
+//			columnPanel.setBackground(Color.gray);
+			
+		FriendPanel panel_1 = new FriendPanel();
+		panel_1.setBounds(0,0,1200,900);
+		
+		for (int i=1;i<5;i++){			
+			FriendPanel rowPanel = new FriendPanel();
+			rowPanel.setPreferredSize(new Dimension(120, 90));
+			columnPanel.add(rowPanel);
+			rowPanel.setLayout(null);
+			
+		}
+		
+		textFriendSearch = new JTextField();
+		textFriendSearch.setBounds(245, 24, 168, 20);
+		panelTab3.add(textFriendSearch);
+		textFriendSearch.setColumns(10);
+		
+		JButton btnFriendSearch = new JButton("Search");
+		btnFriendSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FriendPanel rowPanel = new FriendPanel();
+				rowPanel.setUsername("Test User Hello World");
+				rowPanel.setPreferredSize(new Dimension(120, 90));
+				columnPanel.add(rowPanel);
+				rowPanel.setLayout(null);
+				
+			}
+		});
+		btnFriendSearch.setBounds(423, 23, 89, 23);
+		panelTab3.add(btnFriendSearch);
 
 		JPanel panelTab4 = new JPanel();
 		tabViewer.addTab("Search", null, panelTab4, null);
@@ -180,6 +241,19 @@ public class SixDegreesViewer {
 		ImagePanel imagePanel4 = new ImagePanel();
 		imagePanel4.setBounds(683, 469, 50, 50);
 		panelTab4.add(imagePanel4);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 64, 723, 394);
+		panelTab4.add(scrollPane_1);
+		
+		textGeneralSearch = new JTextField();
+		textGeneralSearch.setColumns(10);
+		textGeneralSearch.setBounds(245, 24, 168, 20);
+		panelTab4.add(textGeneralSearch);
+		
+		JButton btnGeneralSearch = new JButton("Search");
+		btnGeneralSearch.setBounds(423, 23, 89, 23);
+		panelTab4.add(btnGeneralSearch);
 
 	}
 }

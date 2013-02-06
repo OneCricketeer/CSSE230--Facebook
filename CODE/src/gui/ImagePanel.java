@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -22,6 +23,21 @@ public class ImagePanel extends JPanel {
 	    public ImagePanel() {
 	    	try {                
 		          image = resizeImage(ImageIO.read(new File("./src/IMAGES/logo.png")),2,50,50);
+		       } catch (IOException ex) {
+		            ex.printStackTrace();
+		       }
+	    }
+	    public ImagePanel(int friend){
+	    	String path;
+			Random rndm = new Random();
+			int rand = rndm.nextInt();
+			if (rand < 0.75){
+				path ="./src/IMAGES/DefaultUserMale.gif";
+			}else
+				path ="./src/IMAGES/DefaultUserFemale.gif";
+			
+			try {
+		          image = resizeImage(ImageIO.read(new File(path)),2,60,60);
 		       } catch (IOException ex) {
 		            ex.printStackTrace();
 		       }

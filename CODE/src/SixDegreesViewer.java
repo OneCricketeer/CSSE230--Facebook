@@ -3,6 +3,7 @@ import gui.ImagePanel;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -92,8 +93,7 @@ public class SixDegreesViewer {
 		treeView.setBounds(483, 11, 250, 411);
 		panel.add(treeView);
 
-		JPanel profilePictureFrame = new JPanel();
-		profilePictureFrame.setBackground(Color.GRAY);
+		ImagePanel profilePictureFrame = new ImagePanel("./src/IMAGES/DefaultUserFemale.gif",120,120);
 		profilePictureFrame.setBounds(10, 11, 120, 120);
 		panel.add(profilePictureFrame);
 
@@ -170,9 +170,7 @@ public class SixDegreesViewer {
 		lblBasicInfoMessage.setBounds(114, 441, 353, 54);
 		panel.add(lblBasicInfoMessage);
 
-		ImagePanel panelLogo = new ImagePanel();
-		panelLogo.setBounds(681, 470, 50, 50);
-		panel.add(panelLogo);
+		addLogo(panel);
 
 		///MEETINGS/////////////////////////////////////////////////////////////
 		
@@ -180,9 +178,11 @@ public class SixDegreesViewer {
 		tabViewer.addTab("Meetings", null, panelTab2, null);
 		panelTab2.setLayout(null);
 
-		ImagePanel imagePanel2 = new ImagePanel();
-		imagePanel2.setBounds(683, 469, 50, 50);
-		panelTab2.add(imagePanel2);
+		addLogo(panelTab2);
+		
+		CalendarPanel cal = new CalendarPanel();
+		cal.setBounds(10, 64, 723, 394);
+		panelTab2.add(cal);
 
 
 		///FRIENDS//////////////////////////////////////////////////////////////////
@@ -191,9 +191,7 @@ public class SixDegreesViewer {
 		tabViewer.addTab("Friends", null, panelTab3, null);
 		panelTab3.setLayout(null);
 
-		ImagePanel imagePanel3 = new ImagePanel();
-		imagePanel3.setBounds(683, 469, 50, 50);
-		panelTab3.add(imagePanel3);
+		addLogo(panelTab3);
 		
 		final JScrollPane friendsScrollPane = new JScrollPane();
 		friendsScrollPane.setBounds(10, 64, 723, 394);
@@ -241,9 +239,7 @@ public class SixDegreesViewer {
 		tabViewer.addTab("Search", null, panelTab4, null);
 		panelTab4.setLayout(null);
 
-		ImagePanel imagePanel4 = new ImagePanel();
-		imagePanel4.setBounds(683, 469, 50, 50);
-		panelTab4.add(imagePanel4);
+		addLogo(panelTab4);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(10, 64, 723, 394);
@@ -258,5 +254,11 @@ public class SixDegreesViewer {
 		btnGeneralSearch.setBounds(423, 23, 89, 23);
 		panelTab4.add(btnGeneralSearch);
 
+	}
+	
+	private void addLogo(JComponent comp){
+		ImagePanel image = new ImagePanel();
+		image.setBounds(683, 469, 50, 50);
+		comp.add(image);
 	}
 }

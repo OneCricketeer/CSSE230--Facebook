@@ -42,6 +42,7 @@ public class ImagePanel extends JPanel {
 		            ex.printStackTrace();
 		       }
 	    }
+
 	    public ImagePanel(String path, int width, int height) {
 	       try {
 	          image = resizeImage(ImageIO.read(new File(path)),2,width,height);

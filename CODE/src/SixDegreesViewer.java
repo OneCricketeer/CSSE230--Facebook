@@ -25,11 +25,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import com.toedter.calendar.JCalendar;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 
 /**
  * TODO Put here a description of what this class does.
@@ -174,6 +174,8 @@ public class SixDegreesViewer {
 		panelLogo.setBounds(681, 470, 50, 50);
 		panel.add(panelLogo);
 
+		///MEETINGS/////////////////////////////////////////////////////////////
+		
 		JPanel panelTab2 = new JPanel();
 		tabViewer.addTab("Meetings", null, panelTab2, null);
 		panelTab2.setLayout(null);
@@ -182,6 +184,8 @@ public class SixDegreesViewer {
 		imagePanel2.setBounds(683, 469, 50, 50);
 		panelTab2.add(imagePanel2);
 
+
+		///FRIENDS//////////////////////////////////////////////////////////////////
 
 		JPanel panelTab3 = new JPanel();
 		tabViewer.addTab("Friends", null, panelTab3, null);
@@ -202,12 +206,11 @@ public class SixDegreesViewer {
 		final JPanel columnPanel = new JPanel();
 			layoutPanel.add(columnPanel, BorderLayout.NORTH);
 			columnPanel.setLayout(new GridLayout(0, 1, 0, 1));
-//			columnPanel.setBackground(Color.gray);
 			
 		FriendPanel panel_1 = new FriendPanel();
 		panel_1.setBounds(0,0,1200,900);
 		
-		for (int i=1;i<5;i++){			
+		for (int i=1;i<7;i++){			
 			FriendPanel rowPanel = new FriendPanel();
 			rowPanel.setPreferredSize(new Dimension(120, 90));
 			columnPanel.add(rowPanel);
@@ -224,7 +227,7 @@ public class SixDegreesViewer {
 		btnFriendSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FriendPanel rowPanel = new FriendPanel();
-				rowPanel.setUsername("Test User Hello World");
+				rowPanel.setUsername("TestUser");
 				rowPanel.setPreferredSize(new Dimension(120, 90));
 				columnPanel.add(rowPanel);
 				rowPanel.setLayout(null);

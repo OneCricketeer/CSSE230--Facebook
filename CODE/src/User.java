@@ -5,7 +5,7 @@ public class User {
 	private static int userCount;
 	private Integer uid;
 	private String name, status, userName;
-	private Calendar calendar;
+	private MyCalendar calendar;
 	private String work;
 	private String dorm;
 	private ArrayList<String> organizations;
@@ -16,7 +16,7 @@ public class User {
 	}
 	
 	public User(int id, String userName, String name) {
-		id = userCount++;
+		id = ++userCount;
 		userName = userName;
 		name = name;
 	}

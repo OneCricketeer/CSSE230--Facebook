@@ -3,6 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="src/servlet.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="src/jars/jcalendar-1.3.3.jar"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+>>>>>>> 486a2488cfc1488dc9d014f23636402a162ca6c2
 	<classpathentry kind="output" path="bin"/>
 </classpath>

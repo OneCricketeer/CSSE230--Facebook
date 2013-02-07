@@ -32,7 +32,7 @@ public class Event {
 		this.attendeeIDs.remove(uid);
 	}
 	
-	public ArrayList getAttendees() {
+	public ArrayList<Integer> getAttendees() {
 		return attendeeIDs;
 	}
 	

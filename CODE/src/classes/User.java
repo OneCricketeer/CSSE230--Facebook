@@ -185,8 +185,4 @@ public class User implements Comparable<User>, Serializable {
 		return "<html>" + getUserName() + "<br /># Friends = " + friends.size() + "</html>"; 
 				
 	}
-	
-	
-
-
 }

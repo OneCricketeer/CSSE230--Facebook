@@ -193,9 +193,19 @@ public class SixDegreesViewer {
 
 		addLogo(panelTab2);
 		
-		CalendarPanel cal = new CalendarPanel();
+		final CalendarPanel cal = new CalendarPanel();
 		cal.setBounds(10, 64, 723, 394);
 		panelTab2.add(cal);
+		
+		JButton btnNewButton = new JButton("Increase Month");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cal.nextMonth();
+				cal.setDays();
+			}
+		});
+		btnNewButton.setBounds(586, 22, 132, 23);
+		panelTab2.add(btnNewButton);
 
 
 		///FRIENDS//////////////////////////////////////////////////////////////////

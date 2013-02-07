@@ -37,6 +37,7 @@ public class CalendarPanel extends JPanel {
 			day.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			add(day);
 		}
+		
 
 		initializeEvents();
 		   Calendar dCal = Calendar.getInstance();

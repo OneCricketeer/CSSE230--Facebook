@@ -27,8 +27,8 @@ public class User implements Comparable<User> {
 
 	public User(String userName, String name) {
 		this();
-		userName = userName;
-		name = name;
+		this.userName = userName;
+		this.name = name;
 	}
 
 	public void addFriend(User friend) {

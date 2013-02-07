@@ -2,17 +2,18 @@ package classes;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Event {
-	ArrayList<Integer> attendeeIDs;
-	java.util.Calendar cal;
-	Date startTime, endTime;
-	String desc;
+	private ArrayList<Integer> attendeeIDs;
+	private Calendar cal;
+	private Date startTime, endTime;
+	private String desc;
 
 	public Event() {
 		this.attendeeIDs = new ArrayList<Integer>();
-		cal = java.util.Calendar.getInstance();
+		cal = Calendar.getInstance();
 		this.desc = "<Event description>";
 		this.startTime = cal.getTime();
 		this.endTime = cal.getTime();
@@ -36,6 +37,21 @@ public class Event {
 		return attendeeIDs;
 	}
 	
+	public Date getStartTime(){
+		return this.startTime;
+	}
+	
+	public Date getEndTime(){
+		return this.endTime;
+	}
+	
+	public String getDesc(){
+		return this.desc;
+	}
+	
+	public void setDesc(String Desc){
+		this.desc = Desc;	
+	}
 
 	@Override
 	public String toString() {

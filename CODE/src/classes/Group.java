@@ -25,8 +25,20 @@ public class Group {
 		this.name = name;
 	}
 	
+	public String getName(){
+		return this.name;
+	}
+	
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+	
+	public String getDesc(){
+		return this.desc;
+	}
+	
+	public Integer getGID(){
+		return this.gID;
 	}
 	
 	public void addMember(Integer uid) {

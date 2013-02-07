@@ -1,8 +1,9 @@
 package classes;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-public class Group {
+public class Group implements Serializable {
 	private static Integer groupIDCounter;
 	private String name, desc;
 	private Integer gID;

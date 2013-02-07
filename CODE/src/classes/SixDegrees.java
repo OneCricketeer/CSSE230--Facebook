@@ -1,11 +1,12 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class SixDegrees {
+public class SixDegrees implements Serializable {
 
 	static HashMap<Integer, User> users = new HashMap<Integer, User>();
 	static HashMap<String, Group> groups;
@@ -15,31 +16,21 @@ public class SixDegrees {
 		users = new HashMap<Integer, User>();
 		groups = new HashMap<String, Group>();
 		current = null;
-		
-
 	}
 
 	public static void cleanUp() {
-		if (users != null) {
-			users.clear();
-			users=new HashMap<Integer, User>();
-		}
-		if (groups != null) groups.clear();
-		current = null;
 		User.resetCounter();
+		if (users != null)
+			users.clear();
+		if (groups != null)
+			groups.clear();
+		current = null;
 	}
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		User[] testUser = new User[20];
-		for (int i = 0; i < 20; i++) {
-			testUser[i] = new User();
-		}
-
-		current = testUser[10];
-
-		int dist = getDistance(testUser[4].getUid());
 
 	}
 
@@ -52,7 +43,7 @@ public class SixDegrees {
 	}
 
 	public static int getDistance(Integer uID) {
-		if (uID < 0) // || !users.containsKey(uID))
+		if (uID < 0 || !users.containsKey(uID))
 			return -1;
 		if (current == null || current.getUid() == uID)
 			return 0;
@@ -70,7 +61,6 @@ public class SixDegrees {
 			ArrayList<User> friends = next.user.getFriends();
 
 			for (User friend : friends) {
-//				System.out.println(friend.getUid());
 				if (friend.getUid() == uID) {
 					return next.level + 1;
 				} else {
@@ -101,6 +91,5 @@ public class SixDegrees {
 			this.user = user;
 		}
 	}
-
 
 }

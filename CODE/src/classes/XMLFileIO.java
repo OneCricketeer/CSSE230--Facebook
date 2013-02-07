@@ -12,26 +12,20 @@ import java.util.Hashtable;
 public class XMLFileIO {
 
 	public static void main(String[] args) throws Exception {
-		ArrayList<Student> l = new ArrayList<Student>();
-		Student stu = new Student();
-		Student stu2 = new Student();
+		ArrayList<User> l = new ArrayList<User>();
+		User stu = new User();
+		User stu2 = new User();
 
-		stu.setID("4");
-		stu.setFirstName("Larry");
-		stu.setLastName("Stooge");
-		stu.setFavoriteColor("brunette");
-		ArrayList<Student> f1 = new ArrayList<Student>();
-		f1.add(stu2);
-		stu.setFriends(f1);
+		stu.setFName("Larry");
+		stu.setLname("Stooge");
+		stu.addFriend(stu2);
 		l.add(stu);
 
-		stu2.setID("1");
-		stu2.setFirstName("Moe");
-		stu2.setLastName("Stooge");
-		stu2.setFavoriteColor("blonde");
-		ArrayList<Student> f2 = new ArrayList<Student>();
-		f2.add(stu);
-		stu2.setFriends(f2);
+		stu2.setFName("Moe");
+		stu2.setLname("Stooge");
+//		ArrayList<Student> f2 = new ArrayList<Student>();
+
+//		stu2.addFriend(stu);
 		l.add(stu2);
 
 		// for (Student s : l)
@@ -39,16 +33,17 @@ public class XMLFileIO {
 		//
 		// write(l, "foo.xml");
 
-		Hashtable<String, Student> h = new Hashtable<String, Student>();
+		Hashtable<String, User> h = new Hashtable<String, User>();
+		System.out.println(stu);
 		h.put("hello", stu);
 		write(h, "foo.xml");
 
-		// ArrayList<Student> l2 = read("foo.xml");
-		// for (Student s : l2)
-		// System.out.println(s);
+//		 ArrayList<User> l2 = read("foo.xml");
+//		 for (User s : l2)
+//		 System.out.println(s);
 	}
 
-	public static void write(Hashtable<String, Student> l, String filename)
+	public static void write(Hashtable<String, User> l, String filename)
 			throws Exception {
 		XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(
 				new FileOutputStream(filename)));
@@ -66,10 +61,10 @@ public class XMLFileIO {
 	// encoder.close();
 	// }
 
-	public static ArrayList<Student> read(String filename) throws Exception {
+	public static ArrayList<User> read(String filename) throws Exception {
 		XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(
 				new FileInputStream(filename)));
-		ArrayList<Student> l = (ArrayList<Student>) decoder.readObject();
+		ArrayList<User> l = (ArrayList<User>) decoder.readObject();
 		decoder.close();
 		return l;
 	}

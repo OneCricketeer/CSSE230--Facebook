@@ -28,6 +28,9 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import classes.User;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Date;
@@ -43,6 +46,14 @@ public class SixDegreesViewer {
 	private JTable table;
 	private JTextField textFriendSearch;
 	private JTextField textGeneralSearch;
+	private static User current;
+	private static JLabel lblStatusMessage;
+	private static JLabel lblBasicInfoMessage;
+	private static JLabel lblNameLabel;
+	private static JLabel lblContactinfomessage;
+	private static JLabel lblAbouttext;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -52,6 +63,8 @@ public class SixDegreesViewer {
 			public void run() {
 				try {
 					SixDegreesViewer window = new SixDegreesViewer();
+					User pSherman = new User("pSherman", "P.", "Sherman");
+					window.setCurrentUser(pSherman);
 					window.frmSixDegrees.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -97,7 +110,7 @@ public class SixDegreesViewer {
 		profilePictureFrame.setBounds(10, 11, 120, 120);
 		panel.add(profilePictureFrame);
 
-		JLabel lblNameLabel = new JLabel("Name");
+		lblNameLabel = new JLabel("Name");
 		lblNameLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
 		lblNameLabel.setBounds(10, 142, 214, 28);
 		panel.add(lblNameLabel);
@@ -108,7 +121,7 @@ public class SixDegreesViewer {
 		lblStatus.setBounds(140, 14, 214, 28);
 		panel.add(lblStatus);
 
-		JLabel lblStatusMessage = new JLabel("Status Message");
+		lblStatusMessage = new JLabel("Status Message");
 		lblStatusMessage.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		lblStatusMessage.setBounds(140, 43, 214, 28);
 		panel.add(lblStatusMessage);
@@ -131,7 +144,7 @@ public class SixDegreesViewer {
 		lblBasicInfo.setBounds(10, 407, 214, 28);
 		panel.add(lblBasicInfo);
 
-		JLabel lblAbouttext = new JLabel("AboutText");
+		lblAbouttext = new JLabel("AboutText");
 		lblAbouttext.setVerticalAlignment(SwingConstants.TOP);
 		lblAbouttext.setForeground(new Color(0, 0, 0));
 		lblAbouttext.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -146,7 +159,7 @@ public class SixDegreesViewer {
 		lblContactLabel.setBounds(46, 315, 52, 81);
 		panel.add(lblContactLabel);
 
-		JLabel lblContactinfomessage = new JLabel("ContactInfoMessage");
+		lblContactinfomessage = new JLabel("ContactInfoMessage");
 		lblContactinfomessage.setVerticalAlignment(SwingConstants.TOP);
 		lblContactinfomessage.setForeground(Color.BLACK);
 		lblContactinfomessage.setFont(new Font("Times New Roman", Font.PLAIN,
@@ -162,7 +175,7 @@ public class SixDegreesViewer {
 		lblBasicInfoLabel.setBounds(46, 438, 70, 81);
 		panel.add(lblBasicInfoLabel);
 
-		JLabel lblBasicInfoMessage = new JLabel("BasicInfoMessage");
+		lblBasicInfoMessage = new JLabel("BasicInfoMessage");
 		lblBasicInfoMessage.setVerticalAlignment(SwingConstants.TOP);
 		lblBasicInfoMessage.setForeground(Color.BLACK);
 		lblBasicInfoMessage
@@ -260,5 +273,15 @@ public class SixDegreesViewer {
 		ImagePanel image = new ImagePanel();
 		image.setBounds(683, 469, 50, 50);
 		comp.add(image);
+	}
+	
+	public void setCurrentUser(User u) {
+		current = u;
+		lblStatusMessage.setText(u.getStatus());
+		lblBasicInfoMessage.setText(u.getBasicInfo());
+		lblNameLabel.setText(u.getName());
+		lblContactinfomessage.setText(u.getContactInfo());
+		lblAbouttext.setText(u.getAbout());
+		
 	}
 }

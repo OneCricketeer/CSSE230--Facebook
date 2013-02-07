@@ -1,10 +1,11 @@
 package classes;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Event {
+public class Event implements Serializable {
 	ArrayList<Integer> attendeeIDs;
 	java.util.Calendar cal;
 	Date startTime, endTime;
@@ -12,7 +13,7 @@ public class Event {
 
 	public Event() {
 		this.attendeeIDs = new ArrayList<Integer>();
-		cal = java.util.Calendar.getInstance();
+		this.cal = java.util.Calendar.getInstance();
 		this.desc = "<Event description>";
 		this.startTime = cal.getTime();
 		this.endTime = cal.getTime();

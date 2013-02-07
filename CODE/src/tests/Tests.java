@@ -60,7 +60,6 @@ public class Tests {
 	
 	private void reset() {
 		SixDegrees.cleanUp();
-		User.resetCounter();
 	}
 
 	public boolean testUserGraph(int uid, User[] users, int[][] expectedNums) {
@@ -90,6 +89,7 @@ public class Tests {
 		reset();
 		for (int i = 0; i < small.length; i++) {
 			small[i] = new User();
+			SixDegrees.addUser(small[i]);
 		}
 	
 		small[0].addFriend(small[1]);
@@ -113,6 +113,7 @@ public class Tests {
 		reset();
 		for (int i = 0; i < medium.length; i++) {
 			medium[i] = new User();
+			SixDegrees.addUser(medium[i]);
 		}
 	
 		// medium[0].addFriend(medium[1]);
@@ -147,6 +148,7 @@ public class Tests {
 		reset();
 		for (int i = 0; i < large.length; i++) {
 			large[i] = new User();
+			SixDegrees.addUser(large[i]);
 		}
 
 		large[0].addFriend(large[1]);

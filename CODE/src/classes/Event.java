@@ -1,3 +1,4 @@
+package classes;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Event {
 		this.attendeeIDs.remove(uid);
 	}
 	
-	public ArrayList getAttendees() {
+	public ArrayList<Integer> getAttendees() {
 		return attendeeIDs;
 	}
 	

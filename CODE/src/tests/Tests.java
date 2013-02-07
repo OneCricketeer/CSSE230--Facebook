@@ -80,7 +80,7 @@ public class Tests {
 		}
 		if (b) {
 			System.out.printf(
-					"User%d passed\n=================================\n", uid);
+					"User%d passed\n==================================\n", uid);
 		}
 		return b;
 	}

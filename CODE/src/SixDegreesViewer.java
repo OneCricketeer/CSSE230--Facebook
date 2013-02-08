@@ -81,7 +81,7 @@ public class SixDegreesViewer {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
 		initialize();
 	}
 
@@ -199,22 +199,12 @@ public class SixDegreesViewer {
 		tabViewer.addTab("Meetings", null, meetingsPanel, null);
 		meetingsPanel.setLayout(null);
 
+		CalendarControl calendarControl = new CalendarControl();
+		calendarControl.setBounds(0, 0, 743, 465);
+		meetingsPanel.add(calendarControl);
+
 		addLogo(meetingsPanel);
-
-		final CalendarPanel cal = new CalendarPanel();
-		cal.setBounds(10, 64, 723, 394);
-		meetingsPanel.add(cal);
-
-		JButton btnNewButton = new JButton("Increase Month");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				cal.nextMonth();
-				cal.setDays();
-			}
-		});
-		btnNewButton.setBounds(586, 22, 132, 23);
-		meetingsPanel.add(btnNewButton);
-
+		
 		// /FRIENDS//////////////////////////////////////////////////////////////////
 
 		JPanel friendsPanel = new JPanel();
@@ -235,8 +225,8 @@ public class SixDegreesViewer {
 		friendScroller.add(columnPanel, BorderLayout.NORTH);
 		columnPanel.setLayout(new GridLayout(0, 1, 0, 1));
 
-//		FriendPanel panel_1 = new FriendPanel();
-//		panel_1.setBounds(0, 0, 1200, 900);
+		// FriendPanel panel_1 = new FriendPanel();
+		// panel_1.setBounds(0, 0, 1200, 900);
 		FriendPanel rowPanel = null;
 
 		for (int i = 1; i < 3; i++) {
@@ -263,7 +253,7 @@ public class SixDegreesViewer {
 				friendsScrollPane.repaint();
 				friendScroller.repaint();
 				columnPanel.repaint();
-				
+
 			}
 		});
 		btnFriendSearch.setBounds(423, 23, 89, 23);
@@ -287,19 +277,6 @@ public class SixDegreesViewer {
 		JButton btnGeneralSearch = new JButton("Search");
 		btnGeneralSearch.setBounds(423, 23, 89, 23);
 		panelTab4.add(btnGeneralSearch);
-		
-		JPanel testingPanel = new JPanel();
-		tabViewer.addTab("Control Testing", null, testingPanel, null);
-		testingPanel.setLayout(null);
-		tabViewer.setSelectedComponent(testingPanel);
-		
-		CalendarControl calControl = new CalendarControl();
-		calControl.setBounds(0, 0, 743, 465);
-		testingPanel.add(calControl);
-		
-		ImagePanel imagePanel = new ImagePanel();
-		imagePanel.setBounds(683, 471, 50, 50);
-		testingPanel.add(imagePanel);
 
 	}
 

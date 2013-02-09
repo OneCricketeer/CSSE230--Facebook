@@ -1,0 +1,30 @@
+Encoding: 
+=================
+[0] Username: pSherman
+    Full Name: P. Sherman
+    Status: Found some neat fish
+    # of Friends: 2
+[1] Username: findMe
+    Full Name: Nemo the Clownfish
+    Status: Find me!
+    # of Friends: 1
+[2] Username: blueFish
+    Full Name: Dory 
+    Status: Just keep swimming...
+    # of Friends: 1
+
+
+Decoding: 
+=================
+[0] Username: pSherman
+    Full Name: P. Sherman
+    Status: Found some neat fish
+    # of Friends: 2
+[1] Username: findMe
+    Full Name: Nemo the Clownfish
+    Status: I was found!
+    # of Friends: 1
+[2] Username: blueFish
+    Full Name: Dory 
+    Status: Just keep swimming...
+    # of Friends: 1

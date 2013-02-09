@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_13" class="java.beans.XMLDecoder">
+ <object class="classes.User">
+  <void property="fname">
+   <string>Moe</string>
+  </void>
+  <void property="lname">
+   <string>Stooge</string>
+  </void>
+  <void property="userName">
+   <string>mStooge</string>
+  </void>
+ </object>
+</java>

@@ -13,42 +13,6 @@ public class XMLFileIO {
 	public static void main(String[] args) throws Exception {
 		
 		ArrayList<User> l = new ArrayList<User>();
-<<<<<<< HEAD
-		User stu = new User();
-		User stu2 = new User();
-
-		stu.setFName("Larry");
-		stu.setLname("Stooge");
-		stu.addFriend(stu2);
-		l.add(stu);
-
-		stu2.setFName("Moe");
-		stu2.setLname("Stooge");
-//		ArrayList<Student> f2 = new ArrayList<Student>();
-
-		stu2.addFriend(stu);
-		l.add(stu2);
-
-		// for (Student s : l)
-		// System.out.println(s);
-		//
-		// write(l, "foo.xml");
-
-		Hashtable<String, User> h = new Hashtable<String, User>();
-		System.out.println(stu);
-		h.put("hello", stu);
-		write(h, "foo.xml");
-		
-		XMLEncoder encoder = new XMLEncoder(
-			    new BufferedOutputStream(
-			      new FileOutputStream("Sample.xml")));
-			  encoder.writeObject(stu);
-			  encoder.close();
-
-//		 ArrayList<User> l2 = read("foo.xml");
-//		 for (User s : l2)
-//		 System.out.println(s);
-=======
 		
 		User pSher = new User("pSherman", "P.", "Sherman");
 		User nemo = new User("findMe", "Nemo", "the Clownfish");
@@ -89,7 +53,6 @@ public class XMLFileIO {
 			System.out.println(u);
 		}
 		
->>>>>>> XML Writer
 	}
 	
 	public static void write(ArrayList l, String filename)

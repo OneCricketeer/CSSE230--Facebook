@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_13" class="java.beans.XMLDecoder">
+<java version="1.7.0_09" class="java.beans.XMLDecoder">
  <object class="java.util.Hashtable">
   <void method="put">
    <string>hello</string>
-   <object class="classes.User"/>
+   <object class="classes.User">
+    <void property="FName">
+     <string>Larry</string>
+    </void>
+    <void property="lname">
+     <string>Stooge</string>
+    </void>
+    <void property="uid">
+     <int>0</int>
+    </void>
+   </object>
   </void>
  </object>
 </java>

@@ -25,7 +25,7 @@ public class XMLFileIO {
 		stu2.setLname("Stooge");
 //		ArrayList<Student> f2 = new ArrayList<Student>();
 
-//		stu2.addFriend(stu);
+		stu2.addFriend(stu);
 		l.add(stu2);
 
 		// for (Student s : l)
@@ -37,6 +37,12 @@ public class XMLFileIO {
 		System.out.println(stu);
 		h.put("hello", stu);
 		write(h, "foo.xml");
+		
+		XMLEncoder encoder = new XMLEncoder(
+			    new BufferedOutputStream(
+			      new FileOutputStream("Sample.xml")));
+			  encoder.writeObject(stu);
+			  encoder.close();
 
 //		 ArrayList<User> l2 = read("foo.xml");
 //		 for (User s : l2)

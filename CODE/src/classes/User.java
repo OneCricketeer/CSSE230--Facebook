@@ -1,5 +1,6 @@
 package classes;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -45,6 +46,10 @@ public class User implements Comparable<User>, Serializable {
 	public Integer getUid() {
 		return this.uid;
 	}
+	
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
 
 	public int compareTo(User u) {
 		if (!(u instanceof User))
@@ -81,8 +86,16 @@ public class User implements Comparable<User>, Serializable {
 		this.fname = name;
 	}
 	
+	public String getFName() {
+		return this.fname;
+	}
+	
 	public void setLname(String name) {
 		this.lname = name;
+	}
+
+	public String getLname() {
+		return this.lname;
 	}
 
 	/**
@@ -90,6 +103,10 @@ public class User implements Comparable<User>, Serializable {
 	 */
 	public String getUserName() {
 		return userName;
+	}
+	
+	public void setUserName(String uName) {
+		this.userName = uName;
 	}
 
 	/**

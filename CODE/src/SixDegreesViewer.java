@@ -59,12 +59,16 @@ public class SixDegreesViewer {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		final boolean design = true;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					SixDegreesViewer window = new SixDegreesViewer();
-					User pSherman = new User("pSherman", "P.", "Sherman");
-					window.setCurrentUser(pSherman);
+					if (!design) {
+						User pSherman = new User("pSherman", "P.", "Sherman");
+						window.setCurrentUser(pSherman);
+					}
+
 					window.frmSixDegrees.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -204,7 +208,7 @@ public class SixDegreesViewer {
 		meetingsPanel.add(calendarControl);
 
 		addLogo(meetingsPanel);
-		
+
 		// /FRIENDS//////////////////////////////////////////////////////////////////
 
 		JPanel friendsPanel = new JPanel();
@@ -250,9 +254,11 @@ public class SixDegreesViewer {
 				rowPanel.setPreferredSize(new Dimension(120, 90));
 				columnPanel.add(rowPanel);
 				rowPanel.setLayout(null);
+
 				friendsScrollPane.repaint();
 				friendScroller.repaint();
 				columnPanel.repaint();
+				friendsScrollPane.setViewportView(friendScroller);
 
 			}
 		});
@@ -278,6 +284,26 @@ public class SixDegreesViewer {
 		btnGeneralSearch.setBounds(423, 23, 89, 23);
 		panelTab4.add(btnGeneralSearch);
 
+		JPanel Testingpanel = new JPanel();
+		tabViewer.addTab("New tab", null, Testingpanel, null);
+		Testingpanel.setLayout(null);
+
+		JButton btnCreateNewUser = new JButton("Create New User");
+		btnCreateNewUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewUserWindow n = new NewUserWindow();
+				n.setVisible(true);
+			}
+		});
+		btnCreateNewUser.setBounds(270, 31, 200, 65);
+		Testingpanel.add(btnCreateNewUser);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(105, 149, 568, 329);
+		Testingpanel.add(panel);
+		System.out.println(getHTMLHeader());
+		panel.add(new JLabel(getHTMLHeader()));
+
 	}
 
 	private void addLogo(JComponent comp) {
@@ -293,6 +319,42 @@ public class SixDegreesViewer {
 		lblNameLabel.setText(u.getName());
 		lblContactinfomessage.setText(u.getContactInfo());
 		lblAbouttext.setText(u.getAbout());
+	}
 
+	public String getHTMLHeader() {
+		String s = "";
+		s += "<html xmlns=\"http://www.w3.org/1999/xhtml\">"
+				+ "<head>"
+				+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />"
+				//+ "<title>Demo - Expandable - Collpasible Layer with Jquery</title>"
+				+ "<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></script>"
+				+ "<script type=\"text/javascript\">"
+				+ "jQuery(document).ready(function() { "
+				+ "jQuery(\".content\").hide();"
+				+ "jQuery(\".heading\").click(function() {"
+				+ "jQuery(this).next(\".content\").slideToggle(500); });"
+				+ "});" 
+				+ "</script>" 
+				+ "<style type=\"text/css\">" + 
+				"body"
+				+ "{"
+				+ "margin: 20px auto;"
+				+ "font: 12px Verdana,Arial, Helvetica, sans-serif;" + "}"
+				+ ".layer1 {" + "margin: 0;" + "padding: 0;" + "width: 500px;"
+				+ "}" +
+
+				".heading { " +
+				"margin: 1px; color: #fff;"
+				+ "padding: 3px 10px; cursor: pointer;"
+				+ "position: relative; background-color:#c30;" +
+				" } "
+				+ ".content { " +
+				"padding: 5px 10px;"
+				+ "background-color:#fafafa; " +
+				"}" 
+				+ "p { padding: 5px 0; }"
+				+ "</style>" +
+				"</head></html>";
+		return s;
 	}
 }

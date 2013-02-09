@@ -35,7 +35,7 @@ public class SixDegrees implements Serializable {
 	}
 
 	public static void addUser(User user) {
-		users.put(user.getUid(), user);
+		users.put(user.getUID(), user);
 	}
 
 	public static void setCurrentUser(User user) {
@@ -45,7 +45,7 @@ public class SixDegrees implements Serializable {
 	public static int getDistance(Integer uID) {
 		if (uID < 0 || !users.containsKey(uID))
 			return -1;
-		if (current == null || current.getUid() == uID)
+		if (current == null || current.getUID() == uID)
 			return 0;
 		int degree = 0;
 		Queue<Node> nodeQue = new LinkedList<Node>();
@@ -53,7 +53,7 @@ public class SixDegrees implements Serializable {
 		nodeQue.offer(currentNode);
 		Node next = nodeQue.poll();
 
-		if (current.getUid() == uID) {
+		if (current.getUID() == uID) {
 			return degree;
 		}
 
@@ -61,7 +61,7 @@ public class SixDegrees implements Serializable {
 			ArrayList<User> friends = next.user.getFriends();
 
 			for (User friend : friends) {
-				if (friend.getUid() == uID) {
+				if (friend.getUID() == uID) {
 					return next.level + 1;
 				} else {
 					Node friendNode = new Node(next.level + 1, friend);

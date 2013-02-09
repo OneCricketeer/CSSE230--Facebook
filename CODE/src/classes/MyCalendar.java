@@ -1,10 +1,11 @@
 package classes;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.PriorityQueue;
 
 
-public class MyCalendar {
-	PriorityQueue<Event> events;
+public class MyCalendar implements Serializable {
+	PriorityQueue<Event> events = new PriorityQueue<Event>();
 	
 	public MyCalendar() {
 		this.events = new PriorityQueue<Event>();

@@ -2,12 +2,17 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import classes.Event;
+import classes.MyCalendar;
 import classes.SixDegrees;
 import classes.User;
 
@@ -178,6 +183,59 @@ public class Tests {
 					+ " start");
 			assertTrue(testUserGraph(i, large, large_distanceNums));
 		}
+	}
+	
+	@Test
+	public void realTimeEventRemovalTest() {
+		Calendar cal = Calendar.getInstance();
+		Event e1 = new Event(); // now
+		
+		cal.add(Calendar.MINUTE, 3);
+		Date start = cal.getTime();
+		cal.add(Calendar.MINUTE, 1);
+		Date end = cal.getTime();
+		
+		Event e2 = new Event(start, end);
+		
+		MyCalendar my_cal = new MyCalendar();
+		my_cal.addEvent(e1);
+		my_cal.addEvent(e2);
+		
+//		while (my_cal.getEvents_Queue().size() != 0) {
+//			Event e = my_cal.removeNextEvent();
+//			System.out.println(e.getStartTime_String() + " " + e.getEndTime_String());
+//		}
+		
+		ArrayList<Event> arr = my_cal.getEvents_List();
+		for (Event e : arr) {
+			System.out.println(e.getStartTime_String() + " " + e.getEndTime_String());
+		}
+		
+//		Collections.sort(arr);
+//		System.out.println();
+		
+//		for (Event e : arr) {
+//			System.out.println(e.getStartTime_String() + " " + e.getEndTime_String());
+//		}
+		
+		Event next = my_cal.getEvents_Queue().peek();
+		System.out.println();
+		System.out.println("Now:  " + new SimpleDateFormat("MM/dd/yyyy hh:mm a").format(new Date(System.currentTimeMillis())));
+		System.out.println("Next: " + next.getStartTime_String() + " " + next.getEndTime_String());
+		
+		
+		Thread t = new Thread(my_cal);
+		t.start();
+		
+		long min = 60000;
+		try {
+			Thread.sleep(3*min);
+			assertEquals(0, my_cal.getEvents_Queue().size());
+			
+		} catch (InterruptedException e) {
+			
+		}
+		
 	}
 
 }

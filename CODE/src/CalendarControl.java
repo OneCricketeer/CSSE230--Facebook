@@ -31,6 +31,7 @@ public class CalendarControl extends JPanel {
 	public CalendarControl() {
 		setLayout(null);
 		
+		
 		JButton lastMonthButton = new JButton("<<");
 		lastMonthButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lastMonthButton.setBounds(10, 11, 55, 45);
@@ -46,10 +47,11 @@ public class CalendarControl extends JPanel {
 		lblCalendarMonth.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCalendarMonth.setBounds(290, 21, 159, 20);
 		add(lblCalendarMonth);
-		calPanel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, Color.LIGHT_GRAY));
+		
 		
 //		final CalendarPanel calPanel = new CalendarPanel();
 		calPanel.setBounds(10, 64, 723, 396);
+		calPanel.setDays();
 		add(calPanel);
 		lastMonthButton.addActionListener(new ActionListener() {
 			@Override

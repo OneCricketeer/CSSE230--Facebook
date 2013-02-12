@@ -31,11 +31,13 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import classes.SixDegrees;
 import classes.User;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * TODO Put here a description of what this class does.
@@ -45,7 +47,6 @@ import java.util.Date;
 public class SixDegreesViewer {
 
 	private JFrame frmSixDegrees;
-	private JTable table;
 	private JTextField textFriendSearch;
 	private JTextField textGeneralSearch;
 	private static User current;
@@ -54,12 +55,18 @@ public class SixDegreesViewer {
 	private static JLabel lblNameLabel;
 	private static JLabel lblContactinfomessage;
 	private static JLabel lblAbouttext;
+	private static SixDegrees data;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		final boolean design = true;
+		data = new SixDegrees();
+		
+		data.addUser(new User("sternetj", "Teddy", "Sterne"));
+		data.addUser(new User("yadavy", "Yashi", "Yadav"));
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -245,22 +252,32 @@ public class SixDegreesViewer {
 		textFriendSearch.setBounds(245, 24, 168, 20);
 		friendsPanel.add(textFriendSearch);
 		textFriendSearch.setColumns(10);
+		
+		final JButton btnFriendSearch = new JButton("Search");
 
-		JButton btnFriendSearch = new JButton("Search");
 		btnFriendSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FriendPanel rowPanel = new FriendPanel();
-				rowPanel.setUsername("TestUser");
-				rowPanel.setPreferredSize(new Dimension(120, 90));
-				columnPanel.add(rowPanel);
-				rowPanel.setLayout(null);
-
-				friendsScrollPane.repaint();
-				friendScroller.repaint();
-				columnPanel.repaint();
-				friendsScrollPane.setViewportView(friendScroller);
-
+				columnPanel.removeAll();
+				String query = textFriendSearch.getText().toLowerCase();
+				System.out.println(query);
+				for (User u : data.getUsers().values()) {
+					if (u.getName().equalsIgnoreCase(query)
+							|| u.getFname().equalsIgnoreCase(query)
+							|| u.getLname().equalsIgnoreCase(query)
+							|| u.getUserName().equalsIgnoreCase(query)) {
+						FriendPanel rowPanel = new FriendPanel();
+						rowPanel.setUsername(u.getName());
+						rowPanel.setPreferredSize(new Dimension(120, 90));
+						columnPanel.add(rowPanel);
+						rowPanel.setLayout(null);
+						btnFriendSearch.setFocusable(false);
+						
+					}
+					btnFriendSearch.setFocusable(true);
+				}
+				
 			}
+
 		});
 		btnFriendSearch.setBounds(423, 23, 89, 23);
 		friendsPanel.add(btnFriendSearch);
@@ -301,8 +318,6 @@ public class SixDegreesViewer {
 		JPanel panel = new JPanel();
 		panel.setBounds(105, 149, 568, 329);
 		Testingpanel.add(panel);
-		System.out.println(getHTMLHeader());
-		panel.add(new JLabel(getHTMLHeader()));
 
 	}
 
@@ -315,46 +330,9 @@ public class SixDegreesViewer {
 	public void setCurrentUser(User u) {
 		current = u;
 		lblStatusMessage.setText(u.getStatus());
-		lblBasicInfoMessage.setText(u.getBasicInfo());
 		lblNameLabel.setText(u.getName());
+		lblBasicInfoMessage.setText(u.getBasicInfo());
 		lblContactinfomessage.setText(u.getContactInfo());
 		lblAbouttext.setText(u.getAbout());
-	}
-
-	public String getHTMLHeader() {
-		String s = "";
-		s += "<html xmlns=\"http://www.w3.org/1999/xhtml\">"
-				+ "<head>"
-				+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />"
-				//+ "<title>Demo - Expandable - Collpasible Layer with Jquery</title>"
-				+ "<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></script>"
-				+ "<script type=\"text/javascript\">"
-				+ "jQuery(document).ready(function() { "
-				+ "jQuery(\".content\").hide();"
-				+ "jQuery(\".heading\").click(function() {"
-				+ "jQuery(this).next(\".content\").slideToggle(500); });"
-				+ "});" 
-				+ "</script>" 
-				+ "<style type=\"text/css\">" + 
-				"body"
-				+ "{"
-				+ "margin: 20px auto;"
-				+ "font: 12px Verdana,Arial, Helvetica, sans-serif;" + "}"
-				+ ".layer1 {" + "margin: 0;" + "padding: 0;" + "width: 500px;"
-				+ "}" +
-
-				".heading { " +
-				"margin: 1px; color: #fff;"
-				+ "padding: 3px 10px; cursor: pointer;"
-				+ "position: relative; background-color:#c30;" +
-				" } "
-				+ ".content { " +
-				"padding: 5px 10px;"
-				+ "background-color:#fafafa; " +
-				"}" 
-				+ "p { padding: 5px 0; }"
-				+ "</style>" +
-				"</head></html>";
-		return s;
 	}
 }

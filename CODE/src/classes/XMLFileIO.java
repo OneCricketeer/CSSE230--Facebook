@@ -4,10 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.thoughtworks.xstream.XStream;
 
 public class XMLFileIO {
 
+	/**
+	 * XStream is open-source available from xstream.codehaus.org
+	 */
 	final static XStream xstream = new XStream();
 
 	public static void main(String[] args) throws Exception {
@@ -73,6 +78,29 @@ public class XMLFileIO {
 		}
 		return l;
 	}
+	
+	public static void write(HashMap<?, ?> h, String filename)
+			throws FileNotFoundException {
+		String xml = xstream.toXML(h);
+		PrintStream ps = new PrintStream(filename);
+		ps.print(xml);
+		ps.close();
+	}
+	
+	public static HashMap<?, ?> read_HashMap(String filename) {
+		HashMap<?, ?> h = null;
+		try {
+			h = (HashMap<?, ?>) xstream.fromXML(new File(filename));
+			
+			
+		} catch (Exception e) {
+			System.err.println(filename + " could not be found or is in invalid XML format");
+			
+		}
+		return h;
+	}
+	
+	
 
 		public static void write(User u, String filename)
 			throws FileNotFoundException {

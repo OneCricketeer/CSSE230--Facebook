@@ -4,11 +4,10 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Group implements Serializable {
-	private static Integer groupIDCounter;
+	private static Integer groupIDCounter = -1;
 	private String name, desc;
 	private Integer gID;
 	private TreeSet<Integer> members;
-	
 
 	public Group() {
 		this.gID = ++groupIDCounter;

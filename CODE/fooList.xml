@@ -1,0 +1,75 @@
+<list>
+  <classes.User>
+    <uid>0</uid>
+    <fname>P.</fname>
+    <lname>Sherman</lname>
+    <status>Found some neat fish</status>
+    <userName>pSherman</userName>
+    <calendar>
+      <events serialization="custom">
+        <unserializable-parents/>
+        <java.util.PriorityQueue>
+          <default>
+            <size>0</size>
+          </default>
+          <int>2</int>
+        </java.util.PriorityQueue>
+      </events>
+    </calendar>
+    <work></work>
+    <dorm></dorm>
+    <organizations/>
+    <friends>
+      <classes.User>
+        <uid>2</uid>
+        <fname>Dory</fname>
+        <lname></lname>
+        <status>Just keep swimming...</status>
+        <userName>blueFish</userName>
+        <calendar>
+          <events serialization="custom">
+            <unserializable-parents/>
+            <java.util.PriorityQueue>
+              <default>
+                <size>0</size>
+              </default>
+              <int>2</int>
+            </java.util.PriorityQueue>
+          </events>
+        </calendar>
+        <work></work>
+        <dorm></dorm>
+        <organizations/>
+        <friends>
+          <classes.User reference="../../../.."/>
+        </friends>
+      </classes.User>
+      <classes.User>
+        <uid>1</uid>
+        <fname>Nemo</fname>
+        <lname>the Clownfish</lname>
+        <status>Find me!</status>
+        <userName>findMe</userName>
+        <calendar>
+          <events serialization="custom">
+            <unserializable-parents/>
+            <java.util.PriorityQueue>
+              <default>
+                <size>0</size>
+              </default>
+              <int>2</int>
+            </java.util.PriorityQueue>
+          </events>
+        </calendar>
+        <work></work>
+        <dorm></dorm>
+        <organizations/>
+        <friends>
+          <classes.User reference="../../../.."/>
+        </friends>
+      </classes.User>
+    </friends>
+  </classes.User>
+  <classes.User reference="../classes.User/friends/classes.User[2]"/>
+  <classes.User reference="../classes.User/friends/classes.User"/>
+</list>

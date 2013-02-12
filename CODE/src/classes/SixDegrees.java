@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,12 +10,12 @@ import java.util.Queue;
 public class SixDegrees implements Serializable {
 
 	static HashMap<Integer, User> users = new HashMap<Integer, User>();
-	static HashMap<String, Group> groups;
+	static HashMap<Integer, Group> groups = new HashMap<Integer, Group>();
 	static User current;
 
 	public SixDegrees() {
 		users = new HashMap<Integer, User>();
-		groups = new HashMap<String, Group>();
+		groups = new HashMap<Integer, Group>();
 		current = null;
 	}
 
@@ -30,12 +31,42 @@ public class SixDegrees implements Serializable {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-
+	public static void load() {
+		users.clear();
+		groups.clear();
+		
+		users = (HashMap<Integer, User>) XMLFileIO.read_HashMap("userHash.xml");
+		groups = (HashMap<Integer, Group>) XMLFileIO.read_HashMap("groupHash.xml");
+		
+		if (users == null) {
+			users = new HashMap<Integer, User>();
+		}
+		if (groups == null) {
+			groups = new HashMap<Integer, Group>();
+		}
+		
+	}
+	
+	public static void save() {
+		try {
+			XMLFileIO.write(users, "userHash.xml");
+			XMLFileIO.write(groups, "groupHash.xml");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
+	public static void main(String[] args) {
+		load();
+	}
 	public static void addUser(User user) {
 		users.put(user.getUID(), user);
+	}
+	
+	public static void addGroup(Group group) {
+		groups.put(group.getGID(), group);
 	}
 
 	public static void setCurrentUser(User user) {
@@ -90,6 +121,10 @@ public class SixDegrees implements Serializable {
 			this.level = level;
 			this.user = user;
 		}
+	}
+
+	public HashMap<Integer, User> getUsers() {
+		return users;
 	}
 
 }

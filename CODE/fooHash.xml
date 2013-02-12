@@ -1,0 +1,52 @@
+<map>
+  <entry>
+    <int>0</int>
+    <classes.User>
+      <uid>0</uid>
+      <fname>test</fname>
+      <lname>user</lname>
+      <status>What&apos;s happening?</status>
+      <userName>user1</userName>
+      <calendar>
+        <events serialization="custom">
+          <unserializable-parents/>
+          <java.util.PriorityQueue>
+            <default>
+              <size>0</size>
+            </default>
+            <int>2</int>
+          </java.util.PriorityQueue>
+        </events>
+      </calendar>
+      <work></work>
+      <dorm></dorm>
+      <organizations/>
+      <friends/>
+    </classes.User>
+  </entry>
+  <entry>
+    <int>1</int>
+    <classes.User>
+      <uid>1</uid>
+      <fname>Default</fname>
+      <lname>User</lname>
+      <status>What&apos;s happening?</status>
+      <userName>&lt;User Name&gt;</userName>
+      <calendar>
+        <events serialization="custom">
+          <unserializable-parents/>
+          <java.util.PriorityQueue>
+            <default>
+              <size>0</size>
+            </default>
+            <int>2</int>
+          </java.util.PriorityQueue>
+        </events>
+      </calendar>
+      <work></work>
+      <dorm></dorm>
+      <organizations/>
+      <friends/>
+    </classes.User>
+  </entry>
+</map>

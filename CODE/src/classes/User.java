@@ -1,6 +1,11 @@
 package classes;
 import java.io.Serializable;
+import java.io.ObjectInputStream.GetField;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.TreeSet;
 
 /**
@@ -15,6 +20,7 @@ public class User implements Comparable<User>, Serializable {
 	private String dorm;
 	private ArrayList<Group> organizations;
 	private TreeSet<User> friends;
+	private String date;
 
 	public static void resetCounter() {
 		userCount = -1;
@@ -27,7 +33,7 @@ public class User implements Comparable<User>, Serializable {
 		this.fname = "Default";
 		this.lname = "User";
 		this.calendar = new MyCalendar();
-		this.work = this.dorm = "";
+		this.work = this.dorm = this.date = "";
 		this.organizations = new ArrayList<Group>();
 		this.friends = new TreeSet<User>();
 		SixDegrees.addUser(this);
@@ -60,8 +66,8 @@ public class User implements Comparable<User>, Serializable {
 		s += "[" + getUID() + "] Username: " + getUserName() + line;
 		s += space + "Full Name: " + getName() + line;
 		s += space + "Status: " + getStatus() + line;
-//		s += space + "Work: " + getWork() + line;
-//		s += space + "Dorm: " + getDorm() + line;
+		s += space + "Work: " + getWork() + line;
+		s += space + "Dorm: " + getDorm() + line;
 		s += space + "# of Friends: " + friends.size();
 		return s;
 	}
@@ -199,4 +205,41 @@ public class User implements Comparable<User>, Serializable {
 				+ "</html>";
 
 	}
+	
+	public Date getBirthDate() {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
+		String date = "April 1 2010";
+		Date d = null;
+		try {
+			d = fmt.parse(date);cal.setTime(fmt.parse(date));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+//		cal.set(d.getYear(), d.getMonth(), d.getDay(), 0, 0);
+		return cal.getTime();
+	}
+	
+//	public static void main(String[] args) {
+//		User u = new User();
+//		System.out.println(u.getBirthDate_String());
+//	}
+	
+//	private int getBirthDay() {
+//		return birthDay;
+//	}
+//
+//	private int getBirthMonth() {
+//		return 0;
+//	}
+//
+//	private int getBirthYear() {
+//		return 0;
+//	}
+
+//	public String getBirthDate_String() {
+//		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
+//		return fmt.format(getBirthDate());
+//	}
 }

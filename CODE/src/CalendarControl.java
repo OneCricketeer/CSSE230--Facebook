@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -25,11 +26,17 @@ public class CalendarControl extends JPanel {
 	
 	private JLabel lblCalendarMonth;
 	final private CalendarPanel calPanel = new CalendarPanel();
+	private JScrollPane scroller;
 	/**
 	 * Create the panel.
 	 */
 	public CalendarControl() {
-		setLayout(null);
+		initialize();
+		calPanel.setControl(scroller);
+	}
+	
+	private void initialize() {
+setLayout(null);
 		
 		
 		JButton lastMonthButton = new JButton("<<");
@@ -52,7 +59,12 @@ public class CalendarControl extends JPanel {
 //		final CalendarPanel calPanel = new CalendarPanel();
 		calPanel.setBounds(10, 64, 723, 396);
 		calPanel.setDays();
-		add(calPanel);
+		
+		this.scroller = new JScrollPane();
+		scroller.setBounds(10, 64, 723, 380);
+		scroller.setViewportView(calPanel);
+		add(scroller);
+		
 		lastMonthButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -70,7 +82,6 @@ public class CalendarControl extends JPanel {
 				CalendarControl.this.repaint();
 			}
 		});
-	
 	}
 	
 	public void updateMonth() {

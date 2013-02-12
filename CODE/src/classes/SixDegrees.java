@@ -127,4 +127,13 @@ public class SixDegrees implements Serializable {
 		return users;
 	}
 
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
+	public static User getCurrentUser() {
+		return current;
+	}
+
 }

@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
@@ -215,6 +216,18 @@ public class SixDegreesViewer {
 		meetingsPanel.add(calendarControl);
 
 		addLogo(meetingsPanel);
+		
+		JButton btnNewEvent = new JButton("New Event");
+		btnNewEvent.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(SixDegreesViewer.this.frmSixDegrees,"Message");
+//				JOptionPane.showConfirmDialog(SixDegreesViewer.this,"Message");
+				//SixDegrees.getCurrentUser().addEvent();
+			}
+		});
+		btnNewEvent.setBounds(10, 476, 106, 35);
+		meetingsPanel.add(btnNewEvent);
 
 		// /FRIENDS//////////////////////////////////////////////////////////////////
 

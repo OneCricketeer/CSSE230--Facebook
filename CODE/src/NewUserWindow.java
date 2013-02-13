@@ -145,7 +145,7 @@ public class NewUserWindow {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				
+				SixDegrees.load();
 				SixDegrees.addUser(user);
 				SixDegrees.save();
 				SixDegreesViewer.setCurrentUser(user);

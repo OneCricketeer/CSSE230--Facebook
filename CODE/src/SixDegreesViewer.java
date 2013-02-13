@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
@@ -56,6 +57,9 @@ public class SixDegreesViewer {
 	private static JLabel lblContactinfomessage;
 	private static JLabel lblAbouttext;
 	private static SixDegrees data;
+	static JTabbedPane tabViewer;
+	private JTextField uNameTextField;
+	private JTextField emailTextField;
 
 	/**
 	 * Launch the application.
@@ -109,7 +113,7 @@ public class SixDegreesViewer {
 		frmSixDegrees.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSixDegrees.getContentPane().setLayout(null);
 
-		JTabbedPane tabViewer = new JTabbedPane(JTabbedPane.TOP);
+		tabViewer = new JTabbedPane(JTabbedPane.TOP);
 		tabViewer.setBounds(0, 0, 748, 558);
 		frmSixDegrees.getContentPane().add(tabViewer);
 
@@ -199,7 +203,7 @@ public class SixDegreesViewer {
 		lblBasicInfoMessage.setForeground(Color.BLACK);
 		lblBasicInfoMessage
 				.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblBasicInfoMessage.setBounds(114, 441, 353, 54);
+		lblBasicInfoMessage.setBounds(114, 438, 353, 54);
 		myPagePanel.add(lblBasicInfoMessage);
 
 		addLogo(myPagePanel);
@@ -310,14 +314,66 @@ public class SixDegreesViewer {
 			public void actionPerformed(ActionEvent e) {
 				NewUserWindow n = new NewUserWindow();
 				n.setVisible(true);
+				tabViewer.setSelectedIndex(0);
 			}
 		});
-		btnCreateNewUser.setBounds(270, 31, 200, 65);
+		btnCreateNewUser.setBounds(433, 127, 126, 32);
 		Testingpanel.add(btnCreateNewUser);
-
-		JPanel panel = new JPanel();
-		panel.setBounds(105, 149, 568, 329);
-		Testingpanel.add(panel);
+		
+		uNameTextField = new JTextField();
+		uNameTextField.setBounds(107, 79, 175, 32);
+		Testingpanel.add(uNameTextField);
+		uNameTextField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("User Name:");
+		lblNewLabel.setBounds(28, 81, 69, 29);
+		Testingpanel.add(lblNewLabel);
+		
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblLogin.setBounds(28, 38, 69, 29);
+		Testingpanel.add(lblLogin);
+		
+		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail.setBounds(28, 135, 69, 29);
+		Testingpanel.add(lblEmail);
+		
+		emailTextField = new JTextField();
+		emailTextField.setColumns(10);
+		emailTextField.setBounds(107, 133, 175, 32);
+		Testingpanel.add(emailTextField);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SixDegrees.load();
+				boolean findUser = false;
+				for( User u: SixDegrees.users.values()){
+					if(u.getUserName().equals(uNameTextField.getText())){
+						if(u.getEmail().equals(emailTextField.getText())){
+							setCurrentUser(u);
+							findUser = true;
+							tabViewer.setSelectedIndex(0);
+						}
+						else
+							JOptionPane.showMessageDialog(null, "User Name mismatch with Email!", "Login Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+				if(!findUser)
+					JOptionPane.showMessageDialog(null, "User doesn't exist!", "Login Error", JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnLogin.setBounds(108, 207, 92, 32);
+		Testingpanel.add(btnLogin);
+		
+		JLabel lblHaventRegisteredYet = new JLabel("Haven't Registered Yet?");
+		lblHaventRegisteredYet.setBounds(433, 46, 159, 32);
+		Testingpanel.add(lblHaventRegisteredYet);
+		
+		JLabel lblCreateNewUser = new JLabel("Create New User Here:");
+		lblCreateNewUser.setBounds(433, 88, 143, 28);
+		Testingpanel.add(lblCreateNewUser);
 
 	}
 
@@ -327,7 +383,7 @@ public class SixDegreesViewer {
 		comp.add(image);
 	}
 
-	public void setCurrentUser(User u) {
+	public static void setCurrentUser(User u) {
 		current = u;
 		lblStatusMessage.setText(u.getStatus());
 		lblNameLabel.setText(u.getName());

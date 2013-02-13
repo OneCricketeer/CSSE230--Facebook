@@ -18,9 +18,15 @@ public class User implements Comparable<User>, Serializable {
 	private MyCalendar calendar;
 	private String work;
 	private String dorm;
+	private boolean gender;
+	private String email;
 	private ArrayList<Group> organizations;
 	private TreeSet<User> friends;
 	private String date;
+	private Date birthday;
+	private Number phone;
+	private String address;
+	private String hometown;
 
 	public static void resetCounter() {
 		userCount = -1;
@@ -156,7 +162,7 @@ public class User implements Comparable<User>, Serializable {
 	 * @param dorm
 	 *            the dorm to set
 	 */
-	private void setDorm(String dorm) {
+	public void setDorm(String dorm) {
 		this.dorm = dorm;
 	}
 
@@ -193,11 +199,15 @@ public class User implements Comparable<User>, Serializable {
 	}
 
 	public String getBasicInfo() {
-		return "Basic information about " + getName();
+		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
+		
+		return "<html>" + fmt.format(this.birthday) + "<br />" + "Male" + "<br />" + this.hometown 
+				+ "</html>";
+		//return this.birthday.toString() + "\n" + "Male" + "\n" + this.hometown;
 	}
 
 	public String getContactInfo() {
-		return "Contact information for " + getName();
+		return "<html>" + this.phone.toString() + "<br />" + this.address + "<br />" + "<br />"+ this.email + "</html>";
 	}
 
 	public String getAbout() {
@@ -219,6 +229,34 @@ public class User implements Comparable<User>, Serializable {
 		
 //		cal.set(d.getYear(), d.getMonth(), d.getDay(), 0, 0);
 		return cal.getTime();
+	}
+
+	public void setWork(String work) {
+		this.work = work;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public void setPhone(Number phone) {
+		this.phone = phone;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+		
+	}
+
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
 	}
 	
 //	public static void main(String[] args) {

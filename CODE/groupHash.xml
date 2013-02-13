@@ -1,13 +1,1 @@
-<map>
-  <entry>
-    <int>0</int>
-    <classes.Group>
-      <name>Group Test 1</name>
-      <desc>&lt;Group Description&gt;</desc>
-      <gID>0</gID>
-      <members>
-        <int>0</int>
-      </members>
-    </classes.Group>
-  </entry>
-</map>
+<map/>

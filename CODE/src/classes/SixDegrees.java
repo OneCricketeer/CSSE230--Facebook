@@ -10,9 +10,9 @@ import java.util.Queue;
 
 public class SixDegrees implements Serializable {
 
-	public static HashMap<Integer, User> users = new HashMap<Integer, User>();
-	static HashMap<Integer, Group> groups = new HashMap<Integer, Group>();
-	static User current;
+	private static HashMap<Integer, User> users = new HashMap<Integer, User>();
+	private static HashMap<Integer, Group> groups = new HashMap<Integer, Group>();
+	private static User current;
 
 	public SixDegrees() {
 		users = new HashMap<Integer, User>();
@@ -139,7 +139,7 @@ public class SixDegrees implements Serializable {
 		}
 	}
 
-	public HashMap<Integer, User> getUsers() {
+	public static HashMap<Integer, User> getUsers() {
 		return users;
 	}
 	

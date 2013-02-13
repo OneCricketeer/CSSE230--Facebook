@@ -39,6 +39,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 import java.util.HashMap;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * TODO Put here a description of what this class does.
@@ -50,7 +54,6 @@ public class SixDegreesViewer {
 	private JFrame frmSixDegrees;
 	private JTextField textFriendSearch;
 	private JTextField textGeneralSearch;
-	private static User current;
 	private static JLabel lblStatusMessage;
 	private static JLabel lblBasicInfoMessage;
 	private static JLabel lblNameLabel;
@@ -60,6 +63,7 @@ public class SixDegreesViewer {
 	static JTabbedPane tabViewer;
 	private JTextField uNameTextField;
 	private JTextField emailTextField;
+	private JTextField StatusTextField;
 
 	/**
 	 * Launch the application.
@@ -145,8 +149,17 @@ public class SixDegreesViewer {
 		myPagePanel.add(lblStatus);
 
 		lblStatusMessage = new JLabel("Status Message");
+		lblStatusMessage.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2){
+					lblStatusMessage.setVisible(false);
+					StatusTextField.setVisible(true);
+				}
+			}
+		});
 		lblStatusMessage.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		lblStatusMessage.setBounds(140, 43, 214, 28);
+		lblStatusMessage.setBounds(140, 53, 228, 28);
 		myPagePanel.add(lblStatusMessage);
 
 		JLabel lblContactInfo = new JLabel("Contact Info:");
@@ -207,6 +220,25 @@ public class SixDegreesViewer {
 		myPagePanel.add(lblBasicInfoMessage);
 
 		addLogo(myPagePanel);
+		
+		StatusTextField = new JTextField();
+		StatusTextField.setVisible(false);
+		StatusTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
+					String status = StatusTextField.getText();
+					SixDegrees.getCurrentUser().setStatus(status);
+					StatusTextField.setVisible(false);
+					lblStatusMessage.setVisible(true);
+					lblStatusMessage.setText(StatusTextField.getText());
+				}
+			}
+		});
+		StatusTextField.setText("What are you doing?");
+		StatusTextField.setBounds(140, 53, 250, 28);
+		myPagePanel.add(StatusTextField);
+		StatusTextField.setColumns(10);
 
 		// /MEETINGS/////////////////////////////////////////////////////////////
 
@@ -360,7 +392,7 @@ public class SixDegreesViewer {
 			public void actionPerformed(ActionEvent e) {
 				SixDegrees.load();
 				boolean findUser = false;
-				for( User u: SixDegrees.users.values()){
+				for( User u: SixDegrees.getUsers().values()){
 					if(u.getUserName().equals(uNameTextField.getText())){
 						if(u.getEmail().equals(emailTextField.getText())){
 							setCurrentUser(u);
@@ -396,7 +428,7 @@ public class SixDegreesViewer {
 	}
 
 	public static void setCurrentUser(User u) {
-		current = u;
+		SixDegrees.setCurrentUser(u);
 		lblStatusMessage.setText(u.getStatus());
 		lblNameLabel.setText(u.getName());
 		lblBasicInfoMessage.setText(u.getBasicInfo());

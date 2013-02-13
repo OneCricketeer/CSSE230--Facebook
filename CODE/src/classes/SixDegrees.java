@@ -123,8 +123,12 @@ public class SixDegrees implements Serializable {
 		}
 	}
 
-	public HashMap<Integer, User> getUsers() {
+	public static HashMap<Integer, User> getUsers() {
 		return users;
+	}
+	
+	public static HashMap<Integer, Group> getGroups() {
+		return groups;
 	}
 
 	/**

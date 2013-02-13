@@ -32,8 +32,10 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import classes.Group;
 import classes.SixDegrees;
 import classes.User;
+import classes.XMLFileIO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -56,8 +58,6 @@ public class SixDegreesViewer {
 	private static JLabel lblNameLabel;
 	private static JLabel lblContactinfomessage;
 	private static JLabel lblAbouttext;
-	private static SixDegrees data;
-
 	/**
 	 * Launch the application.
 	 */
@@ -65,9 +65,10 @@ public class SixDegreesViewer {
 		final boolean design = true;
 //		data = new SixDegrees();
 		
-		SixDegrees.addUser(new User("sternetj", "Teddy", "Sterne"));
-		SixDegrees.addUser(new User("yadavy", "Yashi", "Yadav"));
 		
+		
+		SixDegrees.load();
+	 
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -276,7 +277,7 @@ public class SixDegreesViewer {
 				columnPanel.removeAll();
 				String query = textFriendSearch.getText().toLowerCase();
 				System.out.println(query);
-				for (User u : data.getUsers().values()) {
+				for (User u : SixDegrees.getUsers().values()) {
 					if (u.getName().equalsIgnoreCase(query)
 							|| u.getFname().equalsIgnoreCase(query)
 							|| u.getLname().equalsIgnoreCase(query)
@@ -297,25 +298,80 @@ public class SixDegreesViewer {
 		});
 		btnFriendSearch.setBounds(423, 23, 89, 23);
 		friendsPanel.add(btnFriendSearch);
+		
+		///////////////////////////////////////////////////////////////////
 
-		JPanel panelTab4 = new JPanel();
-		tabViewer.addTab("Search", null, panelTab4, null);
-		panelTab4.setLayout(null);
+		JPanel generalSearchTab = new JPanel();
+		tabViewer.addTab("Search", null, generalSearchTab, null);
+		generalSearchTab.setLayout(null);
 
-		addLogo(panelTab4);
+		addLogo(generalSearchTab);
+		
+		final JScrollPane generalScrollPane = new JScrollPane();
+		generalScrollPane.setBounds(10, 64, 723, 396);
+		generalSearchTab.add(generalScrollPane);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 64, 723, 396);
-		panelTab4.add(scrollPane_1);
+		final JPanel generalScroller = new JPanel();
+		generalScrollPane.setViewportView(generalScroller);
+		generalScroller.setLayout(new BorderLayout(0, 0));
+
+		final JPanel generalColumnPanel = new JPanel();
+		generalScroller.add(generalColumnPanel, BorderLayout.NORTH);
+		generalColumnPanel.setLayout(new GridLayout(0, 1, 0, 1));
+
+		// FriendPanel panel_1 = new FriendPanel();
+		// panel_1.setBounds(0, 0, 1200, 900);
+		FriendPanel generalRowPanel = null;
+		
+
+		
 
 		textGeneralSearch = new JTextField();
 		textGeneralSearch.setColumns(10);
 		textGeneralSearch.setBounds(245, 24, 168, 20);
-		panelTab4.add(textGeneralSearch);
+		generalSearchTab.add(textGeneralSearch);
+		final JButton btnGeneralSearch = new JButton("Search");
+		btnGeneralSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				generalColumnPanel.removeAll();
+				String query = textGeneralSearch.getText().toLowerCase();
+				System.out.println(query);
+				for (User u : SixDegrees.getUsers().values()) {
+					if (u.getName().equalsIgnoreCase(query)
+							|| u.getFname().equalsIgnoreCase(query)
+							|| u.getLname().equalsIgnoreCase(query)
+							|| u.getUserName().equalsIgnoreCase(query)) {
+						FriendPanel generalRowPanel = new FriendPanel();
+						generalRowPanel.setUsername(u.getName());
+						generalRowPanel.setPreferredSize(new Dimension(120, 90));
+						generalColumnPanel.add(generalRowPanel);
+						generalRowPanel.setLayout(null);
+						btnGeneralSearch.setFocusable(false);
+						
+					}
+					btnGeneralSearch.setFocusable(true);
+				}
+				
+				
+				for (Group g : SixDegrees.getGroups().values()) {
+					if (g.getName().equalsIgnoreCase(query)) {
+						FriendPanel generalRowPanel = new FriendPanel();
+						generalRowPanel.setUsername(g.getName());
+						generalRowPanel.setPreferredSize(new Dimension(120, 90));
+						generalColumnPanel.add(generalRowPanel);
+						generalRowPanel.setLayout(null);
+						btnGeneralSearch.setFocusable(false);
+						
+					}
+					btnGeneralSearch.setFocusable(true);
+				}
+				generalScrollPane.setViewportView(generalScroller);
+			}
 
-		JButton btnGeneralSearch = new JButton("Search");
+		});
+
 		btnGeneralSearch.setBounds(423, 23, 89, 23);
-		panelTab4.add(btnGeneralSearch);
+		generalSearchTab.add(btnGeneralSearch);
 
 		JPanel Testingpanel = new JPanel();
 		tabViewer.addTab("New tab", null, Testingpanel, null);

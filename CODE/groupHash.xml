@@ -2,11 +2,117 @@
   <entry>
     <int>0</int>
     <classes.Group>
-      <name>Group Test 1</name>
-      <desc>&lt;Group Description&gt;</desc>
+      <name>Student Activities Board</name>
+      <desc>This group plans student activities around campus.</desc>
       <gID>0</gID>
       <members>
         <int>0</int>
+        <int>1</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>1</int>
+    <classes.Group>
+      <name>Delta Delta Delta</name>
+      <desc>This organization is a sorority. </desc>
+      <gID>1</gID>
+      <members>
+        <int>1</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>2</int>
+    <classes.Group>
+      <name>Society of Women Engineers</name>
+      <desc>This group consists of women engineers across campus.</desc>
+      <gID>2</gID>
+      <members>
+        <int>1</int>
+        <int>9</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>3</int>
+    <classes.Group>
+      <name>Engineers Without Borders</name>
+      <desc>This organization travels to developing communities across the world in order to help improve their living conditions.</desc>
+      <gID>3</gID>
+      <members>
+        <int>2</int>
+        <int>3</int>
+        <int>4</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>4</int>
+    <classes.Group>
+      <name>Student Government Association</name>
+      <desc>This group represents the student body at Rose-Hulman.</desc>
+      <gID>4</gID>
+      <members>
+        <int>5</int>
+        <int>6</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>5</int>
+    <classes.Group>
+      <name>RHA</name>
+      <desc>This organization is for students living in a residence hall on campus.</desc>
+      <gID>5</gID>
+      <members>
+        <int>0</int>
+        <int>1</int>
+        <int>2</int>
+        <int>3</int>
+        <int>4</int>
+        <int>5</int>
+        <int>6</int>
+        <int>7</int>
+        <int>8</int>
+        <int>9</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>6</int>
+    <classes.Group>
+      <name>Thorn</name>
+      <desc>This organization publishes the campus newspaper called Rose Thorn</desc>
+      <gID>6</gID>
+      <members>
+        <int>7</int>
+        <int>8</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>7</int>
+    <classes.Group>
+      <name>The Monkey</name>
+      <desc>This organization is the student radio station at Rose-Hulman.</desc>
+      <gID>7</gID>
+      <members>
+        <int>9</int>
+      </members>
+    </classes.Group>
+  </entry>
+  <entry>
+    <int>8</int>
+    <classes.Group>
+      <name>Ultimate Frisbee</name>
+      <desc>This group plays Ultimate Frisbee on campus.</desc>
+      <gID>8</gID>
+      <members>
+        <int>0</int>
+        <int>1</int>
+        <int>2</int>
+        <int>3</int>
       </members>
     </classes.Group>
   </entry>

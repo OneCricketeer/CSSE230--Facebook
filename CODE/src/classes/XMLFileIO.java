@@ -87,22 +87,7 @@ public class XMLFileIO {
 		ps.close();
 	}
 	
-	public static HashMap<?, ?> read_HashMap(String filename) {
-		HashMap<?, ?> h = null;
-		try {
-			h = (HashMap<?, ?>) xstream.fromXML(new File(filename));
-			
-			
-		} catch (Exception e) {
-			System.err.println(filename + " could not be found or is in invalid XML format");
-			
-		}
-		return h;
-	}
-	
-	
-
-		public static void write(User u, String filename)
+	public static void write(User u, String filename)
 			throws FileNotFoundException {
 		String xml = xstream.toXML(u);
 		PrintStream ps = new PrintStream(filename);
@@ -110,6 +95,19 @@ public class XMLFileIO {
 		ps.close();
 	}
 	
+	public static HashMap<?, ?> read_HashMap(String filename) {
+			HashMap<?, ?> h = null;
+			try {
+				h = (HashMap<?, ?>) xstream.fromXML(new File(filename));
+				
+				
+			} catch (Exception e) {
+				System.err.println(filename + " could not be found or is in invalid XML format");
+				
+			}
+			return h;
+		}
+
 	public static User read_User(String filename) {
 		User u = null;
 		try {

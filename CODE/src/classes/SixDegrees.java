@@ -32,8 +32,7 @@ public class SixDegrees implements Serializable {
 	 * @param args
 	 */
 	public static void load() {
-		users.clear();
-		groups.clear();
+		cleanUp();
 		
 		users = (HashMap<Integer, User>) XMLFileIO.read_HashMap("userHash.xml");
 		groups = (HashMap<Integer, Group>) XMLFileIO.read_HashMap("groupHash.xml");
@@ -52,14 +51,32 @@ public class SixDegrees implements Serializable {
 			XMLFileIO.write(users, "userHash.xml");
 			XMLFileIO.write(groups, "groupHash.xml");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 
 	public static void main(String[] args) {
-		load();
+//		load();
+		
+		
+		User one = new User();
+		User two = new User();
+		User three = new User();
+		User four = new User();
+		
+		one.addFriend(two);
+		three.addFriend(four);
+		
+		SixDegrees.addUser(one);
+		SixDegrees.addUser(two);
+		SixDegrees.addUser(three);
+		SixDegrees.addUser(four);
+		
+		SixDegrees.setCurrentUser(two);
+		
+		System.out.println(SixDegrees.getDistance(three.getUID()));
+		
 	}
 	public static void addUser(User user) {
 		users.put(user.getUID(), user);
@@ -99,6 +116,7 @@ public class SixDegrees implements Serializable {
 					nodeQue.offer(friendNode);
 				}
 			}
+			
 			next = nodeQue.poll();
 		}
 
@@ -111,6 +129,7 @@ public class SixDegrees implements Serializable {
 	static class Node {
 		public int level;
 		private User user;
+		boolean visited = false;
 
 		public Node() {
 			this.level = 0;
@@ -123,8 +142,12 @@ public class SixDegrees implements Serializable {
 		}
 	}
 
-	public HashMap<Integer, User> getUsers() {
+	public static HashMap<Integer, User> getUsers() {
 		return users;
+	}
+
+	public static HashMap<Integer,Group> getGroups() {
+		return groups;
 	}
 
 }

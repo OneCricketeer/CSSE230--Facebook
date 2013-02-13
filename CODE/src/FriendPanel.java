@@ -1,7 +1,9 @@
 import gui.ImagePanel;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,6 +12,8 @@ import java.awt.Rectangle;
 
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -25,9 +29,12 @@ import classes.User;
  * 
  * @author sternetj. Created Feb 5, 2013.
  */
-public class FriendPanel extends JPanel {
+public class FriendPanel extends JPanel  {
 	private JLabel lblUsername;
 	private User friend;
+	private JPopupMenu contextMenu;
+	private JMenuItem menuItem;
+	private JMenuItem userNameMenuItem;
 
 	/**
 	 * Create the panel.
@@ -64,24 +71,44 @@ public class FriendPanel extends JPanel {
 		lblNewLabel.setBounds(77, 34, 633, 34);
 		add(lblNewLabel);
 		
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getID() == e.BUTTON2) {
-					System.out.println("right?");
-				}
-				else System.out.println("left?");
-			}
-		});
-	}
+		contextMenu = new JPopupMenu();
+		final String name = lblUsername.getText();
+		userNameMenuItem = new JMenuItem("<html><b>" + name  + "</b></html>");
+//	    userNameMenuItem.addActionListener(this);
+	    userNameMenuItem.setFocusable(false);
+	    userNameMenuItem.setEnabled(false);
+	    contextMenu.add(userNameMenuItem);
+	    contextMenu.addSeparator(); // separator
+	    menuItem = new JMenuItem("View Profile");
+	    menuItem.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		String name = friend != null ? friend.getName() : "Username";
+	    		System.out.println("View " + name + "'s Profile");
+	    	}
+	    });
+	    contextMenu.add(menuItem);
+	    menuItem = new JMenuItem("Schedule an event");
+	    menuItem.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		String name = friend != null ? friend.getName() : "Username";
+	    		System.out.println("Schedule an event with " + name);
+	    		
+	    	}
+	    });
+	    contextMenu.add(menuItem);
+	    
+	    
+	    MouseListener popupListener = new PopupListener();
+	    addMouseListener(popupListener);
 
-	public void setUsername(String text) {
-		lblUsername.setText(text);
 	}
 
 	public void setUser(User u) {
 		this.friend = u;
-		setUsername(u.getName());
+		lblUsername.setText(u.getName());
+		userNameMenuItem.setText("<html><b>" + u.getName()  + "</b></html>");
 	}
 	
 	public User getUser() {
@@ -93,5 +120,22 @@ public class FriendPanel extends JPanel {
 		super.paintComponent(g);
 		g.setColor(Color.LIGHT_GRAY);
 		g.drawLine(10, 80, 700, 80);
+	}
+	
+	class PopupListener extends MouseAdapter {
+	    public void mousePressed(MouseEvent e) {
+	        maybeShowPopup(e);
+	    }
+
+	    public void mouseReleased(MouseEvent e) {
+	        maybeShowPopup(e);
+	    }
+
+	    private void maybeShowPopup(MouseEvent e) {
+	        if (e.isPopupTrigger()) {
+	            contextMenu.show(e.getComponent(),
+	                       e.getX(), e.getY());
+	        }
+	    }
 	}
 }

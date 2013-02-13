@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -108,14 +109,8 @@ public class CalendarPanel extends JPanel {
 	 */
 	private EventPanel createEventPanel() {
 		final EventPanel evPanel = new EventPanel(1, new ArrayList<Event>());
-		evPanel.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub.
-				
-			}
-
+		evPanel.addMouseListener(new MouseAdapter() {
+		
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				CalendarPanel.this.eventViewerActive = true;
@@ -173,24 +168,6 @@ public class CalendarPanel extends JPanel {
 				eventViewer.add(button, BorderLayout.SOUTH);
 				add(eventViewer);
 				eventViewer.grabFocus();				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub.
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub.
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub.
-				
 			}
 		});
 		return evPanel;

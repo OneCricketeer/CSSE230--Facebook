@@ -1,3 +1,4 @@
+import gui.ExpandableLabel;
 import gui.ImagePanel;
 
 import java.awt.EventQueue;
@@ -31,13 +32,22 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import classes.Group;
 import classes.SixDegrees;
 import classes.User;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
+
+import javax.swing.SpringLayout;
+import javax.swing.border.LineBorder;
 
 /**
  * TODO Put here a description of what this class does.
@@ -49,31 +59,36 @@ public class SixDegreesViewer {
 	private JFrame frmSixDegrees;
 	private JTextField textFriendSearch;
 	private JTextField textGeneralSearch;
+	private static final int subHeadingHeight = 20;
 	private static User current;
 	private static JLabel lblStatusMessage;
 	private static JLabel lblBasicInfoMessage;
 	private static JLabel lblNameLabel;
 	private static JLabel lblContactinfomessage;
 	private static JLabel lblAbouttext;
-	private static SixDegrees data;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		final boolean design = true;
-		data = new SixDegrees();
-		
-		data.addUser(new User("sternetj", "Teddy", "Sterne"));
-		data.addUser(new User("yadavy", "Yashi", "Yadav"));
-		
+		final boolean design = false;
+		// data = new SixDegrees();
+
+		SixDegrees.load();
+		final User usr = SixDegrees.getUsers().get(0);
+		usr.setDorm("Percopo");
+		usr.setWork("Ventures");
+		for (Group grp : SixDegrees.getGroups().values()) {
+			usr.addOrganization(grp);
+		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					SixDegreesViewer window = new SixDegreesViewer();
 					if (!design) {
-						User pSherman = new User("pSherman", "P.", "Sherman");
-						window.setCurrentUser(pSherman);
+
+						window.setCurrentUser(usr);
 					}
 
 					window.frmSixDegrees.setVisible(true);
@@ -116,13 +131,6 @@ public class SixDegreesViewer {
 		JPanel myPagePanel = new JPanel();
 		tabViewer.addTab("My Page", null, myPagePanel, null);
 		myPagePanel.setLayout(null);
-
-		JTree tree = new JTree();
-		tree.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		tree.setBounds(483, 11, 250, 411);
-		JScrollPane treeView = new JScrollPane(tree);
-		treeView.setBounds(483, 11, 250, 411);
-		myPagePanel.add(treeView);
 
 		ImagePanel profilePictureFrame = new ImagePanel(
 				"./src/IMAGES/DefaultUserFemale.gif", 120, 120);
@@ -204,6 +212,122 @@ public class SixDegreesViewer {
 
 		addLogo(myPagePanel);
 
+		final JPanel groupPanel = new JPanel();
+		groupPanel.setBounds(433, 32, 300, 426);
+		myPagePanel.add(groupPanel);
+		groupPanel.setLayout(null);
+
+		final ExpandableLabel workLabel = new ExpandableLabel("Work");
+
+		workLabel.setBounds(10, 0, 270, 24);
+		workLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		groupPanel.add(workLabel);
+
+		final ExpandableLabel dormLabel = new ExpandableLabel("Dorm");
+		dormLabel.setBounds(10, 41, 270, 24);
+		dormLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		groupPanel.add(dormLabel);
+
+		final JPanel work_panel = new JPanel();
+		work_panel.setBounds(40, 24, 250, 10);
+		groupPanel.add(work_panel);
+		work_panel.setLayout(new GridLayout(0, 1, 0, 1));
+
+		final JPanel dorm_panel = new JPanel();
+		dorm_panel.setLayout(new GridLayout(0, 1, 0, 1));
+		dorm_panel.setBounds(40, 65, 250, 12);
+		groupPanel.add(dorm_panel);
+
+		final ExpandableLabel lblSocialOrganization = new ExpandableLabel(
+				"Social Organization");
+		lblSocialOrganization.setBounds(10, 84, 270, 24);
+		lblSocialOrganization
+				.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		groupPanel.add(lblSocialOrganization);
+
+		final JPanel socorg_panel = new JPanel();
+		socorg_panel.setLayout(new GridLayout(0, 1, 0, 1));
+		socorg_panel.setBounds(40, 113, 250, 12);
+		groupPanel.add(socorg_panel);
+
+		// ///Expand ////////////////
+		workLabel.addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				JComponent[] comps = { dormLabel, dorm_panel,
+						lblSocialOrganization, socorg_panel };
+				int length = 0;
+				if (!workLabel.isExpanded()) {
+					JLabel lbl = new JLabel();
+					lbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+					lbl.setText(current.getWork());
+					lbl.setBounds(0, 0, 50, subHeadingHeight);
+					work_panel.add(lbl);
+					length = (work_panel.getComponents().length)
+							* subHeadingHeight;
+				} else {
+					length = -((work_panel.getComponents().length) * subHeadingHeight);
+					work_panel.removeAll();
+				}
+				workLabel.expand(work_panel, comps, length);
+			}
+
+		});
+
+		dormLabel.addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				JComponent[] comps = { lblSocialOrganization, socorg_panel };
+				int length = 0;
+				if (!dormLabel.isExpanded()) {
+					JLabel lbl = new JLabel();
+					lbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+					lbl.setText(current.getDorm());
+					lbl.setBounds(0, 0, 50, subHeadingHeight);
+					dorm_panel.add(lbl);
+					length = (dorm_panel.getComponents().length)
+							* subHeadingHeight;
+				} else {
+					length = -((dorm_panel.getComponents().length) * subHeadingHeight);
+					dorm_panel.removeAll();
+				}
+				dormLabel.expand(dorm_panel, comps, length);
+			}
+
+		});
+
+		lblSocialOrganization
+				.addPropertyChangeListener(new PropertyChangeListener() {
+
+					@Override
+					public void propertyChange(PropertyChangeEvent arg0) {
+						JComponent[] comps = {};
+						int length = 0;
+						if (!lblSocialOrganization.isExpanded()) {
+							for (Group org : current.getOrganizations()) {
+								JLabel lbl = new JLabel();
+								lbl.setFont(new Font("Times New Roman",
+										Font.PLAIN, 14));
+								lbl.setText(org.getName());
+								lbl.setBounds(0, 0, 50, subHeadingHeight);
+								socorg_panel.add(lbl);
+							}
+							length = (socorg_panel.getComponents().length)
+									* subHeadingHeight;
+						} else {
+							length = -((socorg_panel.getComponents().length) * subHeadingHeight);
+							socorg_panel.removeAll();
+						}
+						lblSocialOrganization.expand(socorg_panel, comps,
+								length);
+					}
+
+				});
+
+		// /////////////////////////////
+
 		// /MEETINGS/////////////////////////////////////////////////////////////
 
 		JPanel meetingsPanel = new JPanel();
@@ -252,7 +376,7 @@ public class SixDegreesViewer {
 		textFriendSearch.setBounds(245, 24, 168, 20);
 		friendsPanel.add(textFriendSearch);
 		textFriendSearch.setColumns(10);
-		
+
 		final JButton btnFriendSearch = new JButton("Search");
 
 		btnFriendSearch.addActionListener(new ActionListener() {
@@ -260,22 +384,30 @@ public class SixDegreesViewer {
 				columnPanel.removeAll();
 				String query = textFriendSearch.getText().toLowerCase();
 				System.out.println(query);
-				for (User u : data.getUsers().values()) {
-					if (u.getName().equalsIgnoreCase(query)
-							|| u.getFname().equalsIgnoreCase(query)
-							|| u.getLname().equalsIgnoreCase(query)
-							|| u.getUserName().equalsIgnoreCase(query)) {
-						FriendPanel rowPanel = new FriendPanel();
-						rowPanel.setUsername(u.getName());
-						rowPanel.setPreferredSize(new Dimension(120, 90));
-						columnPanel.add(rowPanel);
-						rowPanel.setLayout(null);
-						btnFriendSearch.setFocusable(false);
-						
+
+				for (User u : SixDegrees.getUsers().values()) {
+					String[] name = u.getName().split("\\s+");
+					// boolean found = false;
+					for (int i = 0; i < name.length; i++) {
+						// System.out.println(name[i]);
+						if (name[i].toLowerCase().startsWith(query)
+								|| u.getFname().toLowerCase().startsWith(query)
+								|| u.getLname().toLowerCase().endsWith(query)
+								|| u.getUserName().equalsIgnoreCase(query)) {
+							FriendPanel rowPanel = new FriendPanel();
+							rowPanel.setUser(u);
+							rowPanel.setPreferredSize(new Dimension(120, 90));
+							columnPanel.add(rowPanel);
+							rowPanel.setLayout(null);
+							btnFriendSearch.setFocusable(false);
+							break;
+
+						}
+						btnFriendSearch.setFocusable(true);
 					}
-					btnFriendSearch.setFocusable(true);
 				}
-				
+				friendsScrollPane.setViewportView(friendScroller);
+
 			}
 
 		});

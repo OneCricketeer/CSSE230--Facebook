@@ -148,7 +148,7 @@ public class User implements Comparable<User>, Serializable {
 	/**
 	 * @return the dorm
 	 */
-	private String getDorm() {
+	public String getDorm() {
 		return dorm;
 	}
 
@@ -156,18 +156,20 @@ public class User implements Comparable<User>, Serializable {
 	 * @param dorm
 	 *            the dorm to set
 	 */
-	private void setDorm(String dorm) {
+	public void setDorm(String dorm) {
 		this.dorm = dorm;
 	}
 
 	/**
 	 * @return the organizations
 	 */
-	private ArrayList<Group> getOrganizations() {
+	public ArrayList<Group> getOrganizations() {
 		return organizations;
 	}
 
 	public void addFriend(User friend) {
+		if (friend.getUID().equals(getUID()))
+			return;
 		if (!this.friends.contains(friend))
 			this.friends.add(friend);
 		if (!friend.friends.contains(this))
@@ -201,7 +203,7 @@ public class User implements Comparable<User>, Serializable {
 	}
 
 	public String getAbout() {
-		return "<html>" + getUserName() + "<br /># Friends = " + friends.size()
+		return "<html>" + getUserName() + "<br />\u25BA Friends = " + friends.size()
 				+ "</html>";
 
 	}
@@ -219,6 +221,11 @@ public class User implements Comparable<User>, Serializable {
 		
 //		cal.set(d.getYear(), d.getMonth(), d.getDay(), 0, 0);
 		return cal.getTime();
+	}
+
+	public void setWork(String job) {
+		this.work = job;
+		
 	}
 	
 //	public static void main(String[] args) {

@@ -220,6 +220,15 @@ public class User implements Comparable<User>, Serializable {
 //		cal.set(d.getYear(), d.getMonth(), d.getDay(), 0, 0);
 		return cal.getTime();
 	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
+	public String getEvents() {
+		return this.calendar.getEvents_List().toString();
+	}
 	
 //	public static void main(String[] args) {
 //		User u = new User();

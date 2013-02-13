@@ -63,10 +63,11 @@ public class SixDegreesViewer {
 	 */
 	public static void main(String[] args) {
 		final boolean design = true;
-		data = new SixDegrees();
+//		data = new SixDegrees();
 		
-		data.addUser(new User("sternetj", "Teddy", "Sterne"));
-		data.addUser(new User("yadavy", "Yashi", "Yadav"));
+		SixDegrees.addUser(new User("sternetj", "Teddy", "Sterne"));
+		SixDegrees.addUser(new User("yadavy", "Yashi", "Yadav"));
+		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -76,6 +77,10 @@ public class SixDegreesViewer {
 						User pSherman = new User("pSherman", "P.", "Sherman");
 						window.setCurrentUser(pSherman);
 					}
+					User pSherman = new User("pSherman", "P.", "Sherman");
+					SixDegrees.addUser(pSherman);
+					SixDegrees.setCurrentUser(pSherman);
+					window.setCurrentUser(pSherman);
 
 					window.frmSixDegrees.setVisible(true);
 				} catch (Exception e) {
@@ -221,9 +226,7 @@ public class SixDegreesViewer {
 		btnNewEvent.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(SixDegreesViewer.this.frmSixDegrees,"Message");
-//				JOptionPane.showConfirmDialog(SixDegreesViewer.this,"Message");
-				//SixDegrees.getCurrentUser().addEvent();
+				NewEventWindow evWin = new NewEventWindow();
 			}
 		});
 		btnNewEvent.setBounds(10, 476, 106, 35);

@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
-import java.awt.Window.Type;
 import java.awt.Component;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -75,7 +74,7 @@ public class NewUserWindow {
 		registerFrame.setTitle("6 Degrees Registration");
 		registerFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				NewUserWindow.class.getResource("/DefaultUserMale.gif")));
-		registerFrame.setType(Type.POPUP);
+		//registerFrame.setType(Type.POPUP);
 		registerFrame.setResizable(false);
 		registerFrame.setAlwaysOnTop(true);
 		registerFrame.setBounds(100, 100, 250, 430);

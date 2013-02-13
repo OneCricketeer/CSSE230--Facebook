@@ -1,6 +1,7 @@
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import java.awt.BorderLayout;
@@ -13,17 +14,13 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.GroupLayout.Alignment;
-
-import org.w3c.dom.css.CSSPrimitiveValue;
-import org.w3c.dom.css.RGBColor;
 
 import classes.Event;
 
@@ -37,14 +34,16 @@ public class CalendarPanel extends JPanel {
 	private int Month;
 	private int Year;
 	private boolean eventViewerActive  = false;
+	private JScrollPane calControl;
 	private static final String[] DayList = { "Sunday", "Monday", "Tuesday",
 			"Wednesday", "Thursday", "Friday", "Saturday" };
-	private static final String[] MonthList = { "January", "February", "March",
+	public static final String[] MonthList = { "January", "February", "March",
 			"April", "May", "June", "July", "August", "September", "October",
 			"November", "December" };
 
 	public CalendarPanel() {
 		setLayout(new GridLayout(6, 7, 0, 0));
+		
 		for (String day : DayList) {
 			JPanel dayPanel = new JPanel() {
 				protected void paintComponent(Graphics g) {
@@ -108,47 +107,41 @@ public class CalendarPanel extends JPanel {
 	 */
 	private EventPanel createEventPanel() {
 		final EventPanel evPanel = new EventPanel(1, new ArrayList<Event>());
-		evPanel.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub.
-				
-			}
+		evPanel.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				CalendarPanel.this.eventViewerActive = true;
-				final Component[] componenets = CalendarPanel.this.getComponents();
+				final Component[] components = CalendarPanel.this.getComponents();
 				removeAll();
 				setLayout(new GridLayout(1, 1, 0, 0));
 				repaint();
-				final JPanel eventViewer = new JPanel(){
-					@Override
-					protected void paintComponent(Graphics g) {
-						Graphics2D g2d = (Graphics2D) g;
-						
-						if (!isOpaque()) {
-							super.paintComponent(g);
-							return;
-						}
-						int w = getWidth( );
-						int h = getHeight( );
-						 
-						// Paint a gradient from top to bottom
-						GradientPaint gp = new GradientPaint(
-						    0, h, new Color(150, 0, 0),
-						    0, 0, new Color(234, 20, 20));
-
-						g2d.setPaint( gp );
-						g2d.fillRect( 0, 0, w, h );						
-						
-						setOpaque(false);
-						super.paintComponent(g);
-						setOpaque(true);
-					}
-				};
-				eventViewer.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				final JPanel eventViewer = new JPanel();
+//				{
+//					@Override
+//					protected void paintComponent(Graphics g) {
+//						Graphics2D g2d = (Graphics2D) g;
+//						
+//						if (!isOpaque()) {
+//							super.paintComponent(g);
+//							return;
+//						}
+//						int w = getWidth( );
+//						int h = getHeight( );
+//						 
+//						// Paint a gradient from top to bottom
+//						GradientPaint gp = new GradientPaint(
+//						    0, h, new Color(150, 0, 0),
+//						    0, 0, new Color(234, 20, 20));
+//
+//						g2d.setPaint( gp );
+//						g2d.fillRect( 0, 0, w, h );						
+//						
+//						setOpaque(false);
+//						super.paintComponent(g);
+//						setOpaque(true);
+//					}
+//				};
 				eventViewer.setLayout(new BorderLayout());
 				JLabel eventText = new JLabel();
 				eventText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -162,34 +155,18 @@ public class CalendarPanel extends JPanel {
 						CalendarPanel.this.eventViewerActive = false;
 						remove(eventViewer);
 						setLayout(new GridLayout(6, 7, 0, 0));
-						for (Component c : componenets){
+						for (Component c : components){
 							c.setVisible(true);
 							add(c);
 						}
 						repaint();
+						CalendarPanel.this.calControl.setViewportView(CalendarPanel.this);
 					}
 				});
 				eventViewer.add(eventText, BorderLayout.CENTER);
-				eventViewer.add(button, BorderLayout.SOUTH);
+				eventViewer.add(button, BorderLayout.NORTH);
 				add(eventViewer);
-				eventViewer.grabFocus();				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub.
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub.
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub.
+				CalendarPanel.this.calControl.setViewportView(eventViewer);
 				
 			}
 		});
@@ -289,6 +266,15 @@ public class CalendarPanel extends JPanel {
 
 	public String getMonthString() {
 		return MonthList[getMonth()];
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param calendarControl
+	 */
+	public void setControl(JScrollPane parentControl) {
+		this.calControl  =  parentControl;
 	}
 
 }

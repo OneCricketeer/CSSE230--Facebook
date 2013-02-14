@@ -27,6 +27,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.JLabel;
@@ -70,6 +71,16 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * TODO Put here a description of what this class does.
@@ -294,6 +305,115 @@ public class SixDegreesViewer {
 
 		// HERE
 
+				}
+			};
+		tabViewer.addTab("Login", null, LoginPanel, null);
+		LoginPanel.setLayout(null);
+		
+
+		JButton btnCreateNewUser = new JButton("Create New User");
+		btnCreateNewUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewUserWindow n = new NewUserWindow();
+				n.setVisible(true);
+				tabViewer.remove(0);
+				tabViewer.addTab("My Page", null, myPagePanel, null);
+				tabViewer.addTab("Meetings", null, meetingsPanel, null);
+				tabViewer.addTab("Friends", null, friendsPanel, null);
+				tabViewer.addTab("Search", null, searchPanel, null);
+				tabViewer.setSelectedIndex(0);
+			}
+		});
+		btnCreateNewUser.setBounds(476, 247, 126, 32);
+		LoginPanel.add(btnCreateNewUser);
+
+		uNameTextField = new JTextField();
+		uNameTextField.setBounds(150, 135, 175, 32);
+		LoginPanel.add(uNameTextField);
+		uNameTextField.setColumns(10);
+		uNameTextField.setBackground(Color.lightGray);
+
+		JLabel lblNewLabel = new JLabel("Username:");
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblNewLabel.setBounds(60, 136, 78, 29);
+		LoginPanel.add(lblNewLabel);
+
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
+		lblLogin.setBounds(60, 90, 78, 29);
+		LoginPanel.add(lblLogin);
+
+		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblEmail.setBounds(60, 191, 69, 29);
+		LoginPanel.add(lblEmail);
+
+		emailTextField = new JTextField();
+		emailTextField.setColumns(10);
+		emailTextField.setBounds(150, 189, 175, 32);
+		LoginPanel.add(emailTextField);
+		emailTextField.setBackground(Color.lightGray);
+
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SixDegrees.load();
+				boolean findUser = false;
+				for (User u : SixDegrees.getUsers().values()) {
+					if (u.getUserName().equals(uNameTextField.getText())) {
+						if (u.getEmail().equals(emailTextField.getText())) {
+							setCurrentUser(u);
+							findUser = true;
+							tabViewer.remove(0);
+							tabViewer.addTab("My Page", null, myPagePanel, null);
+							tabViewer.addTab("Meetings", null, meetingsPanel, null);
+							tabViewer.addTab("Friends", null, friendsPanel, null);
+							tabViewer.addTab("Search", null, searchPanel, null);
+							tabViewer.setSelectedIndex(0);
+						} else
+							JOptionPane.showMessageDialog(null,
+									"User Name mismatch with Email!",
+									"Login Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+
+				if (!findUser)
+					JOptionPane.showMessageDialog(null, "User doesn't exist!",
+							"Login Error", JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnLogin.setBounds(150, 247, 78, 32);
+		LoginPanel.add(btnLogin);
+
+		JLabel lblHaventRegisteredYet = new JLabel("Haven't Registered Yet?");
+		lblHaventRegisteredYet.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		lblHaventRegisteredYet.setBounds(476, 150, 217, 32);
+		LoginPanel.add(lblHaventRegisteredYet);
+
+		JLabel lblCreateNewUser = new JLabel("Create New User Here:");
+		lblCreateNewUser.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		lblCreateNewUser.setBounds(476, 200, 192, 28);
+		LoginPanel.add(lblCreateNewUser);
+
+		JButton btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmSixDegrees.dispose();
+			}
+		});
+		btnClose.setBounds(249, 247, 78, 32);
+		LoginPanel.add(btnClose);
+
+		myPagePanel = new JPanel();
+		tabViewer.addTab("My Page", null, myPagePanel, null);
+		myPagePanel.setLayout(null);
+
+		ImagePanel profilePictureFrame = new ImagePanel(
+				"./src/IMAGES/DefaultUserFemale.gif", 120, 120);
+		profilePictureFrame.setBounds(10, 11, 120, 120);
+		myPagePanel.add(profilePictureFrame);
+
 		lblNameLabel = new JLabel("Name");
 		lblNameLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
 		lblNameLabel.setBounds(10, 142, 214, 28);
@@ -312,9 +432,11 @@ public class SixDegreesViewer {
 			public void mouseClicked(MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
 					lblStatusMessage.setVisible(false);
+
 					SixDegreesViewer.this.StatusTextField.setVisible(true);
 					SixDegreesViewer.this.StatusTextField.grabFocus();
 					SixDegreesViewer.this.StatusTextField.selectAll();
+					StatusTextField.setVisible(true);
 				}
 			}
 		});
@@ -362,9 +484,14 @@ public class SixDegreesViewer {
 			public void mouseClicked(MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
 					lblContactinfomessage.setVisible(false);
+
+
 					SixDegreesViewer.this.phoneText.setVisible(true);
 					SixDegreesViewer.this.addressText.setVisible(true);
 					SixDegreesViewer.this.emailText.setVisible(true);
+					phoneText.setVisible(true);
+					addressText.setVisible(true);
+					emailText.setVisible(true);
 				}
 
 			}
@@ -394,6 +521,8 @@ public class SixDegreesViewer {
 
 		addLogo(myPagePanel);
 
+
+
 		this.StatusTextField = new JTextField();
 		this.StatusTextField.setVisible(false);
 		this.StatusTextField.addKeyListener(new KeyAdapter() {
@@ -419,12 +548,36 @@ public class SixDegreesViewer {
 		this.phoneText = new JTextField();
 		this.phoneText.setVisible(false);
 		this.phoneText.addKeyListener(new KeyAdapter() {
+
+		StatusTextField = new JTextField();
+		StatusTextField.setVisible(false);
+		StatusTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+					String status = StatusTextField.getText();
+					SixDegrees.getCurrentUser().setStatus(status);
+					StatusTextField.setVisible(false);
+					lblStatusMessage.setVisible(true);
+					lblStatusMessage.setText(StatusTextField.getText());
+				}
+			}
+		});
+		StatusTextField.setText("What are you doing?");
+		StatusTextField.setBounds(140, 53, 250, 28);
+		myPagePanel.add(StatusTextField);
+		StatusTextField.setColumns(10);
+
+		phoneText = new JTextField();
+		phoneText.setVisible(false);
+		phoneText.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 					current = SixDegrees.getCurrentUser();
 					DecimalFormat phoneFmt = new DecimalFormat("####,###,###");
 					try {
+
 						current.setPhone(phoneFmt
 								.parse(SixDegreesViewer.this.phoneText
 										.getText()));
@@ -435,6 +588,16 @@ public class SixDegreesViewer {
 					SixDegreesViewer.this.emailText.setVisible(false);
 					SixDegreesViewer.this.addressText.setVisible(false);
 					SixDegreesViewer.this.phoneText.setVisible(false);
+
+						current.setPhone(phoneFmt.parse(phoneText.getText()));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					setCurrentUser(current);
+					emailText.setVisible(false);
+					addressText.setVisible(false);
+					phoneText.setVisible(false);
+
 					lblContactinfomessage.setVisible(true);
 				}
 			}
@@ -477,6 +640,13 @@ public class SixDegreesViewer {
 					SixDegreesViewer.this.emailText.setVisible(false);
 					SixDegreesViewer.this.addressText.setVisible(false);
 					SixDegreesViewer.this.phoneText.setVisible(false);
+
+					current.setEmail(emailText.getText());
+					setCurrentUser(current);
+					emailText.setVisible(false);
+					addressText.setVisible(false);
+					phoneText.setVisible(false);
+
 					lblContactinfomessage.setVisible(true);
 				}
 			}
@@ -602,6 +772,12 @@ public class SixDegreesViewer {
 				});
 
 		// /////////////////////////////
+
+		emailText.setVisible(false);
+		emailText.setColumns(10);
+		emailText.setBounds(110, 365, 150, 18);
+		myPagePanel.add(emailText);
+
 
 		// /MEETINGS/////////////////////////////////////////////////////////////
 

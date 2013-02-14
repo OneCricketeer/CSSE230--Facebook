@@ -70,7 +70,6 @@ public class SixDegreesViewer {
 		final boolean design = true;		
 		
 		SixDegrees.load();
-		((User)SixDegrees.getUsers().values().toArray()[3]).setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA631319860408.jpg");
 		((User)SixDegrees.getUsers().values().toArray()[3]).addFriend((User)SixDegrees.getUsers().values().toArray()[4]);
 		((User)SixDegrees.getUsers().values().toArray()[4]).addFriend((User)SixDegrees.getUsers().values().toArray()[5]);
 		((User)SixDegrees.getUsers().values().toArray()[5]).addFriend((User)SixDegrees.getUsers().values().toArray()[6]);

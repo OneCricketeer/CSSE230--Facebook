@@ -1,25 +1,98 @@
 User Teddy =new User("sternetj", "Teddy", "Sterne");
 		SixDegrees.addUser(Teddy);
+		Teddy.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA984226893827.jpg");
+		
 		User Yashi =new User("yadavy", "Yashi", "Yadav");
 		SixDegrees.addUser(Yashi);
+		Yashi.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA639261010203.jpg");
+		
 		User Xinyu =new User("chengx", "Xinyu", "Cheng");
 		SixDegrees.addUser(Xinyu);
+		Xinyu.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA623581715011.jpg");
+		
 		User Jordan =new User("moorejm", "Jordan", "Moore");
 		SixDegrees.addUser(Jordan);
+		Jordan.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA578105861505.jpg");
+		
 		User Logan =new User("ameslc", "Logan", "Ames");
 		SixDegrees.addUser(Logan);
+		Logan.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA631319860408.jpg");
+		
 		User Chris =new User("andrewca", "Christopher", "Andrews");
 		SixDegrees.addUser(Chris);
+		Chris.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA117476273108.jpg");
+		
 		User Ethan =new User("campbeeg", "Ethan", "Campbell");
 		SixDegrees.addUser(Ethan);
+		Ethan.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA206154545857.jpg");
+		
 		User Maxwell =new User("cookmj", "Maxwell", "Cook");
 		SixDegrees.addUser(Maxwell);
+		Maxwell.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA667385404666.jpg");
+		
 		User Rain =new User("darttrf", "Rain", "Dartt");
 		SixDegrees.addUser(Rain);
+		Rain.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA496213189669.jpg");
+		
 		User Laura =new User("daveyle", "Laura", "Davey");
 		SixDegrees.addUser(Laura);
+		Laura.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA356631901201.jpg");
 		
+		User Kevin =new User("Baconnk", "Kevin", "Bacon");
+		SixDegrees.addUser(Kevin);
+		Kevin.setImage("http://25.media.tumblr.com/tumblr_macpxzpj9s1rcc42zo1_400.jpg");
 		
+		User DanH =new User("hansondg", "Dan", "Hanson");
+		SixDegrees.addUser(DanH);
+		DanH.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA025472706770.jpg");
+		
+		User Mark =new User("heinmr", "Mark", "Hein");
+		SixDegrees.addUser(Mark);
+		Mark.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA280590849592.jpg");
+		
+		User Ian =new User("kowalsif", "Ian", "Kowalski");
+		SixDegrees.addUser(Ian);
+		Ian.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA324286011462.jpg");
+		
+		User JohnK =new User("kulczajr", "John", "Kulczak");
+		SixDegrees.addUser(JohnK);
+		JohnK.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA499054679287.jpg");
+		
+		User Josh =new User("maurerja", "Joshua", "Mauer");
+		SixDegrees.addUser(Josh);
+		Josh.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA792363723553.jpg");
+		
+		User Xiangbo =new User("mengx", "Xiangbo", "Meng");
+		SixDegrees.addUser(Xiangbo);
+		Xiangbo.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA462902089322.jpg");
+		
+		User JohnM =new User("mccormjt", "John", "McCormack");
+		SixDegrees.addUser(JohnM);
+		JohnM.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA074219886758.jpg");
+		
+		User Johnathan =new User("pearsojw", "Johnathan", "Pearson");
+		SixDegrees.addUser(Johnathan);
+		Johnathan.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA831473005455.jpg");
+		
+		User Isaac =new User("sanderib", "Isaac", "Sanders");
+		SixDegrees.addUser(Isaac);
+		Isaac.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA499093738515.jpg");
+		
+		User Sydney =new User("satchwsm", "Sydney", "Satchwill");
+		SixDegrees.addUser(Sydney);
+		Sydney.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA805500251911.jpg");
+		
+		User Brandon =new User("tombn", "Brandon", "Tom");
+		SixDegrees.addUser(Brandon);
+		Brandon.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA002819062544.jpg");
+		
+		User Maisey =new User("tuckerme", "Maisey", "Tucker");
+		SixDegrees.addUser(Maisey);
+		Maisey.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA054647514533.jpg");
+		
+		User DanW =new User("daveyle", "Dan", "Wells");
+		SixDegrees.addUser(DanW);
+		DanW.setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA949751781149.jpg");		
 		
 		
 		

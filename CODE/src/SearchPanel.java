@@ -89,7 +89,8 @@ public class SearchPanel extends JPanel {
 		this.friend = u;
 		setUsername(u.getName());
 		ImagePanel image;
-		if (u.getImageURL() != null || u.getImageURL() != "")
+		String check = u.getImageURL();
+		if (u.getImageURL() != null && u.getImageURL() != "")
 			image = new ImagePanel(u.getImageURL(),60,60);
 		else
 			image = new ImagePanel(0);

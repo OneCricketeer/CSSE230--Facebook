@@ -45,20 +45,20 @@ public class ImagePanel extends JPanel {
 		       }
 	    }
 
-	    public ImagePanel(String path, int width, int height, int fake) {
-	       try {
-	          image = resizeImage(ImageIO.read(new File(path)),2,width,height);
-	       } catch (IOException ex) {
-	            ex.printStackTrace();
-	       }
-	    }
+//	    public ImagePanel(String path, int width, int height, int fake) {
+//	       try {
+//	          image = resizeImage(ImageIO.read(new File(path)),2,width,height);
+//	       } catch (IOException ex) {
+//	            ex.printStackTrace();
+//	       }
+//	    }
 	    
 	    public ImagePanel(String url, int width, int height) {
 
 	    		try {
 	    			URL myUrl = new URL(url);
 	    			image = ImageIO.read(myUrl);
-	    			image = resizeImage(image,2,60,60);
+	    			image = resizeImage(image,2,width,height);
 	    		} catch (IOException e) {
 	    			e.printStackTrace();
 	    		}

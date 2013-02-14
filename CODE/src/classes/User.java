@@ -241,7 +241,7 @@ public class User implements Comparable<User>, Serializable {
 	 *
 	 * @return
 	 */
-	public String getImage() {
+	public String getImageURL() {
 		return this.image;
 	}
 	

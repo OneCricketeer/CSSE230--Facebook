@@ -15,6 +15,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.FlowLayout;
@@ -55,6 +56,7 @@ public class SixDegreesViewer {
 	private JFrame frmSixDegrees;
 	private JTextField textFriendSearch;
 	private JTextField textGeneralSearch;
+	private static JPanel myPagePanel;
 	private static User current;
 	private static JLabel lblStatusMessage;
 	private static JLabel lblBasicInfoMessage;
@@ -82,7 +84,10 @@ public class SixDegreesViewer {
 						window.setCurrentUser(pSherman);
 					}
 					window.setCurrentUser((User)SixDegrees.getUsers().values().toArray()[3]);
-
+					ImagePanel profilePictureFrame = new ImagePanel(
+							SixDegrees.getCurrentUser().getImageURL(), 120, 120);
+					profilePictureFrame.setBounds(10, 11, 120, 120);
+					myPagePanel.add(profilePictureFrame);
 					window.frmSixDegrees.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -120,7 +125,7 @@ public class SixDegreesViewer {
 		tabViewer.setBounds(0, 0, 748, 558);
 		frmSixDegrees.getContentPane().add(tabViewer);
 
-		JPanel myPagePanel = new JPanel();
+		myPagePanel = new JPanel();
 		tabViewer.addTab("My Page", null, myPagePanel, null);
 		myPagePanel.setLayout(null);
 
@@ -130,11 +135,8 @@ public class SixDegreesViewer {
 		JScrollPane treeView = new JScrollPane(tree);
 		treeView.setBounds(483, 11, 250, 411);
 		myPagePanel.add(treeView);
-
-		ImagePanel profilePictureFrame = new ImagePanel(
-				"./src/IMAGES/DefaultUserFemale.gif", 120, 120, 0);
-		profilePictureFrame.setBounds(10, 11, 120, 120);
-		myPagePanel.add(profilePictureFrame);
+		
+		//HERE
 
 		lblNameLabel = new JLabel("Name");
 		lblNameLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
@@ -257,13 +259,13 @@ public class SixDegreesViewer {
 		// panel_1.setBounds(0, 0, 1200, 900);
 		FriendPanel rowPanel = null;
 
-		for (int i = 1; i < 3; i++) {
-			rowPanel = new FriendPanel();
-			rowPanel.setPreferredSize(new Dimension(120, 90));
-			columnPanel.add(rowPanel);
-			rowPanel.setLayout(null);
-
-		}
+//		for (int i = 1; i < 3; i++) {
+//			rowPanel = new FriendPanel();
+//			rowPanel.setPreferredSize(new Dimension(120, 90));
+//			columnPanel.add(rowPanel);
+//			rowPanel.setLayout(null);
+//
+//		}
 
 		textFriendSearch = new JTextField();
 		textFriendSearch.setBounds(245, 24, 168, 20);

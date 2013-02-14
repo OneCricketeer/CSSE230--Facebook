@@ -68,9 +68,7 @@ public class SixDegreesViewer {
 		final User usr = SixDegrees.getUsers().get(0);
 		usr.setDorm("Percopo");
 		usr.setWork("Ventures");
-		for (Group grp : SixDegrees.getGroups().values()) {
-			usr.addOrganization(grp);
-		}
+		
 		SixDegrees.setCurrentUser(usr);
 //		setDisplayedUser(usr);
 

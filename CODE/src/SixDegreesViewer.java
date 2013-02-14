@@ -2,6 +2,7 @@ import gui.ImagePanel;
 
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
@@ -20,7 +21,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.JLabel;
@@ -48,6 +51,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * TODO Put here a description of what this class does.
@@ -140,17 +147,32 @@ public class SixDegreesViewer {
 		tabViewer.setBounds(0, 0, 748, 558);
 		frmSixDegrees.getContentPane().add(tabViewer);
 
-		LoginPanel = new JPanel();
+		LoginPanel = new JPanel(){
+			@Override
+			protected void paintComponent(Graphics g) {
+				BufferedImage img = null;
+				try {
+					img = ImageIO.read(new File("./src/IMAGES/SixDegreesLogo.png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				g.drawImage(img, -100, -30, 1500, 558, null);
+				}
+			};
 		tabViewer.addTab("Login", null, LoginPanel, null);
-
 		LoginPanel.setLayout(null);
-		addLogo(LoginPanel);
+		
 
 		JButton btnCreateNewUser = new JButton("Create New User");
 		btnCreateNewUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NewUserWindow n = new NewUserWindow();
 				n.setVisible(true);
+				tabViewer.remove(0);
+				tabViewer.addTab("My Page", null, myPagePanel, null);
+				tabViewer.addTab("Meetings", null, meetingsPanel, null);
+				tabViewer.addTab("Friends", null, friendsPanel, null);
+				tabViewer.addTab("Search", null, searchPanel, null);
 				tabViewer.setSelectedIndex(0);
 			}
 		});
@@ -161,24 +183,28 @@ public class SixDegreesViewer {
 		uNameTextField.setBounds(150, 135, 175, 32);
 		LoginPanel.add(uNameTextField);
 		uNameTextField.setColumns(10);
+		uNameTextField.setBackground(Color.lightGray);
 
-		JLabel lblNewLabel = new JLabel("User Name:");
-		lblNewLabel.setBounds(71, 137, 69, 29);
+		JLabel lblNewLabel = new JLabel("Username:");
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblNewLabel.setBounds(60, 136, 78, 29);
 		LoginPanel.add(lblNewLabel);
 
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblLogin.setBounds(71, 94, 69, 29);
+		lblLogin.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
+		lblLogin.setBounds(60, 90, 78, 29);
 		LoginPanel.add(lblLogin);
 
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(71, 191, 69, 29);
+		lblEmail.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblEmail.setBounds(60, 191, 69, 29);
 		LoginPanel.add(lblEmail);
 
 		emailTextField = new JTextField();
 		emailTextField.setColumns(10);
 		emailTextField.setBounds(150, 189, 175, 32);
 		LoginPanel.add(emailTextField);
+		emailTextField.setBackground(Color.lightGray);
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
@@ -191,12 +217,9 @@ public class SixDegreesViewer {
 							setCurrentUser(u);
 							findUser = true;
 							tabViewer.remove(0);
-							tabViewer
-									.addTab("My Page", null, myPagePanel, null);
-							tabViewer.addTab("Meetings", null, meetingsPanel,
-									null);
-							tabViewer.addTab("Friends", null, friendsPanel,
-									null);
+							tabViewer.addTab("My Page", null, myPagePanel, null);
+							tabViewer.addTab("Meetings", null, meetingsPanel, null);
+							tabViewer.addTab("Friends", null, friendsPanel, null);
 							tabViewer.addTab("Search", null, searchPanel, null);
 							tabViewer.setSelectedIndex(0);
 						} else
@@ -216,41 +239,23 @@ public class SixDegreesViewer {
 		LoginPanel.add(btnLogin);
 
 		JLabel lblHaventRegisteredYet = new JLabel("Haven't Registered Yet?");
-		lblHaventRegisteredYet.setBounds(476, 159, 159, 32);
+		lblHaventRegisteredYet.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		lblHaventRegisteredYet.setBounds(476, 150, 217, 32);
 		LoginPanel.add(lblHaventRegisteredYet);
 
 		JLabel lblCreateNewUser = new JLabel("Create New User Here:");
-		lblCreateNewUser.setBounds(476, 191, 143, 28);
+		lblCreateNewUser.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		lblCreateNewUser.setBounds(476, 200, 192, 28);
 		LoginPanel.add(lblCreateNewUser);
 
 		JButton btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				frmSixDegrees.dispose();
 			}
 		});
 		btnClose.setBounds(249, 247, 78, 32);
 		LoginPanel.add(btnClose);
-
-		ImagePanel imagePanel = new ImagePanel();
-		imagePanel.setBounds(71, 11, 50, 53);
-		LoginPanel.add(imagePanel);
-
-		ImagePanel imagePanel_1 = new ImagePanel();
-		imagePanel_1.setBounds(115, 348, 69, 68);
-		LoginPanel.add(imagePanel_1);
-
-		ImagePanel imagePanel_2 = new ImagePanel();
-		imagePanel_2.setBounds(388, 81, 59, 53);
-		LoginPanel.add(imagePanel_2);
-
-		ImagePanel imagePanel_3 = new ImagePanel();
-		imagePanel_3.setBounds(416, 291, 50, 53);
-		LoginPanel.add(imagePanel_3);
-
-		ImagePanel imagePanel_5 = new ImagePanel();
-		imagePanel_5.setBounds(683, 11, 50, 53);
-		LoginPanel.add(imagePanel_5);
 
 		myPagePanel = new JPanel();
 		tabViewer.addTab("My Page", null, myPagePanel, null);
@@ -410,7 +415,8 @@ public class SixDegreesViewer {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					current = SixDegrees.getCurrentUser();
-					current.setAddress(addressText.getText());
+					if(!addressText.getText().equals(""));
+					    current.setAddress(addressText.getText());
 					setCurrentUser(current);
 					emailText.setVisible(false);
 					addressText.setVisible(false);

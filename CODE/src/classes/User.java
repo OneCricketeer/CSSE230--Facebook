@@ -44,8 +44,8 @@ public class User implements Comparable<User>, Serializable {
 		setWork("");
 		setDorm("");
 		this.date = "";
-		setAddress("");
-		setHometown("");
+		setAddress("123 Main Street");
+		setHometown("Somewhere, USA");
 		setEmail("");
 		this.organizations = new ArrayList<Group>();
 		this.friends = new TreeSet<User>();
@@ -56,6 +56,7 @@ public class User implements Comparable<User>, Serializable {
 	public User(String userName, String fname, String lname) {
 		this();
 		this.userName = userName;
+		setEmail(getUserName()+"@example.com");
 		setFname(fname);
 		setLname(lname);
 	}

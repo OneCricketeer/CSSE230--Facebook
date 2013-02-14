@@ -1,4 +1,5 @@
 package classes;
+
 import java.io.Serializable;
 import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
@@ -18,9 +19,15 @@ public class User implements Comparable<User>, Serializable {
 	private MyCalendar calendar;
 	private String work;
 	private String dorm;
+	private boolean isMale;
+	private String email;
 	private ArrayList<Group> organizations;
 	private TreeSet<User> friends;
 	private String date;
+	private Date birthday;
+	private Number phone;
+	private String address;
+	private String hometown;
 
 	public static void resetCounter() {
 		userCount = -1;
@@ -33,9 +40,16 @@ public class User implements Comparable<User>, Serializable {
 		this.fname = "Default";
 		this.lname = "User";
 		this.calendar = new MyCalendar();
-		this.work = this.dorm = this.date = "";
+		setPhone(123456789L);
+		setWork("");
+		setDorm("");
+		this.date = "";
+		setAddress("");
+		setHometown("");
+		setEmail("");
 		this.organizations = new ArrayList<Group>();
 		this.friends = new TreeSet<User>();
+		setBirthday(Calendar.getInstance().getTime());
 		SixDegrees.addUser(this);
 	}
 
@@ -49,6 +63,7 @@ public class User implements Comparable<User>, Serializable {
 	public Integer getUID() {
 		return this.uid;
 	}
+
 	public int compareTo(User u) {
 		if (!(u instanceof User))
 			return 0;
@@ -79,9 +94,8 @@ public class User implements Comparable<User>, Serializable {
 		return fname + " " + lname;
 	}
 
-/*
-	 * @param name
-	 *            the name to set
+	/*
+	 * @param name the name to set
 	 */
 	public void setFname(String name) {
 		this.fname = name;
@@ -105,6 +119,7 @@ public class User implements Comparable<User>, Serializable {
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String uName) {
 		this.userName = uName;
 	}
@@ -129,8 +144,8 @@ public class User implements Comparable<User>, Serializable {
 	 */
 	public MyCalendar getCalendar() {
 		return calendar;
-	} 
-	
+	}
+
 	/**
 	 * @return the work
 	 */
@@ -140,12 +155,10 @@ public class User implements Comparable<User>, Serializable {
 
 	/**
 	 * @param work
-	 *            the work to set
-	public void setWork(String work) {
-		this.work = work;
-	}
-
-	/**
+	 *            the work to set public void setWork(String work) { this.work =
+	 *            work; }
+	 * 
+	 *            /**
 	 * @return the dorm
 	 */
 	public String getDorm() {
@@ -168,8 +181,6 @@ public class User implements Comparable<User>, Serializable {
 	}
 
 	public void addFriend(User friend) {
-		if (friend.getUID().equals(getUID()))
-			return;
 		if (!this.friends.contains(friend))
 			this.friends.add(friend);
 		if (!friend.friends.contains(this))
@@ -186,7 +197,7 @@ public class User implements Comparable<User>, Serializable {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param organization
 	 *            organization to add
 	 */
@@ -195,58 +206,101 @@ public class User implements Comparable<User>, Serializable {
 	}
 
 	public String getBasicInfo() {
-		return "Basic information about " + getName();
+		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
+
+		return "<html>" + fmt.format(this.birthday) + "<br />"
+				+ this.getGender() + "<br />" + this.hometown + "</html>";
+		// return this.birthday.toString() + "\n" + "Male" + "\n" +
+		// this.hometown;
 	}
 
 	public String getContactInfo() {
-		return "Contact information for " + getName();
+		return "<html>" + this.phone.toString() + "<br />" + this.address
+				+ "<br />" + "<br />" + this.email + "</html>";
 	}
 
 	public String getAbout() {
-		return "<html>" + getUserName() + "<br />\u25BA Friends = " + friends.size()
+		return "<html>" + getUserName() + "<br /># Friends = " + friends.size()
 				+ "</html>";
 
 	}
-	
+
 	public Date getBirthDate() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
-		String date = "April 1 2010";
+
 		Date d = null;
 		try {
-			d = fmt.parse(date);cal.setTime(fmt.parse(date));
+			d = fmt.parse(date);
+			cal.setTime(fmt.parse(date));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-//		cal.set(d.getYear(), d.getMonth(), d.getDay(), 0, 0);
+
+		// cal.set(d.getYear(), d.getMonth(), d.getDay(), 0, 0);
 		return cal.getTime();
 	}
 
-	public void setWork(String job) {
-		this.work = job;
-		
+	public void setWork(String work) {
+		this.work = work;
 	}
-	
-//	public static void main(String[] args) {
-//		User u = new User();
-//		System.out.println(u.getBirthDate_String());
-//	}
-	
-//	private int getBirthDay() {
-//		return birthDay;
-//	}
-//
-//	private int getBirthMonth() {
-//		return 0;
-//	}
-//
-//	private int getBirthYear() {
-//		return 0;
-//	}
 
-//	public String getBirthDate_String() {
-//		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
-//		return fmt.format(getBirthDate());
-//	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public void setPhone(Number phone) {
+		this.phone = phone;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+
+	}
+
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
+	}
+
+	public void setUID(Integer uID) {
+		this.uid = uID;
+	}
+
+	public void setGender(boolean gender) {
+		this.isMale = gender;
+	}
+
+	public String getGender() {
+		return this.isMale ? "Male" : "Female";
+	}
+
+	// public static void main(String[] args) {
+	// User u = new User();
+	// System.out.println(u.getBirthDate_String());
+	// }
+
+	// private int getBirthDay() {
+	// return birthDay;
+	// }
+	//
+	// private int getBirthMonth() {
+	// return 0;
+	// }
+	//
+	// private int getBirthYear() {
+	// return 0;
+	// }
+
+	// public String getBirthDate_String() {
+	// SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
+	// return fmt.format(getBirthDate());
+	// }
 }

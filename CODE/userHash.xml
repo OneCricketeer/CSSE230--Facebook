@@ -18,15 +18,112 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118287</time>
+          <time>1360813529843</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
-      <work></work>
-      <dorm></dorm>
-      <organizations/>
+      <work>Ventures</work>
+      <dorm>Percopo</dorm>
+      <isMale>false</isMale>
+      <email></email>
+      <organizations>
+        <classes.Group>
+          <name>Student Activities Board</name>
+          <desc>This group plans student activities around campus.</desc>
+          <gID>0</gID>
+          <members>
+            <int>0</int>
+            <int>1</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Delta Delta Delta</name>
+          <desc>This organization is a sorority. </desc>
+          <gID>1</gID>
+          <members>
+            <int>1</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Society of Women Engineers</name>
+          <desc>This group consists of women engineers across campus.</desc>
+          <gID>2</gID>
+          <members>
+            <int>1</int>
+            <int>9</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Engineers Without Borders</name>
+          <desc>This organization travels to developing communities across the world in order to help improve their living conditions.</desc>
+          <gID>3</gID>
+          <members>
+            <int>2</int>
+            <int>3</int>
+            <int>4</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Student Government Association</name>
+          <desc>This group represents the student body at Rose-Hulman.</desc>
+          <gID>4</gID>
+          <members>
+            <int>5</int>
+            <int>6</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>RHA</name>
+          <desc>This organization is for students living in a residence hall on campus.</desc>
+          <gID>5</gID>
+          <members>
+            <int>0</int>
+            <int>1</int>
+            <int>2</int>
+            <int>3</int>
+            <int>4</int>
+            <int>5</int>
+            <int>6</int>
+            <int>7</int>
+            <int>8</int>
+            <int>9</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Thorn</name>
+          <desc>This organization publishes the campus newspaper called Rose Thorn</desc>
+          <gID>6</gID>
+          <members>
+            <int>7</int>
+            <int>8</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>The Monkey</name>
+          <desc>This organization is the student radio station at Rose-Hulman.</desc>
+          <gID>7</gID>
+          <members>
+            <int>9</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Ultimate Frisbee</name>
+          <desc>This group plays Ultimate Frisbee on campus.</desc>
+          <gID>8</gID>
+          <members>
+            <int>0</int>
+            <int>1</int>
+            <int>2</int>
+            <int>3</int>
+          </members>
+        </classes.Group>
+      </organizations>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.843 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -48,15 +145,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529845</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.845 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -78,15 +181,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529845</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.845 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -108,15 +217,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529845</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.845 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -138,15 +253,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529845</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.845 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -168,15 +289,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529845</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.845 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -198,15 +325,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529846</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.846 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -228,15 +361,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529846</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.846 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -258,15 +397,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529846</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.846 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
   <entry>
@@ -288,15 +433,21 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360724118290</time>
+          <time>1360813529846</time>
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
       <work></work>
       <dorm></dorm>
+      <isMale>false</isMale>
+      <email></email>
       <organizations/>
       <friends/>
       <date></date>
+      <birthday>2013-02-14 03:45:29.846 UTC</birthday>
+      <phone class="long">123456789</phone>
+      <address></address>
+      <hometown></hometown>
     </classes.User>
   </entry>
 </map>

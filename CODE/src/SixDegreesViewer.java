@@ -3,32 +3,22 @@ import gui.ImagePanel;
 
 import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import javax.swing.JTree;
-
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.DefaultTreeCellRenderer;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -38,16 +28,14 @@ import classes.User;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Random;
-
-import javax.swing.SpringLayout;
-import javax.swing.border.LineBorder;
 
 /**
  * TODO Put here a description of what this class does.
@@ -60,18 +48,20 @@ public class SixDegreesViewer {
 	private JTextField textFriendSearch;
 	private JTextField textGeneralSearch;
 	private static final int subHeadingHeight = 20;
-	private static User current;
+	private static User displayed;
 	private static JLabel lblStatusMessage;
 	private static JLabel lblBasicInfoMessage;
 	private static JLabel lblNameLabel;
 	private static JLabel lblContactinfomessage;
 	private static JLabel lblAbouttext;
+	private JTextField StatusTextField;
+	private JTextField emailTextField;
+	private JTextField uNameTextField;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		final boolean design = false;
 		// data = new SixDegrees();
 
 		SixDegrees.load();
@@ -81,15 +71,14 @@ public class SixDegreesViewer {
 		for (Group grp : SixDegrees.getGroups().values()) {
 			usr.addOrganization(grp);
 		}
+		SixDegrees.setCurrentUser(usr);
+//		setDisplayedUser(usr);
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					SixDegreesViewer window = new SixDegreesViewer();
-					if (!design) {
-
-						window.setCurrentUser(usr);
-					}
+					window.setDisplayedUser(usr);
 
 					window.frmSixDegrees.setVisible(true);
 				} catch (Exception e) {
@@ -123,8 +112,14 @@ public class SixDegreesViewer {
 		frmSixDegrees.setBounds(100, 100, 754, 586);
 		frmSixDegrees.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSixDegrees.getContentPane().setLayout(null);
+		frmSixDegrees.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				SixDegrees.save();
+			}
+		});
 
-		JTabbedPane tabViewer = new JTabbedPane(JTabbedPane.TOP);
+		final JTabbedPane tabViewer = new JTabbedPane(JTabbedPane.TOP);
 		tabViewer.setBounds(0, 0, 748, 558);
 		frmSixDegrees.getContentPane().add(tabViewer);
 
@@ -149,8 +144,17 @@ public class SixDegreesViewer {
 		myPagePanel.add(lblStatus);
 
 		lblStatusMessage = new JLabel("Status Message");
+		lblStatusMessage.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(arg0.getClickCount()==2){
+					lblStatusMessage.setVisible(false);
+					StatusTextField.setVisible(true);
+				}
+			}
+		});
 		lblStatusMessage.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		lblStatusMessage.setBounds(140, 43, 214, 28);
+		lblStatusMessage.setBounds(140, 53, 228, 28);
 		myPagePanel.add(lblStatusMessage);
 
 		JLabel lblContactInfo = new JLabel("Contact Info:");
@@ -211,6 +215,25 @@ public class SixDegreesViewer {
 		myPagePanel.add(lblBasicInfoMessage);
 
 		addLogo(myPagePanel);
+		
+		StatusTextField = new JTextField();
+		StatusTextField.setVisible(false);
+		StatusTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
+					String status = StatusTextField.getText();
+					SixDegrees.getCurrentUser().setStatus(status);
+					StatusTextField.setVisible(false);
+					lblStatusMessage.setVisible(true);
+					lblStatusMessage.setText(StatusTextField.getText());
+				}
+			}
+		});
+		StatusTextField.setText("What are you doing?");
+		StatusTextField.setBounds(140, 53, 250, 28);
+		myPagePanel.add(StatusTextField);
+		StatusTextField.setColumns(10);
 
 		final JPanel groupPanel = new JPanel();
 		groupPanel.setBounds(433, 32, 300, 426);
@@ -261,7 +284,7 @@ public class SixDegreesViewer {
 				if (!workLabel.isExpanded()) {
 					JLabel lbl = new JLabel();
 					lbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-					lbl.setText(current.getWork());
+					lbl.setText(displayed.getWork());
 					lbl.setBounds(0, 0, 50, subHeadingHeight);
 					work_panel.add(lbl);
 					length = (work_panel.getComponents().length)
@@ -284,7 +307,7 @@ public class SixDegreesViewer {
 				if (!dormLabel.isExpanded()) {
 					JLabel lbl = new JLabel();
 					lbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-					lbl.setText(current.getDorm());
+					lbl.setText(displayed.getDorm());
 					lbl.setBounds(0, 0, 50, subHeadingHeight);
 					dorm_panel.add(lbl);
 					length = (dorm_panel.getComponents().length)
@@ -306,7 +329,7 @@ public class SixDegreesViewer {
 						JComponent[] comps = {};
 						int length = 0;
 						if (!lblSocialOrganization.isExpanded()) {
-							for (Group org : current.getOrganizations()) {
+							for (Group org : displayed.getOrganizations()) {
 								JLabel lbl = new JLabel();
 								lbl.setFont(new Font("Times New Roman",
 										Font.PLAIN, 14));
@@ -339,6 +362,16 @@ public class SixDegreesViewer {
 		meetingsPanel.add(calendarControl);
 
 		addLogo(meetingsPanel);
+
+		JButton btnNewEvent = new JButton("New Event");
+		btnNewEvent.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				NewEventWindow evWin = new NewEventWindow();
+			}
+		});
+		btnNewEvent.setBounds(10, 476, 106, 35);
+		meetingsPanel.add(btnNewEvent);
 
 		// /FRIENDS//////////////////////////////////////////////////////////////////
 
@@ -414,25 +447,79 @@ public class SixDegreesViewer {
 		btnFriendSearch.setBounds(423, 23, 89, 23);
 		friendsPanel.add(btnFriendSearch);
 
-		JPanel panelTab4 = new JPanel();
-		tabViewer.addTab("Search", null, panelTab4, null);
-		panelTab4.setLayout(null);
+		// /////////////////////////////////////////////////////////////////
 
-		addLogo(panelTab4);
+		JPanel generalSearchTab = new JPanel();
+		tabViewer.addTab("Search", null, generalSearchTab, null);
+		generalSearchTab.setLayout(null);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 64, 723, 396);
-		panelTab4.add(scrollPane_1);
+		addLogo(generalSearchTab);
+
+		final JScrollPane generalScrollPane = new JScrollPane();
+		generalScrollPane.setBounds(10, 64, 723, 396);
+		generalSearchTab.add(generalScrollPane);
+
+		final JPanel generalScroller = new JPanel();
+		generalScrollPane.setViewportView(generalScroller);
+		generalScroller.setLayout(new BorderLayout(0, 0));
+
+		final JPanel generalColumnPanel = new JPanel();
+		generalScroller.add(generalColumnPanel, BorderLayout.NORTH);
+		generalColumnPanel.setLayout(new GridLayout(0, 1, 0, 1));
+
+		// FriendPanel panel_1 = new FriendPanel();
+		// panel_1.setBounds(0, 0, 1200, 900);
+		FriendPanel generalRowPanel = null;
 
 		textGeneralSearch = new JTextField();
 		textGeneralSearch.setColumns(10);
 		textGeneralSearch.setBounds(245, 24, 168, 20);
-		panelTab4.add(textGeneralSearch);
+		generalSearchTab.add(textGeneralSearch);
+		final JButton btnGeneralSearch = new JButton("Search");
+		btnGeneralSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				generalColumnPanel.removeAll();
+				String query = textGeneralSearch.getText().toLowerCase();
+				System.out.println(query);
+				for (User u : SixDegrees.getUsers().values()) {
+					if (u.getName().equalsIgnoreCase(query)
+							|| u.getFname().equalsIgnoreCase(query)
+							|| u.getLname().equalsIgnoreCase(query)
+							|| u.getUserName().equalsIgnoreCase(query)) {
+						FriendPanel generalRowPanel = new FriendPanel();
+						generalRowPanel.setUser(u);
+						generalRowPanel
+								.setPreferredSize(new Dimension(120, 90));
+						generalColumnPanel.add(generalRowPanel);
+						generalRowPanel.setLayout(null);
+						btnGeneralSearch.setFocusable(false);
 
-		JButton btnGeneralSearch = new JButton("Search");
+					}
+					btnGeneralSearch.setFocusable(true);
+				}
+
+				for (Group g : SixDegrees.getGroups().values()) {
+					if (g.getName().equalsIgnoreCase(query)) {
+						FriendPanel generalRowPanel = new FriendPanel();
+						generalRowPanel.setUsername(g.getName());
+						generalRowPanel
+								.setPreferredSize(new Dimension(120, 90));
+						generalColumnPanel.add(generalRowPanel);
+						generalRowPanel.setLayout(null);
+						btnGeneralSearch.setFocusable(false);
+
+					}
+					btnGeneralSearch.setFocusable(true);
+				}
+				generalScrollPane.setViewportView(generalScroller);
+			}
+
+		});
+
 		btnGeneralSearch.setBounds(423, 23, 89, 23);
-		panelTab4.add(btnGeneralSearch);
+		generalSearchTab.add(btnGeneralSearch);
 
+		// ////Testing Panel ///////////////////////////////////////////////
 		JPanel Testingpanel = new JPanel();
 		tabViewer.addTab("New tab", null, Testingpanel, null);
 		Testingpanel.setLayout(null);
@@ -442,14 +529,68 @@ public class SixDegreesViewer {
 			public void actionPerformed(ActionEvent e) {
 				NewUserWindow n = new NewUserWindow();
 				n.setVisible(true);
+				tabViewer.setSelectedIndex(0);
 			}
 		});
-		btnCreateNewUser.setBounds(270, 31, 200, 65);
+		btnCreateNewUser.setBounds(433, 127, 126, 32);
 		Testingpanel.add(btnCreateNewUser);
 
-		JPanel panel = new JPanel();
-		panel.setBounds(105, 149, 568, 329);
-		Testingpanel.add(panel);
+		uNameTextField = new JTextField();
+		uNameTextField.setBounds(107, 79, 175, 32);
+		Testingpanel.add(uNameTextField);
+		uNameTextField.setColumns(10);
+
+		JLabel lblNewLabel = new JLabel("User Name:");
+		lblNewLabel.setBounds(28, 81, 69, 29);
+		Testingpanel.add(lblNewLabel);
+
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblLogin.setBounds(28, 38, 69, 29);
+		Testingpanel.add(lblLogin);
+
+		JLabel lblEmail = new JLabel("E-mail:");
+		lblEmail.setBounds(28, 135, 69, 29);
+		Testingpanel.add(lblEmail);
+
+		emailTextField = new JTextField();
+		emailTextField.setColumns(10);
+		emailTextField.setBounds(107, 133, 175, 32);
+		Testingpanel.add(emailTextField);
+
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SixDegrees.load();
+				boolean findUser = false;
+				for( User u: SixDegrees.getUsers().values()){
+					if(u.getUserName().equals(uNameTextField.getText())){
+						if(u.getEmail().equals(emailTextField.getText())){
+							setDisplayedUser(u);
+							SixDegrees.setCurrentUser(u);
+							findUser = true;
+							tabViewer.setSelectedIndex(0);
+						}
+						else
+							JOptionPane.showMessageDialog(null, "User Name mismatch with Email!", "Login Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+
+				if(!findUser)
+					JOptionPane.showMessageDialog(null, "User doesn't exist!", "Login Error", JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnLogin.setBounds(108, 207, 92, 32);
+		Testingpanel.add(btnLogin);
+
+		JLabel lblHaventRegisteredYet = new JLabel("Haven't Registered Yet?");
+		lblHaventRegisteredYet.setBounds(433, 46, 159, 32);
+		Testingpanel.add(lblHaventRegisteredYet);
+
+		JLabel lblCreateNewUser = new JLabel("Create New User Here:");
+		lblCreateNewUser.setBounds(433, 88, 143, 28);
+		Testingpanel.add(lblCreateNewUser);
+
 
 	}
 
@@ -459,8 +600,8 @@ public class SixDegreesViewer {
 		comp.add(image);
 	}
 
-	public void setCurrentUser(User u) {
-		current = u;
+	public static void setDisplayedUser(User u) {
+		displayed = u;
 		lblStatusMessage.setText(u.getStatus());
 		lblNameLabel.setText(u.getName());
 		lblBasicInfoMessage.setText(u.getBasicInfo());

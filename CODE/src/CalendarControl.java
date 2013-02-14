@@ -1,6 +1,8 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -8,17 +10,23 @@ import java.awt.event.ActionEvent;
 
 /**
  * @author moorejm
- *
+ * 
  */
 public class CalendarControl extends JPanel {
 
 	private JLabel lblCalendarMonth;
 	final private CalendarPanel calPanel = new CalendarPanel();
+	private JScrollPane scroller;
 
 	/**
 	 * Create the panel.
 	 */
 	public CalendarControl() {
+		initialize();
+		calPanel.setControl(scroller);
+	}
+
+	public void initialize() {
 		setLayout(null);
 
 		JButton lastMonthButton = new JButton("<<");
@@ -38,11 +46,15 @@ public class CalendarControl extends JPanel {
 		lblCalendarMonth.setBounds(290, 21, 159, 20);
 		add(lblCalendarMonth);
 
+		// final CalendarPanel calPanel = new CalendarPanel();
 		calPanel.setBounds(10, 64, 723, 396);
 		calPanel.setDays();
-		add(calPanel);
-		
-		
+
+		this.scroller = new JScrollPane();
+		scroller.setBounds(10, 64, 723, 380);
+		scroller.setViewportView(calPanel);
+		add(scroller);
+
 		lastMonthButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

@@ -138,4 +138,11 @@ public class FriendPanel extends JPanel  {
 	        }
 	    }
 	}
+
+	@Deprecated
+	public void setUsername(String name) {
+		lblUsername.setText(name);
+		userNameMenuItem.setText("<html><b>" + name  + "</b></html>");
+		
+	}
 }

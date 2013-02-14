@@ -2,8 +2,10 @@ package classes;
 
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,7 +13,7 @@ public class SixDegrees implements Serializable {
 
 	static HashMap<Integer, User> users = new HashMap<Integer, User>();
 	static HashMap<Integer, Group> groups = new HashMap<Integer, Group>();
-	static User current;
+	static User current = null;
 
 	public SixDegrees() {
 		users = new HashMap<Integer, User>();
@@ -27,25 +29,48 @@ public class SixDegrees implements Serializable {
 			groups.clear();
 		current = null;
 	}
+	
+	public static int getMaxUserID(){
+		int maxID = -1;
+		if(!users.isEmpty()){
+			for(User u:users.values()){
+				if(u.getUID()>maxID)
+					maxID = u.getUID();
+			}
+		}
+		return maxID;
+	}
+	
+	public static int getMaxGroupID(){
+		int maxID = -1;
+		if(!groups.isEmpty()){
+			for(Group g:groups.values()){
+				if(g.getGID()>maxID)
+					maxID = g.getGID();
+			}
+		}
+		return maxID;
+	}
 
 	/**
 	 * @param args
 	 */
 	public static void load() {
 		cleanUp();
-		
+
 		users = (HashMap<Integer, User>) XMLFileIO.read_HashMap("userHash.xml");
-		groups = (HashMap<Integer, Group>) XMLFileIO.read_HashMap("groupHash.xml");
-		
+		groups = (HashMap<Integer, Group>) XMLFileIO
+				.read_HashMap("groupHash.xml");
+
 		if (users == null) {
 			users = new HashMap<Integer, User>();
 		}
 		if (groups == null) {
 			groups = new HashMap<Integer, Group>();
 		}
-		
+
 	}
-	
+
 	public static void save() {
 		try {
 			XMLFileIO.write(users, "userHash.xml");
@@ -53,35 +78,35 @@ public class SixDegrees implements Serializable {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public static void main(String[] args) {
-//		load();
-		
-		
+		// load();
+
 		User one = new User();
 		User two = new User();
 		User three = new User();
 		User four = new User();
-		
+
 		one.addFriend(two);
 		three.addFriend(four);
-		
+
 		SixDegrees.addUser(one);
 		SixDegrees.addUser(two);
 		SixDegrees.addUser(three);
 		SixDegrees.addUser(four);
-		
-		SixDegrees.setCurrentUser(two);
-		
+
+		setCurrentUser(two);
+
 		System.out.println(SixDegrees.getDistance(three.getUID()));
-		
+
 	}
+
 	public static void addUser(User user) {
 		users.put(user.getUID(), user);
 	}
-	
+
 	public static void addGroup(Group group) {
 		groups.put(group.getGID(), group);
 	}
@@ -90,15 +115,31 @@ public class SixDegrees implements Serializable {
 		current = user;
 	}
 
+	public static HashMap<Integer, User> getUsers() {
+		return users;
+	}
+
+	public static HashMap<Integer, Group> getGroups() {
+		return groups;
+	}
+
+	public static User getCurrentUser() {
+		return current;
+	}
+
 	public static int getDistance(Integer uID) {
 		if (uID < 0 || !users.containsKey(uID))
 			return -1;
 		if (current == null || current.getUID() == uID)
 			return 0;
+
 		int degree = 0;
 		Queue<Node> nodeQue = new LinkedList<Node>();
+		Hashtable<Integer, User> visitedUser = new Hashtable<Integer, User>();
+
 		Node currentNode = new Node(degree, current);
 		nodeQue.offer(currentNode);
+		visitedUser.put(current.getUID(), current);
 		Node next = nodeQue.poll();
 
 		if (current.getUID() == uID) {
@@ -112,24 +153,22 @@ public class SixDegrees implements Serializable {
 				if (friend.getUID() == uID) {
 					return next.level + 1;
 				} else {
-					Node friendNode = new Node(next.level + 1, friend);
-					nodeQue.offer(friendNode);
+					if(!visitedUser.containsKey(friend.getUID())){
+						Node friendNode = new Node(next.level + 1, friend);
+						nodeQue.offer(friendNode);
+					}					
 				}
 			}
-			
 			next = nodeQue.poll();
 		}
 
-		if (degree > 6)
-			System.out
-					.println("You are further than 6 degrees from this person");
-		return degree;
+		//Friend can't be found.
+		return -1;
 	}
 
 	static class Node {
 		public int level;
 		private User user;
-		boolean visited = false;
 
 		public Node() {
 			this.level = 0;
@@ -140,14 +179,6 @@ public class SixDegrees implements Serializable {
 			this.level = level;
 			this.user = user;
 		}
-	}
-
-	public static HashMap<Integer, User> getUsers() {
-		return users;
-	}
-
-	public static HashMap<Integer,Group> getGroups() {
-		return groups;
 	}
 
 }

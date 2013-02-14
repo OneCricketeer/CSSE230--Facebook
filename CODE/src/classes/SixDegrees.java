@@ -28,6 +28,28 @@ public class SixDegrees implements Serializable {
 			groups.clear();
 		current = null;
 	}
+	
+	public static int getMaxUserID(){
+		int maxID = -1;
+		if(!users.isEmpty()){
+			for(User u:users.values()){
+				if(u.getUID()>maxID)
+					maxID = u.getUID();
+			}
+		}
+		return maxID;
+	}
+	
+	public static int getMaxGroupID(){
+		int maxID = -1;
+		if(!groups.isEmpty()){
+			for(Group g:groups.values()){
+				if(g.getGID()>maxID)
+					maxID = g.getGID();
+			}
+		}
+		return maxID;
+	}
 
 	/**
 	 * @param args

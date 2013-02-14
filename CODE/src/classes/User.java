@@ -201,7 +201,7 @@ public class User implements Comparable<User>, Serializable {
 	public String getBasicInfo() {
 		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
 		
-		return "<html>" + fmt.format(this.birthday) + "<br />" + "Male" + "<br />" + this.hometown 
+		return "<html>" + fmt.format(this.birthday) + "<br />" + this.getGender() + "<br />" + this.hometown 
 				+ "</html>";
 		//return this.birthday.toString() + "\n" + "Male" + "\n" + this.hometown;
 	}
@@ -257,6 +257,18 @@ public class User implements Comparable<User>, Serializable {
 
 	public void setHometown(String hometown) {
 		this.hometown = hometown;
+	}
+
+	public void setUID(Integer uID) {
+		this.uid = uID;
+	}
+
+	public void setGender(boolean gender) {
+		this.gender = gender;
+	}
+	
+	public String getGender() {
+		return this.gender ? "Male":"Female";
 	}
 	
 //	public static void main(String[] args) {

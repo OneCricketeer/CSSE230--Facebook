@@ -94,7 +94,7 @@ public class NewUserWindow {
 		lblGender.setBounds(21, 326, 46, 14);
 		registerFrame.getContentPane().add(lblGender);
 
-		JRadioButton rdbtnMale = new JRadioButton("Male");
+		final JRadioButton rdbtnMale = new JRadioButton("Male");
 		rdbtnMale.setBounds(88, 322, 55, 23);
 		registerFrame.getContentPane().add(rdbtnMale);
 
@@ -126,7 +126,11 @@ public class NewUserWindow {
 		JButton btnCreateUser = new JButton("Create User");
 		btnCreateUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				SixDegrees.load();
+				Integer uID = SixDegrees.getMaxUserID()+1;
+				
 				User user = new User();
+				user.setUID(uID);
 				user.setUserName(uNameTextField.getText());
 				user.setFname(FNameTextField.getText());
 				user.setLname(LNameTextField.getText());
@@ -135,6 +139,9 @@ public class NewUserWindow {
 				user.setEmail(emailTextField.getText());
 				user.setAddress(addressTextField.getText());
 				user.setHometown(homeTextField.getText());
+				if(rdbtnMale.isSelected()){
+					user.setGender(true);
+				}
 				
 				SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
 				DecimalFormat phoneFmt = new DecimalFormat("####,###,###");
@@ -145,7 +152,7 @@ public class NewUserWindow {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				SixDegrees.load();
+				
 				SixDegrees.addUser(user);
 				SixDegrees.save();
 				SixDegreesViewer.setCurrentUser(user);

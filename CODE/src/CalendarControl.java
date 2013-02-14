@@ -54,8 +54,7 @@ setLayout(null);
 		lblCalendarMonth.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCalendarMonth.setBounds(290, 21, 159, 20);
 		add(lblCalendarMonth);
-		
-		
+				
 //		final CalendarPanel calPanel = new CalendarPanel();
 		calPanel.setBounds(10, 64, 723, 396);
 		calPanel.setDays();

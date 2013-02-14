@@ -12,6 +12,8 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import classes.Group;
+
 /**
  * TODO Put here a description of what this class does.
  *
@@ -38,6 +40,15 @@ public class ImagePanel extends JPanel {
 			}else
 				path ="./src/IMAGES/DefaultUserFemale.gif";
 			
+			try {
+		          image = resizeImage(ImageIO.read(new File(path)),2,60,60);
+		       } catch (IOException ex) {
+		            ex.printStackTrace();
+		       }
+	    }
+	    
+	    public ImagePanel(Group g){
+	    	String 	path ="./src/IMAGES/Group-icon.gif";			
 			try {
 		          image = resizeImage(ImageIO.read(new File(path)),2,60,60);
 		       } catch (IOException ex) {

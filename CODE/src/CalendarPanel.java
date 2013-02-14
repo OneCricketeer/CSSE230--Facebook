@@ -63,8 +63,6 @@ public class CalendarPanel extends JPanel {
 
 					g2d.setPaint( gp );
 					g2d.fillRect( 0, 0, w, h );
-
-					
 					
 					setOpaque(false);
 					super.paintComponent(g);

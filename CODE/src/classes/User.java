@@ -23,6 +23,12 @@ public class User implements Comparable<User>, Serializable {
 	private TreeSet<User> friends;
 	private String date;
 	private String image;
+	private boolean gender;
+	private String email;
+	private Date birthday;
+	private Number phone;
+	private String address;
+	private String hometown;
 
 	public static void resetCounter() {
 		userCount = -1;
@@ -35,15 +41,23 @@ public class User implements Comparable<User>, Serializable {
 		this.fname = "Default";
 		this.lname = "User";
 		this.calendar = new MyCalendar();
-		this.work = this.dorm = this.date = "";
+		setPhone(123456789L);
+		setWork("");
+		setDorm("");
+		this.date = "";
+		setAddress("123 Main Street");
+		setHometown("Somewhere, USA");
+		setEmail("");
 		this.organizations = new ArrayList<Group>();
 		this.friends = new TreeSet<User>();
+		setBirthday(Calendar.getInstance().getTime());
 		SixDegrees.addUser(this);
 	}
 
 	public User(String userName, String fname, String lname) {
 		this();
 		this.userName = userName;
+		setEmail(getUserName()+"@example.com");
 		setFname(fname);
 		setLname(lname);
 	}
@@ -154,7 +168,7 @@ public class User implements Comparable<User>, Serializable {
 	/**
 	 * @return the dorm
 	 */
-	private String getDorm() {
+	public String getDorm() {
 		return dorm;
 	}
 
@@ -162,14 +176,14 @@ public class User implements Comparable<User>, Serializable {
 	 * @param dorm
 	 *            the dorm to set
 	 */
-	private void setDorm(String dorm) {
+	public void setDorm(String dorm) {
 		this.dorm = dorm;
 	}
 
 	/**
 	 * @return the organizations
 	 */
-	private ArrayList<Group> getOrganizations() {
+	public ArrayList<Group> getOrganizations() {
 		return organizations;
 	}
 
@@ -199,11 +213,14 @@ public class User implements Comparable<User>, Serializable {
 	}
 
 	public String getBasicInfo() {
-		return "Basic information about " + getName();
+		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
+
+		return "<html>" + fmt.format(this.birthday) + "<br />" + this.getGender() + "<br />" + this.hometown 
+				+ "</html>";
 	}
 
 	public String getContactInfo() {
-		return "Contact information for " + getName();
+		return "<html>" + this.phone.toString() + "<br />" + this.address + "<br />" + "<br />"+ this.email + "</html>";
 	}
 
 	public String getAbout() {
@@ -223,7 +240,6 @@ public class User implements Comparable<User>, Serializable {
 			e.printStackTrace();
 		}
 		
-//		cal.set(d.getYear(), d.getMonth(), d.getDay(), 0, 0);
 		return cal.getTime();
 	}
 
@@ -245,25 +261,54 @@ public class User implements Comparable<User>, Serializable {
 		return this.image;
 	}
 	
-//	public static void main(String[] args) {
-//		User u = new User();
-//		System.out.println(u.getBirthDate_String());
-//	}
-	
-//	private int getBirthDay() {
-//		return birthDay;
-//	}
-//
-//	private int getBirthMonth() {
-//		return 0;
-//	}
-//
-//	private int getBirthYear() {
-//		return 0;
-//	}
+	public void setWork(String work) {
+		this.work = work;
+	}
 
-//	public String getBirthDate_String() {
-//		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
-//		return fmt.format(getBirthDate());
-//	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public void setPhone(Number phone) {
+		this.phone = phone;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+
+	}
+
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
+	}
+
+	public void setUID(Integer uID) {
+		this.uid = uID;
+	}
+
+	public void setGender(boolean gender) {
+		this.gender = gender;
+	}
+
+	public String getGender() {
+		return this.gender ? "Male":"Female";
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param friend
+	 * @return
+	 */
+	public boolean hasFriend(User friend) {
+		return this.friends.contains(friend);
+	}
+
 }

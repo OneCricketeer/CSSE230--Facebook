@@ -134,6 +134,7 @@ public class SixDegrees implements Serializable {
 					return next.level + 1;
 				} else {
 					if(!visitedUser.containsKey(friend.getUID())){
+						visitedUser.put(friend.getUID(), friend);
 						Node friendNode = new Node(next.level + 1, friend);
 						nodeQue.offer(friendNode);
 					}					

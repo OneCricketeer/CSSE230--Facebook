@@ -1,4 +1,5 @@
 package classes;
+import java.awt.LayoutManager;
 import java.io.Serializable;
 import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
@@ -21,6 +22,7 @@ public class User implements Comparable<User>, Serializable {
 	private ArrayList<Group> organizations;
 	private TreeSet<User> friends;
 	private String date;
+	private String image;
 
 	public static void resetCounter() {
 		userCount = -1;
@@ -85,6 +87,10 @@ public class User implements Comparable<User>, Serializable {
 	 */
 	public void setFname(String name) {
 		this.fname = name;
+	}
+	
+	public void setImage(String url) {
+		this.image = url;
 	}
 
 	public String getFname() {
@@ -228,6 +234,15 @@ public class User implements Comparable<User>, Serializable {
 	 */
 	public String getEvents() {
 		return this.calendar.getEvents_List().toString();
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
+	public String getImage() {
+		return this.image;
 	}
 	
 //	public static void main(String[] args) {

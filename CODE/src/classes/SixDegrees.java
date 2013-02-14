@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -74,39 +75,45 @@ public class SixDegrees implements Serializable {
 	}
 
 	public static int getDistance(Integer uID) {
-		if (uID < 0 || !users.containsKey(uID))
-			return -1;
-		if (current == null || current.getUID() == uID)
-			return 0;
-		int degree = 0;
-		Queue<Node> nodeQue = new LinkedList<Node>();
-		Node currentNode = new Node(degree, current);
-		nodeQue.offer(currentNode);
-		Node next = nodeQue.poll();
+        if (uID < 0 || !users.containsKey(uID))
+              return -1;
+        if (current == null || current.getUID() == uID)
+              return 0;
+        
+        int degree = 0;
+        Queue<Node> nodeQue = new LinkedList<Node>();
+        Hashtable<Integer, User> visitedUser = new Hashtable<Integer, User>();
+        
+        Node currentNode = new Node(degree, current);
+        nodeQue.offer(currentNode);
+        visitedUser.put(current.getUID(), current);
+        Node next = nodeQue.poll();
 
-		if (current.getUID() == uID) {
-			return degree;
-		}
+        if (current.getUID() == uID) {
+              return degree;
+        }
 
-		while (next != null) {
-			ArrayList<User> friends = next.user.getFriends();
+        while (next != null) {
+              ArrayList<User> friends = next.user.getFriends();
 
-			for (User friend : friends) {
-				if (friend.getUID() == uID) {
-					return next.level + 1;
-				} else {
-					Node friendNode = new Node(next.level + 1, friend);
-					nodeQue.offer(friendNode);
-				}
-			}
-			next = nodeQue.poll();
-		}
+              for (User friend : friends) {
+                    if (friend.getUID() == uID) {
+                          return next.level + 1;
+                    } else {
+                          if(!visitedUser.containsKey(friend.getUID())){
+                        	    visitedUser.put(friend.getUID(),friend);
+                                Node friendNode = new Node(next.level + 1, friend);
+                                nodeQue.offer(friendNode);
+                          }                             
+                    }
+              }
+              next = nodeQue.poll();
+        }
+        
+        //Friend can't be found.
+        return -1;
+  }
 
-		if (degree > 6)
-			System.out
-					.println("You are further than 6 degrees from this person");
-		return degree;
-	}
 
 	static class Node {
 		public int level;

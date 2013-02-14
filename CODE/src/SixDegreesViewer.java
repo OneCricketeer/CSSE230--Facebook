@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTree;
 
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Color;
@@ -39,6 +40,8 @@ import classes.XMLFileIO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -62,13 +65,13 @@ public class SixDegreesViewer {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		final boolean design = true;
-//		data = new SixDegrees();
-		
-		
+		final boolean design = true;		
 		
 		SixDegrees.load();
-	 
+		((User)SixDegrees.getUsers().values().toArray()[3]).setImage("http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA631319860408.jpg");
+		((User)SixDegrees.getUsers().values().toArray()[3]).addFriend((User)SixDegrees.getUsers().values().toArray()[4]);
+		((User)SixDegrees.getUsers().values().toArray()[4]).addFriend((User)SixDegrees.getUsers().values().toArray()[5]);
+		((User)SixDegrees.getUsers().values().toArray()[5]).addFriend((User)SixDegrees.getUsers().values().toArray()[6]);
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -78,10 +81,7 @@ public class SixDegreesViewer {
 						User pSherman = new User("pSherman", "P.", "Sherman");
 						window.setCurrentUser(pSherman);
 					}
-					User pSherman = new User("pSherman", "P.", "Sherman");
-					SixDegrees.addUser(pSherman);
-					SixDegrees.setCurrentUser(pSherman);
-					window.setCurrentUser(pSherman);
+					window.setCurrentUser((User)SixDegrees.getUsers().values().toArray()[3]);
 
 					window.frmSixDegrees.setVisible(true);
 				} catch (Exception e) {
@@ -132,7 +132,7 @@ public class SixDegreesViewer {
 		myPagePanel.add(treeView);
 
 		ImagePanel profilePictureFrame = new ImagePanel(
-				"./src/IMAGES/DefaultUserFemale.gif", 120, 120);
+				"./src/IMAGES/DefaultUserFemale.gif", 120, 120, 0);
 		profilePictureFrame.setBounds(10, 11, 120, 120);
 		myPagePanel.add(profilePictureFrame);
 
@@ -282,8 +282,7 @@ public class SixDegreesViewer {
 							|| u.getFname().equalsIgnoreCase(query)
 							|| u.getLname().equalsIgnoreCase(query)
 							|| u.getUserName().equalsIgnoreCase(query)) {
-						FriendPanel rowPanel = new FriendPanel();
-						rowPanel.setUsername(u.getName());
+						FriendPanel rowPanel = new FriendPanel(u);
 						rowPanel.setPreferredSize(new Dimension(120, 90));
 						columnPanel.add(rowPanel);
 						rowPanel.setLayout(null);
@@ -296,6 +295,15 @@ public class SixDegreesViewer {
 			}
 
 		});
+		
+		textFriendSearch.addKeyListener(new KeyAdapter() {
+			@Override
+		      public void keyPressed(KeyEvent arg0) {
+		        if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
+		        	btnFriendSearch.doClick();
+		        }}});
+		
+		
 		btnFriendSearch.setBounds(423, 23, 89, 23);
 		friendsPanel.add(btnFriendSearch);
 		
@@ -321,7 +329,7 @@ public class SixDegreesViewer {
 
 		// FriendPanel panel_1 = new FriendPanel();
 		// panel_1.setBounds(0, 0, 1200, 900);
-		FriendPanel generalRowPanel = null;
+		SearchPanel generalRowPanel = null;
 		
 
 		
@@ -341,8 +349,7 @@ public class SixDegreesViewer {
 							|| u.getFname().equalsIgnoreCase(query)
 							|| u.getLname().equalsIgnoreCase(query)
 							|| u.getUserName().equalsIgnoreCase(query)) {
-						FriendPanel generalRowPanel = new FriendPanel();
-						generalRowPanel.setUsername(u.getName());
+						FriendPanel generalRowPanel = new FriendPanel(u);
 						generalRowPanel.setPreferredSize(new Dimension(120, 90));
 						generalColumnPanel.add(generalRowPanel);
 						generalRowPanel.setLayout(null);
@@ -355,8 +362,7 @@ public class SixDegreesViewer {
 				
 				for (Group g : SixDegrees.getGroups().values()) {
 					if (g.getName().equalsIgnoreCase(query)) {
-						FriendPanel generalRowPanel = new FriendPanel();
-						generalRowPanel.setUsername(g.getName());
+						GroupPanel generalRowPanel = new GroupPanel(g);
 						generalRowPanel.setPreferredSize(new Dimension(120, 90));
 						generalColumnPanel.add(generalRowPanel);
 						generalRowPanel.setLayout(null);
@@ -369,7 +375,12 @@ public class SixDegreesViewer {
 			}
 
 		});
-
+		textGeneralSearch.addKeyListener(new KeyAdapter() {
+			@Override
+		      public void keyPressed(KeyEvent arg0) {
+		        if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
+		        	btnGeneralSearch.doClick();
+		        }}});
 		btnGeneralSearch.setBounds(423, 23, 89, 23);
 		generalSearchTab.add(btnGeneralSearch);
 
@@ -400,6 +411,7 @@ public class SixDegreesViewer {
 	}
 
 	public void setCurrentUser(User u) {
+		SixDegrees.setCurrentUser(u);
 		current = u;
 		lblStatusMessage.setText(u.getStatus());
 		lblNameLabel.setText(u.getName());

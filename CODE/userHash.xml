@@ -174,7 +174,7 @@
       </calendar>
       <work></work>
       <dorm></dorm>
-      <organizations/>
+      <organizations></organizations>
       <friends/>
       <date></date>
     </classes.User>

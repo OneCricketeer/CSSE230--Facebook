@@ -19,7 +19,7 @@ public class User implements Comparable<User>, Serializable {
 	private MyCalendar calendar;
 	private String work;
 	private String dorm;
-	private ArrayList<Group> organizations;
+	private ArrayList<Group> groups;
 	private TreeSet<User> friends;
 	private String date;
 	private String image;
@@ -48,7 +48,7 @@ public class User implements Comparable<User>, Serializable {
 		setAddress("123 Main Street");
 		setHometown("Somewhere, USA");
 		setEmail("");
-		this.organizations = new ArrayList<Group>();
+		this.groups = new ArrayList<Group>();
 		this.friends = new TreeSet<User>();
 		setBirthday(Calendar.getInstance().getTime());
 		SixDegrees.addUser(this);
@@ -184,7 +184,7 @@ public class User implements Comparable<User>, Serializable {
 	 * @return the organizations
 	 */
 	public ArrayList<Group> getOrganizations() {
-		return organizations;
+		return groups;
 	}
 
 	public void addFriend(User friend) {
@@ -209,7 +209,7 @@ public class User implements Comparable<User>, Serializable {
 	 *            organization to add
 	 */
 	public void addOrganization(Group organization) {
-		this.organizations.add(organization);
+		this.groups.add(organization);
 	}
 
 	public String getBasicInfo() {
@@ -309,6 +309,27 @@ public class User implements Comparable<User>, Serializable {
 	 */
 	public boolean hasFriend(User friend) {
 		return this.friends.contains(friend);
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param group
+	 */
+	public void addGroup(Group group) {
+		if (!this.groups.contains(group))
+			this.groups.add(group);
+		
+	}
+
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param g
+	 * @return
+	 */
+	public boolean isInGroup(Group g) {
+		return this.groups.contains(g);
 	}
 
 }

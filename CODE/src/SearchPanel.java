@@ -36,12 +36,14 @@ import classes.User;
 public class SearchPanel extends JPanel {
 	private JLabel lblMainInfo;
 	private User friend;
+	private Group group;
 	private JLabel lblAdditionalInfo;
 	private JLabel lblFriendDistance;
 	private JPopupMenu contextMenu;
 	private JMenuItem menuItem;
 	private JMenuItem userNameMenuItem;
 	private JMenuItem addFriendItem;
+	private JMenuItem addGroupItem;
 
 	/**
 	 * Create the panel.
@@ -118,6 +120,15 @@ public class SearchPanel extends JPanel {
 	    	}
 	    });
 	    contextMenu.add(addFriendItem);
+	    
+	    addGroupItem = new JMenuItem("Add Group");
+	    addGroupItem.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		SixDegrees.getCurrentUser().addGroup(group);
+	    	}
+	    });
+	    contextMenu.add(addGroupItem);
 
 
 	    MouseListener popupListener = new PopupListener();
@@ -130,6 +141,7 @@ public class SearchPanel extends JPanel {
 
 	public void setUser(User u) {
 		this.friend = u;
+		contextMenu.remove(addGroupItem);
 		userNameMenuItem.setText(u.getName());
 		if (SixDegrees.getCurrentUser().hasFriend(friend))
 	    	contextMenu.remove(addFriendItem);		
@@ -141,6 +153,19 @@ public class SearchPanel extends JPanel {
 			image = new ImagePanel(u.getImageURL(),60,60);
 		else
 			image = new ImagePanel(0);
+		image.setBounds(10, 10, 60, 60);
+		add(image);
+	}
+	
+	public void setGroup(Group g){
+		this.group = g;
+		contextMenu.remove(addFriendItem);
+		userNameMenuItem.setText(g.getName());
+		if (SixDegrees.getCurrentUser().isInGroup(g))
+	    	contextMenu.remove(addGroupItem);		
+		setUsername(g.getName());
+
+		ImagePanel image = new ImagePanel(g);
 		image.setBounds(10, 10, 60, 60);
 		add(image);
 	}

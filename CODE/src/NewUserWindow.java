@@ -37,22 +37,7 @@ public class NewUserWindow {
 	private JTextField PhoneTextField;
 	private JTextField addressTextField;
 	private JTextField homeTextField;
-
-	/**
-	 * Launch the application.
-	 */
-	// public static void main(String[] args) {
-	// EventQueue.invokeLater(new Runnable() {
-	// public void run() {
-	// try {
-	// NewUserWindow window = new NewUserWindow();
-	// window.registerFrame.setVisible(true);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// });
-	// }
+	private JTextField imageUrlField;
 
 	/**
 	 * Create the application.
@@ -77,7 +62,7 @@ public class NewUserWindow {
 		//registerFrame.setType(Type.POPUP);
 		registerFrame.setResizable(false);
 		registerFrame.setAlwaysOnTop(true);
-		registerFrame.setBounds(100, 100, 250, 430);
+		registerFrame.setBounds(100, 100, 250, 440);
 		registerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		registerFrame.getContentPane().setLayout(null);
 
@@ -91,15 +76,15 @@ public class NewUserWindow {
 		FNameTextField.setColumns(10);
 
 		JLabel lblGender = new JLabel("Gender:");
-		lblGender.setBounds(21, 326, 46, 14);
+		lblGender.setBounds(21, 348, 46, 14);
 		registerFrame.getContentPane().add(lblGender);
 
 		final JRadioButton rdbtnMale = new JRadioButton("Male");
-		rdbtnMale.setBounds(88, 322, 55, 23);
+		rdbtnMale.setBounds(88, 344, 55, 23);
 		registerFrame.getContentPane().add(rdbtnMale);
 
 		JRadioButton rdbtnFemale = new JRadioButton("Female");
-		rdbtnFemale.setBounds(145, 322, 65, 23);
+		rdbtnFemale.setBounds(145, 344, 65, 23);
 		registerFrame.getContentPane().add(rdbtnFemale);
 
 		buttonGroup.add(rdbtnMale);
@@ -139,11 +124,12 @@ public class NewUserWindow {
 				user.setEmail(emailTextField.getText());
 				user.setAddress(addressTextField.getText());
 				user.setHometown(homeTextField.getText());
+				user.setImage(imageUrlField.getText());
 				if(rdbtnMale.isSelected()){
 					user.setGender(true);
 				}
 
-				SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
+				SimpleDateFormat fmt = new SimpleDateFormat("MM dd yyyy");
 				DecimalFormat phoneFmt = new DecimalFormat("####,###,###");
 
 				try {
@@ -159,7 +145,7 @@ public class NewUserWindow {
 				setVisible(false);
 			}
 		});
-		btnCreateUser.setBounds(70, 352, 107, 23);
+		btnCreateUser.setBounds(70, 374, 107, 23);
 		registerFrame.getContentPane().add(btnCreateUser);
 
 		JLabel lblLastName = new JLabel("Last Name: ");
@@ -224,5 +210,14 @@ public class NewUserWindow {
 		JLabel lblHometown = new JLabel("Hometown: ");
 		lblHometown.setBounds(21, 285, 65, 14);
 		registerFrame.getContentPane().add(lblHometown);
+		
+		imageUrlField = new JTextField();
+		imageUrlField.setColumns(10);
+		imageUrlField.setBounds(88, 313, 122, 20);
+		registerFrame.getContentPane().add(imageUrlField);
+		
+		JLabel lblImageUrl = new JLabel("Image URL: ");
+		lblImageUrl.setBounds(21, 316, 65, 14);
+		registerFrame.getContentPane().add(lblImageUrl);
 	}
 }

@@ -89,6 +89,10 @@ public class EventPanel extends JPanel {
 		this.events.add(ev);
 		setEvents();
 	}
+	
+	public void removeAllEvents() {
+		this.events = new ArrayList<Event>();
+	}
 
 	public String getDescription() {
 		String eventString = "<html>";
@@ -101,6 +105,13 @@ public class EventPanel extends JPanel {
 		eventString += "</html>";
 		return eventString;
 
+	}
+	
+	public boolean hasEvent(Event e) {
+		if(events.contains(e)){
+			return true;
+		}
+		return false;
 	}
 
 }

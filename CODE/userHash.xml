@@ -5,16 +5,56 @@
       <uid>0</uid>
       <fname>Teddy</fname>
       <lname>Sterne</lname>
-      <status>What&apos;s happening?</status>
+      <status>What are you doing?</status>
       <userName>sternetj</userName>
       <calendar>
         <events serialization="custom">
           <unserializable-parents/>
           <java.util.PriorityQueue>
             <default>
-              <size>0</size>
+              <size>4</size>
             </default>
-            <int>2</int>
+            <int>5</int>
+            <classes.Event>
+              <attendeeIDs/>
+              <cal>
+                <time>1360894602324</time>
+                <timezone>America/Indianapolis</timezone>
+              </cal>
+              <startTime>2013-02-12 05:00:00.0 UTC</startTime>
+              <endTime>2013-02-12 05:00:00.0 UTC</endTime>
+              <desc>fsadfwe</desc>
+            </classes.Event>
+            <classes.Event>
+              <attendeeIDs/>
+              <cal>
+                <time>1360897050969</time>
+                <timezone>America/Indianapolis</timezone>
+              </cal>
+              <startTime>2013-02-18 05:00:00.0 UTC</startTime>
+              <endTime>2013-02-18 05:00:00.0 UTC</endTime>
+              <desc>dwadwaq</desc>
+            </classes.Event>
+            <classes.Event>
+              <attendeeIDs/>
+              <cal>
+                <time>1360895176328</time>
+                <timezone>America/Indianapolis</timezone>
+              </cal>
+              <startTime>2013-02-16 05:00:00.0 UTC</startTime>
+              <endTime>2013-02-16 05:00:00.0 UTC</endTime>
+              <desc>casd</desc>
+            </classes.Event>
+            <classes.Event>
+              <attendeeIDs/>
+              <cal>
+                <time>1360892406836</time>
+                <timezone>America/Indianapolis</timezone>
+              </cal>
+              <startTime>2028-02-16 05:00:00.0 UTC</startTime>
+              <endTime>2028-02-16 05:00:00.0 UTC</endTime>
+              <desc>Hope this adds an event</desc>
+            </classes.Event>
           </java.util.PriorityQueue>
         </events>
         <cal>
@@ -22,12 +62,150 @@
           <timezone>America/New_York</timezone>
         </cal>
       </calendar>
-      <work></work>
-      <dorm></dorm>
+      <work>Ventures</work>
+      <dorm>Percopo</dorm>
       <groups>
         <null/>
+        <classes.Group>
+          <name>Student Activities Board</name>
+          <desc>This group plans student activities around campus.</desc>
+          <gID>0</gID>
+          <members>
+            <int>0</int>
+            <int>1</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Delta Delta Delta</name>
+          <desc>This organization is a sorority. </desc>
+          <gID>1</gID>
+          <members>
+            <int>1</int>
+          </members>
+        </classes.Group>
+        <classes.Group>
+          <name>Student Activities Board</name>
+          <desc>This group plans student activities around campus.</desc>
+          <gID>0</gID>
+          <members>
+            <int>0</int>
+            <int>1</int>
+          </members>
+        </classes.Group>
       </groups>
-      <friends/>
+      <friends>
+        <classes.User>
+          <uid>3</uid>
+          <fname>Jordan</fname>
+          <lname>Moore</lname>
+          <status>What&apos;s happening?</status>
+          <userName>moorejm</userName>
+          <calendar>
+            <events serialization="custom">
+              <unserializable-parents/>
+              <java.util.PriorityQueue>
+                <default>
+                  <size>0</size>
+                </default>
+                <int>2</int>
+              </java.util.PriorityQueue>
+            </events>
+            <cal>
+              <time>1360889543096</time>
+              <timezone>America/New_York</timezone>
+            </cal>
+          </calendar>
+          <work></work>
+          <dorm></dorm>
+          <groups>
+            <null/>
+          </groups>
+          <friends>
+            <classes.User reference="../../../.."/>
+          </friends>
+          <date></date>
+          <image>http://weknowmemes.com/wp-content/uploads/2012/10/mind-if-i-comb-over-240x180.jpg</image>
+          <gender>false</gender>
+          <email>moorejm@example.com</email>
+          <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+          <phone class="long">123456789</phone>
+          <address>123 Main Street</address>
+          <hometown>Somewhere, USA</hometown>
+        </classes.User>
+        <classes.User>
+          <uid>2</uid>
+          <fname>Xinyu</fname>
+          <lname>Cheng</lname>
+          <status>What&apos;s happening?</status>
+          <userName>chengx</userName>
+          <calendar>
+            <events serialization="custom">
+              <unserializable-parents/>
+              <java.util.PriorityQueue>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>2</int>
+                <classes.Event reference="../../../../../../calendar/events/java.util.PriorityQueue/classes.Event[2]"/>
+              </java.util.PriorityQueue>
+            </events>
+            <cal>
+              <time>1360889543096</time>
+              <timezone>America/New_York</timezone>
+            </cal>
+          </calendar>
+          <work></work>
+          <dorm></dorm>
+          <groups/>
+          <friends>
+            <classes.User reference="../../../.."/>
+          </friends>
+          <date></date>
+          <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA623581715011.jpg</image>
+          <gender>false</gender>
+          <email>chengx@example.com</email>
+          <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+          <phone class="long">123456789</phone>
+          <address>123 Main Street</address>
+          <hometown>Somewhere, USA</hometown>
+        </classes.User>
+        <classes.User>
+          <uid>1</uid>
+          <fname>Yashi</fname>
+          <lname>Yadav</lname>
+          <status>What&apos;s happening?</status>
+          <userName>yadavy</userName>
+          <calendar>
+            <events serialization="custom">
+              <unserializable-parents/>
+              <java.util.PriorityQueue>
+                <default>
+                  <size>0</size>
+                </default>
+                <int>2</int>
+              </java.util.PriorityQueue>
+            </events>
+            <cal>
+              <time>1360889543096</time>
+              <timezone>America/New_York</timezone>
+            </cal>
+          </calendar>
+          <work>Ventures</work>
+          <dorm>Percopo</dorm>
+          <groups/>
+          <friends>
+            <classes.User reference="../../../.."/>
+          </friends>
+          <date></date>
+          <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA639261010203.jpg</image>
+          <gender>false</gender>
+          <email>yadavy@example.com</email>
+          <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+          <phone class="long">123456789</phone>
+          <address>123 Main Street</address>
+          <hometown>Somewhere, USA</hometown>
+        </classes.User>
+      </friends>
       <date></date>
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA984226893827.jpg</image>
       <gender>false</gender>
@@ -40,114 +218,15 @@
   </entry>
   <entry>
     <int>1</int>
-    <classes.User>
-      <uid>1</uid>
-      <fname>Yashi</fname>
-      <lname>Yadav</lname>
-      <status>What&apos;s happening?</status>
-      <userName>yadavy</userName>
-      <calendar>
-        <events serialization="custom">
-          <unserializable-parents/>
-          <java.util.PriorityQueue>
-            <default>
-              <size>0</size>
-            </default>
-            <int>2</int>
-          </java.util.PriorityQueue>
-        </events>
-        <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
-        </cal>
-      </calendar>
-      <work></work>
-      <dorm></dorm>
-      <groups/>
-      <friends/>
-      <date></date>
-      <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA639261010203.jpg</image>
-      <gender>false</gender>
-      <email>yadavy@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
-      <phone class="long">123456789</phone>
-      <address>123 Main Street</address>
-      <hometown>Somewhere, USA</hometown>
-    </classes.User>
+    <classes.User reference="../../entry/classes.User/friends/classes.User[3]"/>
   </entry>
   <entry>
     <int>2</int>
-    <classes.User>
-      <uid>2</uid>
-      <fname>Xinyu</fname>
-      <lname>Cheng</lname>
-      <status>What&apos;s happening?</status>
-      <userName>chengx</userName>
-      <calendar>
-        <events serialization="custom">
-          <unserializable-parents/>
-          <java.util.PriorityQueue>
-            <default>
-              <size>0</size>
-            </default>
-            <int>2</int>
-          </java.util.PriorityQueue>
-        </events>
-        <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
-        </cal>
-      </calendar>
-      <work></work>
-      <dorm></dorm>
-      <groups/>
-      <friends/>
-      <date></date>
-      <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA623581715011.jpg</image>
-      <gender>false</gender>
-      <email>chengx@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
-      <phone class="long">123456789</phone>
-      <address>123 Main Street</address>
-      <hometown>Somewhere, USA</hometown>
-    </classes.User>
+    <classes.User reference="../../entry/classes.User/friends/classes.User[2]"/>
   </entry>
   <entry>
     <int>3</int>
-    <classes.User>
-      <uid>3</uid>
-      <fname>Jordan</fname>
-      <lname>Moore</lname>
-      <status>What&apos;s happening?</status>
-      <userName>moorejm</userName>
-      <calendar>
-        <events serialization="custom">
-          <unserializable-parents/>
-          <java.util.PriorityQueue>
-            <default>
-              <size>0</size>
-            </default>
-            <int>2</int>
-          </java.util.PriorityQueue>
-        </events>
-        <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
-        </cal>
-      </calendar>
-      <work></work>
-      <dorm></dorm>
-      <groups/>
-      <friends/>
-      <date></date>
-      <image>http://weknowmemes.com/wp-content/uploads/2012/10/mind-if-i-comb-over-240x180.jpg</image>
-      <gender>false</gender>
-      <email>moorejm@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
-      <phone class="long">123456789</phone>
-      <address>123 Main Street</address>
-      <hometown>Somewhere, USA</hometown>
-    </classes.User>
+    <classes.User reference="../../entry/classes.User/friends/classes.User"/>
   </entry>
   <entry>
     <int>4</int>

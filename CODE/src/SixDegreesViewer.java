@@ -108,6 +108,7 @@ public class SixDegreesViewer {
 	private static JPanel searchPanel;
 	private static JPanel friendsPanel;
 	private static JPanel meetingsPanel;
+	private static JPanel friendPanel;
 	private JTextField phoneText;
 	private JTextField addressText;
 	private JTextField emailText;
@@ -142,11 +143,12 @@ public class SixDegreesViewer {
 		// SixDegrees.getUsers().values().toArray()[3])
 		// .getFname());
 
-		final User usr = SixDegrees.getUsers().get(1);
+		final User usr = (User) SixDegrees.getUsers().values().toArray()[0];
 		usr.setDorm("Percopo");
 		usr.setWork("Ventures");
 		SixDegrees.setCurrentUser(usr);
 		SixDegreesViewer window = new SixDegreesViewer();
+		setDisplayedUser(usr);
 		window.frmSixDegrees.setVisible(true);
 		window.uNameTextField.grabFocus();
 	}
@@ -182,7 +184,7 @@ public class SixDegreesViewer {
 		this.frmSixDegrees.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frmSixDegrees.getContentPane().setLayout(null);
 
-		final JTabbedPane tabViewer = new JTabbedPane(JTabbedPane.TOP);
+		tabViewer = new JTabbedPane(JTabbedPane.TOP);
 		tabViewer.setBounds(0, 0, 748, 558);
 		this.frmSixDegrees.getContentPane().add(tabViewer);
 
@@ -199,7 +201,7 @@ public class SixDegreesViewer {
 				g.drawImage(img, -100, -30, 1500, 558, null);
 			}
 		};
-		tabViewer.addTab("Login", null, LoginPanel, null);
+		//tabViewer.addTab("Login", null, LoginPanel, null);
 		LoginPanel.setLayout(null);
 
 		JButton btnCreateNewUser = new JButton("Create New User");
@@ -310,7 +312,7 @@ public class SixDegreesViewer {
 			}
 		});
 
-		tabViewer.addTab("Login", null, LoginPanel, null);
+		//tabViewer.addTab("Login", null, LoginPanel, null);
 		LoginPanel.setLayout(null);
 
 		btnCreateNewUser.setBounds(476, 247, 126, 32);
@@ -678,7 +680,7 @@ public class SixDegreesViewer {
 		// /MEETINGS/////////////////////////////////////////////////////////////
 
 		meetingsPanel = new JPanel();
-		// tabViewer.addTab("Meetings", null, meetingsPanel, null);
+		//tabViewer.addTab("Meetings", null, meetingsPanel, null);
 		meetingsPanel.setLayout(null);
 
 		CalendarControl calendarControl = new CalendarControl();
@@ -912,9 +914,16 @@ public class SixDegreesViewer {
 				}
 			}
 		});
+		tabViewer.addTab("MyPage", null, myPagePanel, null);
+		tabViewer.addTab("Meetings", null, meetingsPanel, null);
+		tabViewer.addTab("Search", null, searchPanel, null);
+		tabViewer.addTab("Friends", null, friendsPanel, null);
+//		current = (User) SixDegrees.getUsers().values().toArray()[2];
+//		setFriendPage(current);
+//		tabViewer.addTab(current.getFname() + "'s Page", null, friendPanel, null);
 	}
 
-	private void addLogo(JComponent comp) {
+	private static void addLogo(JComponent comp) {
 		ImagePanel image = new ImagePanel();
 		image.setBounds(683, 469, 50, 50);
 		comp.add(image);
@@ -932,5 +941,227 @@ public class SixDegreesViewer {
 		lblContactinfomessage.setText(u.getContactInfo());
 		lblAbouttext.setText(u.getAbout());
 		myPagePanel.repaint();
+	}
+	
+	public static void setFriendPage(User friend){
+		friendPanel = new JPanel();
+		try{
+			tabViewer.remove(4);
+		}
+		catch(Exception e){
+			
+		}
+		
+		tabViewer.addTab(friend.getFname() + "'s Page", null, friendPanel, null);
+		friendPanel.setLayout(null);
+		tabViewer.setSelectedIndex(4);
+
+		// ImagePanel profilePictureFrame = new ImagePanel(
+		// "./src/IMAGES/DefaultUserFemale.gif", 120, 120);
+		// profilePictureFrame.setBounds(10, 11, 120, 120);
+		// friendPanel.add(profilePictureFrame);
+
+		JLabel lblNameLabel = new JLabel("Name");
+		lblNameLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+		lblNameLabel.setBounds(10, 142, 214, 28);
+		friendPanel.add(lblNameLabel);
+
+		JLabel lblStatus = new JLabel("Status:");
+		lblStatus.setForeground(new Color(178, 34, 34));
+		lblStatus.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblStatus.setBounds(140, 14, 214, 28);
+		friendPanel.add(lblStatus);
+
+		JLabel lblStatusMessage = new JLabel("Status Message");
+		lblStatusMessage.setText(friend.getStatus());
+
+		lblStatusMessage.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		lblStatusMessage.setBounds(140, 53, 228, 28);
+		friendPanel.add(lblStatusMessage);
+
+		JLabel lblContactInfo = new JLabel("Contact Info:");
+		lblContactInfo.setForeground(new Color(178, 34, 34));
+		lblContactInfo.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		lblContactInfo.setBounds(10, 283, 214, 28);
+		friendPanel.add(lblContactInfo);
+		lblNameLabel.setText(friend.getName());
+
+		JLabel lblAbout = new JLabel("About:");
+		lblAbout.setForeground(new Color(178, 34, 34));
+		lblAbout.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		lblAbout.setBounds(10, 181, 214, 28);
+		friendPanel.add(lblAbout);
+
+		JLabel lblBasicInfo = new JLabel("Basic Info:");
+		lblBasicInfo.setForeground(new Color(178, 34, 34));
+		lblBasicInfo.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		lblBasicInfo.setBounds(10, 407, 214, 28);
+		friendPanel.add(lblBasicInfo);
+
+		JLabel lblAbouttext = new JLabel("AboutText");
+		lblAbouttext.setVerticalAlignment(SwingConstants.TOP);
+		lblAbouttext.setForeground(new Color(0, 0, 0));
+		lblAbouttext.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblAbouttext.setBounds(46, 210, 403, 62);
+		friendPanel.add(lblAbouttext);
+		lblAbouttext.setText(friend.getAbout());
+
+		
+		JLabel lblContactLabel = new JLabel(
+				"<html>Phone:<br />Address:<br /><br />Email:</html>");
+		lblContactLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblContactLabel.setForeground(Color.BLACK);
+		lblContactLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblContactLabel.setBounds(46, 315, 52, 81);
+		friendPanel.add(lblContactLabel);
+
+		JLabel lblContactinfomessage = new JLabel("ContactInfoMessage");
+		lblContactinfomessage.setVerticalAlignment(SwingConstants.TOP);
+		lblContactinfomessage.setForeground(Color.BLACK);
+		lblContactinfomessage.setFont(new Font("Times New Roman", Font.PLAIN,
+				14));
+		lblContactinfomessage.setBounds(114, 315, 346, 81);
+		friendPanel.add(lblContactinfomessage);
+		lblContactinfomessage.setText(friend.getContactInfo());
+
+		JLabel lblBasicInfoLabel = new JLabel(
+				"<html>Birthdate:<br />Sex:<br />Hometown:</html>");
+		lblBasicInfoLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblBasicInfoLabel.setForeground(Color.BLACK);
+		lblBasicInfoLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblBasicInfoLabel.setBounds(46, 438, 70, 81);
+		friendPanel.add(lblBasicInfoLabel);
+
+		JLabel lblBasicInfoMessage = new JLabel("BasicInfoMessage");
+		lblBasicInfoMessage.setVerticalAlignment(SwingConstants.TOP);
+		lblBasicInfoMessage.setForeground(Color.BLACK);
+		lblBasicInfoMessage
+				.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblBasicInfoMessage.setBounds(114, 438, 353, 54);
+		friendPanel.add(lblBasicInfoMessage);
+		lblBasicInfoMessage.setText(friend.getBasicInfo());
+
+		addLogo(friendPanel);
+
+		final JPanel groupPanel = new JPanel();
+		groupPanel.setBounds(433, 32, 300, 426);
+		friendPanel.add(groupPanel);
+		groupPanel.setLayout(null);
+
+		final ExpandableLabel workLabel = new ExpandableLabel("Work");
+
+		workLabel.setBounds(10, 0, 270, 24);
+		workLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		groupPanel.add(workLabel);
+
+		final ExpandableLabel dormLabel = new ExpandableLabel("Dorm");
+		dormLabel.setBounds(10, 41, 270, 24);
+		dormLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		groupPanel.add(dormLabel);
+
+		final JPanel work_panel = new JPanel();
+		work_panel.setBounds(40, 24, 250, 10);
+		groupPanel.add(work_panel);
+		work_panel.setLayout(new GridLayout(0, 1, 0, 1));
+
+		final JPanel dorm_panel = new JPanel();
+		dorm_panel.setLayout(new GridLayout(0, 1, 0, 1));
+		dorm_panel.setBounds(40, 65, 250, 12);
+		groupPanel.add(dorm_panel);
+
+		final ExpandableLabel lblSocialOrganization = new ExpandableLabel(
+				"Social Organization");
+		lblSocialOrganization.setBounds(10, 84, 270, 24);
+		lblSocialOrganization
+				.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		groupPanel.add(lblSocialOrganization);
+
+		final JPanel socorg_panel = new JPanel();
+		socorg_panel.setLayout(new GridLayout(0, 1, 0, 1));
+		socorg_panel.setBounds(40, 113, 250, 12);
+		groupPanel.add(socorg_panel);
+		
+		ImagePanel profilePictureFrame = new ImagePanel(friend.getImageURL(), 120, 120);
+		profilePictureFrame.setBounds(10, 11, 120, 120);
+		friendPanel.add(profilePictureFrame);
+		
+
+		// ///Expand ////////////////
+		workLabel.addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				JComponent[] comps = { dormLabel, dorm_panel,
+						lblSocialOrganization, socorg_panel };
+				int length = 0;
+				if (!workLabel.isExpanded()) {
+					JLabel lbl = new JLabel();
+					lbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+					lbl.setText(displayed.getWork());
+					lbl.setBounds(0, 0, 50, subHeadingHeight);
+					work_panel.add(lbl);
+					length = (work_panel.getComponents().length)
+							* subHeadingHeight;
+				} else {
+					length = -((work_panel.getComponents().length) * subHeadingHeight);
+					work_panel.removeAll();
+				}
+				workLabel.expand(work_panel, comps, length);
+			}
+
+		});
+
+		dormLabel.addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent arg0) {
+				JComponent[] comps = { lblSocialOrganization, socorg_panel };
+				int length = 0;
+				if (!dormLabel.isExpanded()) {
+					JLabel lbl = new JLabel();
+					lbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+					lbl.setText(displayed.getDorm());
+					lbl.setBounds(0, 0, 50, subHeadingHeight);
+					dorm_panel.add(lbl);
+					length = (dorm_panel.getComponents().length)
+							* subHeadingHeight;
+				} else {
+					length = -((dorm_panel.getComponents().length) * subHeadingHeight);
+					dorm_panel.removeAll();
+				}
+				dormLabel.expand(dorm_panel, comps, length);
+			}
+
+		});
+
+		lblSocialOrganization
+				.addPropertyChangeListener(new PropertyChangeListener() {
+
+					@Override
+					public void propertyChange(PropertyChangeEvent arg0) {
+						JComponent[] comps = {};
+						int length = 0;
+						if (!lblSocialOrganization.isExpanded()) {
+							for (Group org : displayed.getOrganizations()) {
+								if (org != null) {
+									JLabel lbl = new JLabel();
+									lbl.setFont(new Font("Times New Roman",
+											Font.PLAIN, 14));
+									lbl.setText(org.getName());
+									lbl.setBounds(0, 0, 50, subHeadingHeight);
+									socorg_panel.add(lbl);
+								}
+							}
+							length = (socorg_panel.getComponents().length)
+									* subHeadingHeight;
+						} else {
+							length = -((socorg_panel.getComponents().length) * subHeadingHeight);
+							socorg_panel.removeAll();
+						}
+						lblSocialOrganization.expand(socorg_panel, comps,
+								length);
+					}
+
+				});
 	}
 }

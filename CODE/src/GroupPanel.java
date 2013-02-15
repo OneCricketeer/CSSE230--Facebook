@@ -16,7 +16,7 @@ public class GroupPanel extends SearchPanel {
 	 */
 	public GroupPanel(Group group) {
 		super();
-		super.setMainInfo(group.getName());
+		super.setGroup(group);
 		super.setGroupImage(group);
 		super.setAdditionalInfo("");
 	}

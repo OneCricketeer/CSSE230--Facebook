@@ -97,6 +97,8 @@ public class SearchPanel extends JPanel {
 	    	public void actionPerformed(ActionEvent e) {
 	    		String name = friend != null ? friend.getName() : "Username";
 	    		System.out.println("View " + name + "'s Profile");
+	    		
+	    		SixDegreesViewer.setFriendPage(friend);
 	    	}
 	    });
 	    contextMenu.add(menuItem);
@@ -106,7 +108,8 @@ public class SearchPanel extends JPanel {
 	    	public void actionPerformed(ActionEvent e) {
 	    		String name = friend != null ? friend.getName() : "Username";
 	    		System.out.println("Schedule an event with " + name);
-
+	    		
+	    		NewEventWindow eWin = new NewEventWindow(friend);
 	    	}
 	    });	    
 	    contextMenu.add(menuItem);

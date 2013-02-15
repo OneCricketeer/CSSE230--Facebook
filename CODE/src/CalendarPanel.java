@@ -23,6 +23,8 @@ import java.util.Date;
 import javax.swing.JButton;
 
 import classes.Event;
+import classes.MyCalendar;
+import classes.SixDegrees;
 
 /**
  * TODO Put here a description of what this class does.
@@ -183,6 +185,14 @@ public class CalendarPanel extends JPanel {
 		Calendar dCal = Calendar.getInstance();
 		Date date = new Date(this.Year, this.Month, 1);
 
+		MyCalendar calendar = SixDegrees.getCurrentUser().getCalendar();
+		ArrayList<Event> events = new ArrayList<Event>();
+		for (Event e : calendar.getEvents_List()){
+			if (e.getStartTime().getMonth() == this.Month){
+				events.add(e);
+			}
+		}
+		
 		// Get last month values
 		setCalendar(dCal, -1, 0);
 		int prev_maxDay = dCal.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -216,9 +226,15 @@ public class CalendarPanel extends JPanel {
 					panel.setDay((next_index++),Color.LIGHT_GRAY);
 				}
 				panel.setNewSize(this.getWidth()/7,this.getHeight()/6);
-				Event e = new Event();
-				e.setDesc("Test"+(week+1));
-				panel.addEvent(e);
+				panel.removeAllEvents();
+				panel.lblEvent.setText("");
+				if(events!=null && events.size() > 0 && events.get(0).getStartTime().getDate() == dayIndex-1 && events.get(0).getStartTime().getMonth() == this.Month){
+					if(panel.hasEvent(events.get(0))){
+						events.remove(0);
+					}
+					else
+						panel.addEvent(events.remove(0));
+				}
 				add(panel);
 			}
 	}

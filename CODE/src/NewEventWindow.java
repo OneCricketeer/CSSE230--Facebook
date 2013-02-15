@@ -27,6 +27,7 @@ import javax.swing.JButton;
 
 import classes.Event;
 import classes.SixDegrees;
+import classes.User;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -43,6 +44,8 @@ public class NewEventWindow{
 
 	private JPanel contentPane;
 	private JTextArea descriptionText;
+	private Event ev;
+	private User friend = null;
 
 	/**
 	 * Create the frame.
@@ -99,7 +102,7 @@ public class NewEventWindow{
 		startDayCombo.setBounds(87, 44, 54, 20);
 		contentPane.add(startDayCombo);
 
-		JComboBox startYrCombo = new JComboBox();
+		final JComboBox startYrCombo = new JComboBox();
 		startYrCombo.setBounds(151, 44, 67, 20);
 		contentPane.add(startYrCombo);
 
@@ -107,7 +110,7 @@ public class NewEventWindow{
 		endDayCombo.setBounds(87, 109, 54, 20);
 		contentPane.add(endDayCombo);
 
-		JComboBox endYrCombo = new JComboBox();
+		final JComboBox endYrCombo = new JComboBox();
 		endYrCombo.setBounds(151, 109, 67, 20);
 		contentPane.add(endYrCombo);
 
@@ -164,7 +167,7 @@ public class NewEventWindow{
 						+ "/"
 						+ (startDayCombo.getSelectedIndex() + 1)
 						+ "/"
-						+ (startDayCombo.getSelectedIndex() + Calendar
+						+ (startYrCombo.getSelectedIndex() + Calendar
 								.getInstance().get(Calendar.YEAR));
 				Date startDate = null;
 				try {
@@ -177,7 +180,7 @@ public class NewEventWindow{
 						+ "/"
 						+ (endDayCombo.getSelectedIndex() + 1)
 						+ "/"
-						+ (endDayCombo.getSelectedIndex() + Calendar
+						+ (endYrCombo.getSelectedIndex() + Calendar
 								.getInstance().get(Calendar.YEAR));
 				Date endDate = null;
 				try {
@@ -186,14 +189,23 @@ public class NewEventWindow{
 					exception.printStackTrace();
 				}
 
-				Event ev = new Event(startDate, endDate);
+				ev = new Event(startDate, endDate);
 				ev.setDesc(descriptionText.getText());
 				SixDegrees.getCurrentUser().getCalendar().addEvent(ev);
+				if(friend!=null){
+					friend.getCalendar().addEvent(ev);
+				}
 				eventWindow.dispose();
 			}
 		});
 		btnNewButton.setBounds(324, 215, 100, 36);
 		contentPane.add(btnNewButton);
 		eventWindow.setVisible(true);
+	}
+
+	public NewEventWindow(User friend) {
+		this();
+		this.friend = friend;
+		
 	}
 }

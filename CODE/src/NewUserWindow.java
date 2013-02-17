@@ -144,7 +144,7 @@ public class NewUserWindow {
 				}
 
 				SixDegrees.addUser(created);
-				SixDegrees.save();
+				SixDegrees.save();				
 				setVisible(false);
 			}
 		});

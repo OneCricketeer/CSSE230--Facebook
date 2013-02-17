@@ -64,6 +64,19 @@ public class FriendPanel extends SearchPanel {
 			}
 		});
 		contextMenu.add(menuItem);
+		
+		contextMenu.add(mainInfoMenuItem);
+		contextMenu.addSeparator(); // separator
+		menuItem = new JMenuItem("View Profile");
+		menuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (friend != null) {
+					SixDegreesViewer.setDisplayedUser(friend);
+				}
+			}
+		});
+		contextMenu.add(menuItem);
 	}
 
 	public String getdistanceInfo() {

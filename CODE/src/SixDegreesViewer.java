@@ -548,8 +548,14 @@ public class SixDegreesViewer {
 		btnRemoveFromFriends.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 SixDegrees.getCurrentUser().removeFriend(displayed);
-				btnBack.doClick();
+				if(SixDegrees.getCurrentUser().getFriends().contains(displayed)){
+					SixDegrees.getCurrentUser().removeFriend(displayed);
+					btnBack.doClick();
+				}
+				else{
+					SixDegrees.getCurrentUser().addFriend(displayed);
+					btnRemoveFromFriends.setText("Remove Friend");
+				}	
 			}
 		});
 		myPagePanel.add(btnRemoveFromFriends);
@@ -788,13 +794,19 @@ public class SixDegreesViewer {
 		lblBasicInfoMessage.setText(u.getBasicInfo());
 		myPagePanel.repaint();
 		tabViewer.setSelectedIndex(0);
+		btnRemoveFromFriends.setVisible(false);
 
 		if (u.compareTo(SixDegrees.getCurrentUser()) != 0) {
-			btnBack.setVisible(true);
-		}
-
-		btnRemoveFromFriends.setVisible(SixDegrees.getCurrentUser().hasFriend(
-				displayed));		
+			btnBack.setVisible(true);			
+			if(SixDegrees.getCurrentUser().hasFriend(
+					displayed)){
+				btnRemoveFromFriends.setText("Remove Friend");				
+			}
+			else{
+				btnRemoveFromFriends.setText("Add Friend");
+			}
+			btnRemoveFromFriends.setVisible(true);
+		}				
 	}
 
 	public static void setCurrentUser(User current) {

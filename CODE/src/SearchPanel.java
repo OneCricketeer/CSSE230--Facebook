@@ -72,18 +72,7 @@ public class SearchPanel extends JPanel {
 				+ "</b></html>");
 		mainInfoMenuItem.setFocusable(false);
 		mainInfoMenuItem.setEnabled(false);
-		contextMenu.add(mainInfoMenuItem);
-		contextMenu.addSeparator(); // separator
-		menuItem = new JMenuItem("View Profile");
-		menuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (friend != null) {
-					SixDegreesViewer.setDisplayedUser(friend);
-				}
-			}
-		});
-		contextMenu.add(menuItem);
+
 
 		MouseListener popupListener = new PopupListener();
 		addMouseListener(popupListener);

@@ -304,4 +304,11 @@ public class User implements Comparable<User>, Serializable {
 		}
 	}
 
+	public void removeFriend(User displayed) {
+		if(friends.contains(displayed)){
+			friends.remove(displayed);
+			displayed.removeFriend(this);
+		}
+	}
+
 }

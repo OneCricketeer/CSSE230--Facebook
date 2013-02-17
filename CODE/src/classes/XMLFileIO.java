@@ -31,7 +31,7 @@ public class XMLFileIO {
 		
 		User Jordan =new User("moorejm", "Jordan", "Moore");
 		SixDegrees.addUser(Jordan);
-		Jordan.setImage("http://weknowmemes.com/wp-content/uploads/2012/10/mind-if-i-comb-over-240x180.jpg");
+		Jordan.setImage("https://lh6.googleusercontent.com/-UkGlE8ti1VI/UQSmcikr8-I/AAAAAAAAEaY/0jQOlZO675Y/s261/19e0a8e.jpg");
 		
 		User Logan =new User("ameslc", "Logan", "Ames");
 		SixDegrees.addUser(Logan);

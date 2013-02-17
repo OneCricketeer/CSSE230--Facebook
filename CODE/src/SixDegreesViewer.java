@@ -548,7 +548,7 @@ public class SixDegreesViewer {
 		btnRemoveFromFriends.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// SixDegrees.getCurrentUser().removeFriend(displayed);
+				 SixDegrees.getCurrentUser().removeFriend(displayed);
 				btnBack.doClick();
 			}
 		});
@@ -766,13 +766,6 @@ public class SixDegreesViewer {
 				}
 			}
 		});
-//		tabViewer.addTab("MyPage", null, myPagePanel, null);
-//		tabViewer.addTab("Meetings", null, meetingsPanel, null);
-//		tabViewer.addTab("Search", null, searchPanel, null);
-//		tabViewer.addTab("Friends", null, friendsPanel, null);
-//		current = (User) SixDegrees.getUsers().values().toArray()[2];
-//		setFriendPage(current);
-//		tabViewer.addTab(current.getFname() + "'s Page", null, friendPanel, null);
 	}
 
 	private static void addLogo(JComponent comp) {

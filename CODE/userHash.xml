@@ -75,16 +75,16 @@
               <uid>2</uid>
               <fname>Xinyu</fname>
               <lname>Cheng</lname>
-              <status>What&apos;s happening?</status>
+              <status>hi</status>
               <userName>chengx</userName>
               <calendar>
                 <events serialization="custom">
                   <unserializable-parents/>
                   <java.util.PriorityQueue>
                     <default>
-                      <size>4</size>
+                      <size>7</size>
                     </default>
-                    <int>5</int>
+                    <int>8</int>
                     <classes.Event reference="../../../../../../calendar/events/java.util.PriorityQueue/classes.Event"/>
                     <classes.Event>
                       <attendeeIDs/>
@@ -100,13 +100,12 @@
                     <classes.Event>
                       <attendeeIDs/>
                       <cal>
-                        <time>1361128745948</time>
+                        <time>1361131509861</time>
                         <timezone>America/Indianapolis</timezone>
                       </cal>
-                      <startTime>2013-02-08 05:00:00.0 UTC</startTime>
-                      <endTime>2013-02-08 05:00:00.0 UTC</endTime>
-                      <desc>Test
-</desc>
+                      <startTime>2013-02-05 05:00:00.0 UTC</startTime>
+                      <endTime>2013-02-05 05:00:00.0 UTC</endTime>
+                      <desc>tet</desc>
                     </classes.Event>
                     <classes.Event>
                       <attendeeIDs/>
@@ -117,6 +116,38 @@
                       <startTime>2013-02-18 05:00:00.0 UTC</startTime>
                       <endTime>2013-02-18 05:00:00.0 UTC</endTime>
                       <desc>Event</desc>
+                    </classes.Event>
+                    <classes.Event>
+                      <attendeeIDs/>
+                      <cal>
+                        <time>1361130704756</time>
+                        <timezone>America/Indianapolis</timezone>
+                      </cal>
+                      <startTime>2013-03-04 05:00:00.0 UTC</startTime>
+                      <endTime>2013-03-04 05:00:00.0 UTC</endTime>
+                      <desc>3.4
+</desc>
+                    </classes.Event>
+                    <classes.Event>
+                      <attendeeIDs/>
+                      <cal>
+                        <time>1361130817668</time>
+                        <timezone>America/Indianapolis</timezone>
+                      </cal>
+                      <startTime>2013-02-16 05:00:00.0 UTC</startTime>
+                      <endTime>2013-02-16 05:00:00.0 UTC</endTime>
+                      <desc>2.16</desc>
+                    </classes.Event>
+                    <classes.Event>
+                      <attendeeIDs/>
+                      <cal>
+                        <time>1361128745948</time>
+                        <timezone>America/Indianapolis</timezone>
+                      </cal>
+                      <startTime>2013-02-08 05:00:00.0 UTC</startTime>
+                      <endTime>2013-02-08 05:00:00.0 UTC</endTime>
+                      <desc>Test
+</desc>
                     </classes.Event>
                   </java.util.PriorityQueue>
                 </events>
@@ -162,15 +193,23 @@
                     <int>9</int>
                   </members>
                 </classes.Group>
+                <classes.Group>
+                  <name>Thorn</name>
+                  <desc>This organization publishes the campus newspaper called Rose Thorn</desc>
+                  <gID>6</gID>
+                  <members>
+                    <int>7</int>
+                    <int>8</int>
+                  </members>
+                </classes.Group>
               </groups>
               <friends>
-                <classes.User reference="../../../.."/>
                 <classes.User>
-                  <uid>1</uid>
-                  <fname>Yashi</fname>
-                  <lname>Yadav</lname>
+                  <uid>4</uid>
+                  <fname>Logan</fname>
+                  <lname>Ames</lname>
                   <status>What&apos;s happening?</status>
-                  <userName>yadavy</userName>
+                  <userName>ameslc</userName>
                   <calendar>
                     <events serialization="custom">
                       <unserializable-parents/>
@@ -191,35 +230,35 @@
                   <groups/>
                   <friends>
                     <classes.User reference="../../../.."/>
-                    <classes.User reference="../../../../../../../.."/>
                   </friends>
                   <date></date>
-                  <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA639261010203.jpg</image>
+                  <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA631319860408.jpg</image>
                   <gender>false</gender>
-                  <email>yadavy@example.com</email>
+                  <email>ameslc@example.com</email>
                   <birthday>2013-02-17 18:01:21.443 UTC</birthday>
                   <phone class="long">123456789</phone>
                   <address>123 Main Street</address>
                   <hometown>Somewhere, USA</hometown>
-                  <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
+                  <about>&lt;html&gt;ameslc&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
                 </classes.User>
+                <classes.User reference="../../../.."/>
                 <classes.User reference="../../../../../.."/>
               </friends>
               <date></date>
               <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA623581715011.jpg</image>
-              <gender>false</gender>
+              <gender>true</gender>
               <email>chengx</email>
               <birthday>2013-02-17 18:01:21.443 UTC</birthday>
               <phone class="long">123456789</phone>
               <address>123 Main Street</address>
               <hometown>Somewhere, USA</hometown>
-              <about>&lt;html&gt;chengx&lt;br /&gt;# Friends = 3&lt;br /&gt;In 3 organization(s)&lt;/html&gt;</about>
+              <about>&lt;html&gt;chengx&lt;br /&gt;# Friends = 3&lt;br /&gt;In 4 organization(s)&lt;/html&gt;</about>
             </classes.User>
             <classes.User reference="../../../.."/>
           </friends>
           <date></date>
-          <image>http://weknowmemes.com/wp-content/uploads/2012/10/mind-if-i-comb-over-240x180.jpg</image>
-          <gender>false</gender>
+          <image>https://lh6.googleusercontent.com/-UkGlE8ti1VI/UQSmcikr8-I/AAAAAAAAEaY/0jQOlZO675Y/s261/19e0a8e.jpg</image>
+          <gender>true</gender>
           <email>moorejm@example.com</email>
           <birthday>2013-02-17 18:01:21.443 UTC</birthday>
           <phone class="long">123456789</phone>
@@ -228,7 +267,44 @@
           <about>&lt;html&gt;moorejm&lt;br /&gt;# Friends = 2&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
         </classes.User>
         <classes.User reference="../classes.User/friends/classes.User"/>
-        <classes.User reference="../classes.User/friends/classes.User/friends/classes.User[2]"/>
+        <classes.User>
+          <uid>1</uid>
+          <fname>Yashi</fname>
+          <lname>Yadav</lname>
+          <status>What&apos;s happening?</status>
+          <userName>yadavy</userName>
+          <calendar>
+            <events serialization="custom">
+              <unserializable-parents/>
+              <java.util.PriorityQueue>
+                <default>
+                  <size>1</size>
+                </default>
+                <int>2</int>
+                <classes.Event reference="../../../../../classes.User/friends/classes.User/calendar/events/java.util.PriorityQueue/classes.Event[6]"/>
+              </java.util.PriorityQueue>
+            </events>
+            <cal>
+              <time>1361124081443</time>
+              <timezone>America/Indianapolis</timezone>
+            </cal>
+          </calendar>
+          <work></work>
+          <dorm></dorm>
+          <groups/>
+          <friends>
+            <classes.User reference="../../../.."/>
+          </friends>
+          <date></date>
+          <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA639261010203.jpg</image>
+          <gender>false</gender>
+          <email>yadavy@example.com</email>
+          <birthday>2013-02-17 18:01:21.443 UTC</birthday>
+          <phone class="long">123456789</phone>
+          <address>123 Main Street</address>
+          <hometown>Somewhere, USA</hometown>
+          <about>&lt;html&gt;yadavy&lt;br /&gt;# Friends = 2&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
+        </classes.User>
       </friends>
       <date></date>
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA984226893827.jpg</image>
@@ -243,7 +319,7 @@
   </entry>
   <entry>
     <int>1</int>
-    <classes.User reference="../../entry/classes.User/friends/classes.User/friends/classes.User/friends/classes.User[2]"/>
+    <classes.User reference="../../entry/classes.User/friends/classes.User[3]"/>
   </entry>
   <entry>
     <int>2</int>
@@ -255,41 +331,7 @@
   </entry>
   <entry>
     <int>4</int>
-    <classes.User>
-      <uid>4</uid>
-      <fname>Logan</fname>
-      <lname>Ames</lname>
-      <status>What&apos;s happening?</status>
-      <userName>ameslc</userName>
-      <calendar>
-        <events serialization="custom">
-          <unserializable-parents/>
-          <java.util.PriorityQueue>
-            <default>
-              <size>0</size>
-            </default>
-            <int>2</int>
-          </java.util.PriorityQueue>
-        </events>
-        <cal>
-          <time>1361124081443</time>
-          <timezone>America/Indianapolis</timezone>
-        </cal>
-      </calendar>
-      <work></work>
-      <dorm></dorm>
-      <groups/>
-      <friends/>
-      <date></date>
-      <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA631319860408.jpg</image>
-      <gender>false</gender>
-      <email>ameslc@example.com</email>
-      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
-      <phone class="long">123456789</phone>
-      <address>123 Main Street</address>
-      <hometown>Somewhere, USA</hometown>
-      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
-    </classes.User>
+    <classes.User reference="../../entry/classes.User/friends/classes.User/friends/classes.User/friends/classes.User"/>
   </entry>
   <entry>
     <int>5</int>
@@ -326,7 +368,7 @@
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
-      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
+      <about>&lt;html&gt;andrewca&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -364,7 +406,7 @@
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
-      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
+      <about>&lt;html&gt;campbeeg&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -516,7 +558,7 @@
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
-      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
+      <about>&lt;html&gt;Baconnk&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>

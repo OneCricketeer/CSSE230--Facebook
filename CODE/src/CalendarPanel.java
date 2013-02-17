@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 
@@ -228,14 +229,21 @@ public class CalendarPanel extends JPanel {
 				panel.setNewSize(this.getWidth()/7,this.getHeight()/6);
 				panel.removeAllEvents();
 				panel.lblEvent.setText("");
-				if(events!=null && events.size() > 0 && events.get(0).getStartTime().getDate() == dayIndex-1 && events.get(0).getStartTime().getMonth() == this.Month){
-					if(panel.hasEvent(events.get(0))){
-						events.remove(0);
+				Iterator<Event> eIt = events.iterator();
+				for(;eIt.hasNext();){
+					Event e = eIt.next();
+					if(events!=null && events.size() > 0 && e.getStartTime().getDate() == dayIndex-1 && e.getStartTime().getMonth() == this.Month){
+						if(panel.hasEvent(e)){
+							eIt.remove();
+						}
+						else{
+							panel.addEvent(e);
+							eIt.remove();
+						}		
 					}
-					else
-						panel.addEvent(events.remove(0));
-				}
+				}	
 				add(panel);
+				
 			}
 	}
 

@@ -48,10 +48,9 @@ public class EventPanel extends JPanel {
 	private void setEvents() {
 		String eventString = "<html>";
 		if (events != null) {
-			if (events.size() > 2) {
-				eventString += "<p>" + this.events.get(0).getDesc()
-						+ "</p><p>+" + (this.events.size() - 1)
-						+ " more events (click to view)</p>";
+			if (events.size() > 1) {
+				eventString += "<p>" + (this.events.size())
+						+ " events (click to view)</p>";
 			} else if (events.size() == 1) {
 				eventString += "<p>" + this.events.get(0).getDesc() + "</p>";
 			}

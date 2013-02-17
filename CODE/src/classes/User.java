@@ -1,7 +1,6 @@
 package classes;
-import java.awt.LayoutManager;
+
 import java.io.Serializable;
-import java.io.ObjectInputStream.GetField;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,12 +15,12 @@ public class User implements Comparable<User>, Serializable {
 	private static int userCount = -1;
 	private Integer uid;
 	private String fname, lname, status, userName;
-	private MyCalendar calendar;
+	private final MyCalendar calendar;
 	private String work;
 	private String dorm;
-	private ArrayList<Group> groups;
-	private TreeSet<User> friends;
-	private String date;
+	private final ArrayList<Group> groups;
+	private final TreeSet<User> friends;
+	private final String date;
 	private String image;
 	private boolean gender;
 	private String email;
@@ -29,6 +28,7 @@ public class User implements Comparable<User>, Serializable {
 	private Number phone;
 	private String address;
 	private String hometown;
+	private String about;
 
 	public static void resetCounter() {
 		userCount = -1;
@@ -50,6 +50,9 @@ public class User implements Comparable<User>, Serializable {
 		setEmail("");
 		this.groups = new ArrayList<Group>();
 		this.friends = new TreeSet<User>();
+		about = "<html>" + getUserName() + "<br /># Friends = "
+				+ friends.size() + "<br />In " + getOrganizations().size()
+				+ " organization(s)" + "</html>";
 		setBirthday(Calendar.getInstance().getTime());
 		SixDegrees.addUser(this);
 	}
@@ -57,7 +60,7 @@ public class User implements Comparable<User>, Serializable {
 	public User(String userName, String fname, String lname) {
 		this();
 		this.userName = userName;
-		setEmail(getUserName()+"@example.com");
+		setEmail(getUserName() + "@example.com");
 		setFname(fname);
 		setLname(lname);
 	}
@@ -65,11 +68,13 @@ public class User implements Comparable<User>, Serializable {
 	public Integer getUID() {
 		return this.uid;
 	}
+
+	@Override
 	public int compareTo(User u) {
 		if (!(u instanceof User))
 			return 0;
 		else {
-			User comp = (User) u;
+			User comp = u;
 			return comp.getUID().compareTo(this.getUID());
 		}
 	}
@@ -88,21 +93,14 @@ public class User implements Comparable<User>, Serializable {
 		return s;
 	}
 
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return fname + " " + lname;
 	}
 
-/*
-	 * @param name
-	 *            the name to set
-	 */
 	public void setFname(String name) {
 		this.fname = name;
 	}
-	
+
 	public void setImage(String url) {
 		this.image = url;
 	}
@@ -119,148 +117,103 @@ public class User implements Comparable<User>, Serializable {
 		return this.lname;
 	}
 
-	/**
-	 * @return the userName
-	 */
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String uName) {
 		this.userName = uName;
 	}
 
-	/**
-	 * @return the status
-	 */
 	public String getStatus() {
 		return status;
 	}
 
-	/**
-	 * @param status
-	 *            the status to set
-	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	/**
-	 * @return the calendar
-	 */
 	public MyCalendar getCalendar() {
 		return calendar;
-	} 
-	
-	/**
-	 * @return the work
-	 */
+	}
+
 	public String getWork() {
 		return work;
 	}
 
-	/**
-	 * @param work
-	 *            the work to set
-	public void setWork(String work) {
-		this.work = work;
-	}
-
-	/**
-	 * @return the dorm
-	 */
 	public String getDorm() {
 		return dorm;
 	}
 
-	/**
-	 * @param dorm
-	 *            the dorm to set
-	 */
 	public void setDorm(String dorm) {
 		this.dorm = dorm;
 	}
 
-	/**
-	 * @return the organizations
-	 */
 	public ArrayList<Group> getOrganizations() {
 		return groups;
 	}
 
 	public void addFriend(User friend) {
-		if (!this.friends.contains(friend))
+		if (!this.friends.contains(friend)) {
 			this.friends.add(friend);
-		if (!friend.friends.contains(this))
+		}
+		if (!friend.friends.contains(this)) {
 			friend.addFriend(this);
+		}
 	}
 
-	/**
-	 * @return
-	 */
 	public ArrayList<User> getFriends() {
 		ArrayList<User> ret = new ArrayList<User>();
 		ret.addAll(friends);
 		return ret;
 	}
 
-	/**
-	 *
-	 * @param organization
-	 *            organization to add
-	 */
 	public void addOrganization(Group organization) {
 		this.groups.add(organization);
+		organization.addMember(getUID());
 	}
 
 	public String getBasicInfo() {
 		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
 
-		return "<html>" + fmt.format(this.birthday) + "<br />" + this.getGender() + "<br />" + this.hometown 
-				+ "</html>";
+		return "<html>" + fmt.format(this.birthday) + "<br />"
+				+ this.getGender() + "<br />" + this.hometown + "</html>";
 	}
 
 	public String getContactInfo() {
-		return "<html>" + this.phone.toString() + "<br />" + this.address + "<br />" + "<br />"+ this.email + "</html>";
+		return "<html>" + this.phone.toString() + "<br />" + this.address
+				+ "<br />" + "<br />" + this.email + "</html>";
 	}
 
 	public String getAbout() {
-		return "<html>" + getUserName() + "<br /># Friends = " + friends.size()
-				+ "</html>";
+		if (about == null)
+			return "AboutText";
+		return about.replace("\n", "<br />");
 
 	}
-	
+
 	public Date getBirthDate() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat fmt = new SimpleDateFormat("MMMMM dd yyyy");
-		String date = "April 1 2010";
 		Date d = null;
 		try {
-			d = fmt.parse(date);cal.setTime(fmt.parse(date));
+			d = fmt.parse(date);
+			cal.setTime(fmt.parse(date));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		return cal.getTime();
 	}
 
-	/**
-	 * TODO Put here a description of what this method does.
-	 *
-	 * @return
-	 */
 	public String getEvents() {
 		return this.calendar.getEvents_List().toString();
 	}
 
-	/**
-	 * TODO Put here a description of what this method does.
-	 *
-	 * @return
-	 */
 	public String getImageURL() {
 		return this.image;
 	}
-	
+
 	public void setWork(String work) {
 		this.work = work;
 	}
@@ -268,6 +221,7 @@ public class User implements Comparable<User>, Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getEmail() {
 		return this.email;
 	}
@@ -298,7 +252,7 @@ public class User implements Comparable<User>, Serializable {
 	}
 
 	public String getGender() {
-		return this.gender ? "Male":"Female";
+		return this.gender ? "Male" : "Female";
 	}
 
 	/**
@@ -317,19 +271,34 @@ public class User implements Comparable<User>, Serializable {
 	 * @param group
 	 */
 	public void addGroup(Group group) {
-		if (!this.groups.contains(group))
+		if (!this.groups.contains(group)) {
 			this.groups.add(group);
-		
+		}
 	}
 
-	/**
-	 * TODO Put here a description of what this method does.
-	 *
-	 * @param g
-	 * @return
-	 */
 	public boolean isInGroup(Group g) {
 		return this.groups.contains(g);
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public Number getPhone() {
+		return this.phone;
+	}
+
+	public void startEventCalendar() {
+		Thread t = new Thread(calendar);
+		t.start();
+	}
+
+	public void setAbout(String about) {
+		if (about.startsWith("<html>") && about.endsWith("</html>")) {
+			this.about = about;
+		} else {
+			this.about = "<html>" + about.replace("\n", "<br />") + "</html>";
+		}
 	}
 
 }

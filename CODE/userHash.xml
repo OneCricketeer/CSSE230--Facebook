@@ -5,154 +5,36 @@
       <uid>0</uid>
       <fname>Teddy</fname>
       <lname>Sterne</lname>
-      <status>What are you doing?</status>
+      <status>What&apos;s happening?</status>
       <userName>sternetj</userName>
       <calendar>
         <events serialization="custom">
           <unserializable-parents/>
           <java.util.PriorityQueue>
             <default>
-              <size>10</size>
+              <size>1</size>
             </default>
-            <int>11</int>
+            <int>2</int>
             <classes.Event>
               <attendeeIDs/>
               <cal>
-                <time>1361123386917</time>
+                <time>1361124520516</time>
                 <timezone>America/Indianapolis</timezone>
               </cal>
-              <startTime>2013-02-05 05:00:00.0 UTC</startTime>
-              <endTime>2013-02-05 05:00:00.0 UTC</endTime>
-              <desc>test 5th</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1361123433477</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-02-07 05:00:00.0 UTC</startTime>
-              <endTime>2013-02-07 05:00:00.0 UTC</endTime>
-              <desc>test</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1360895176328</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-02-16 05:00:00.0 UTC</startTime>
-              <endTime>2013-02-16 05:00:00.0 UTC</endTime>
-              <desc>casd</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1360897050969</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-02-18 05:00:00.0 UTC</startTime>
-              <endTime>2013-02-18 05:00:00.0 UTC</endTime>
-              <desc>dwadwaq</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1360894602324</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-02-12 05:00:00.0 UTC</startTime>
-              <endTime>2013-02-12 05:00:00.0 UTC</endTime>
-              <desc>fsadfwe</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1361121843021</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-02-22 05:00:00.0 UTC</startTime>
-              <endTime>2013-02-22 05:00:00.0 UTC</endTime>
-              <desc>22</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1361123366872</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-04-04 04:00:00.0 UTC</startTime>
-              <endTime>2013-04-04 04:00:00.0 UTC</endTime>
-              <desc>test</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1360892406836</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2028-02-16 05:00:00.0 UTC</startTime>
-              <endTime>2028-02-16 05:00:00.0 UTC</endTime>
-              <desc>Hope this adds an event</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1361123413349</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-05-01 04:00:00.0 UTC</startTime>
-              <endTime>2013-05-01 04:00:00.0 UTC</endTime>
-              <desc>test 1st</desc>
-            </classes.Event>
-            <classes.Event>
-              <attendeeIDs/>
-              <cal>
-                <time>1361121696387</time>
-                <timezone>America/Indianapolis</timezone>
-              </cal>
-              <startTime>2013-02-23 05:00:00.0 UTC</startTime>
-              <endTime>2013-02-23 05:00:00.0 UTC</endTime>
-              <desc>fvghj</desc>
+              <startTime>2013-02-01 05:00:00.0 UTC</startTime>
+              <endTime>2013-02-01 05:00:00.0 UTC</endTime>
+              <desc>wqew</desc>
             </classes.Event>
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543095</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081442</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
-      <work>Ventures</work>
-      <dorm>Percopo</dorm>
-      <groups>
-        <null/>
-        <classes.Group>
-          <name>Student Activities Board</name>
-          <desc>This group plans student activities around campus.</desc>
-          <gID>0</gID>
-          <members>
-            <int>0</int>
-            <int>1</int>
-          </members>
-        </classes.Group>
-        <classes.Group>
-          <name>Delta Delta Delta</name>
-          <desc>This organization is a sorority. </desc>
-          <gID>1</gID>
-          <members>
-            <int>1</int>
-          </members>
-        </classes.Group>
-        <classes.Group>
-          <name>Student Activities Board</name>
-          <desc>This group plans student activities around campus.</desc>
-          <gID>0</gID>
-          <members>
-            <int>0</int>
-            <int>1</int>
-          </members>
-        </classes.Group>
-      </groups>
+      <work></work>
+      <dorm></dorm>
+      <groups/>
       <friends>
         <classes.User>
           <uid>3</uid>
@@ -171,15 +53,13 @@
               </java.util.PriorityQueue>
             </events>
             <cal>
-              <time>1360889543096</time>
-              <timezone>America/New_York</timezone>
+              <time>1361124081443</time>
+              <timezone>America/Indianapolis</timezone>
             </cal>
           </calendar>
           <work></work>
           <dorm></dorm>
-          <groups>
-            <null/>
-          </groups>
+          <groups/>
           <friends>
             <classes.User reference="../../../.."/>
           </friends>
@@ -187,10 +67,11 @@
           <image>http://weknowmemes.com/wp-content/uploads/2012/10/mind-if-i-comb-over-240x180.jpg</image>
           <gender>false</gender>
           <email>moorejm@example.com</email>
-          <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+          <birthday>2013-02-17 18:01:21.443 UTC</birthday>
           <phone class="long">123456789</phone>
           <address>123 Main Street</address>
           <hometown>Somewhere, USA</hometown>
+          <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
         </classes.User>
         <classes.User>
           <uid>2</uid>
@@ -203,15 +84,14 @@
               <unserializable-parents/>
               <java.util.PriorityQueue>
                 <default>
-                  <size>1</size>
+                  <size>0</size>
                 </default>
                 <int>2</int>
-                <classes.Event reference="../../../../../../calendar/events/java.util.PriorityQueue/classes.Event[4]"/>
               </java.util.PriorityQueue>
             </events>
             <cal>
-              <time>1360889543096</time>
-              <timezone>America/New_York</timezone>
+              <time>1361124081443</time>
+              <timezone>America/Indianapolis</timezone>
             </cal>
           </calendar>
           <work></work>
@@ -224,10 +104,11 @@
           <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA623581715011.jpg</image>
           <gender>false</gender>
           <email>chengx@example.com</email>
-          <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+          <birthday>2013-02-17 18:01:21.443 UTC</birthday>
           <phone class="long">123456789</phone>
           <address>123 Main Street</address>
           <hometown>Somewhere, USA</hometown>
+          <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
         </classes.User>
         <classes.User>
           <uid>1</uid>
@@ -246,12 +127,12 @@
               </java.util.PriorityQueue>
             </events>
             <cal>
-              <time>1360889543096</time>
-              <timezone>America/New_York</timezone>
+              <time>1361124081443</time>
+              <timezone>America/Indianapolis</timezone>
             </cal>
           </calendar>
-          <work>Ventures</work>
-          <dorm>Percopo</dorm>
+          <work></work>
+          <dorm></dorm>
           <groups/>
           <friends>
             <classes.User reference="../../../.."/>
@@ -260,20 +141,22 @@
           <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA639261010203.jpg</image>
           <gender>false</gender>
           <email>yadavy@example.com</email>
-          <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+          <birthday>2013-02-17 18:01:21.443 UTC</birthday>
           <phone class="long">123456789</phone>
           <address>123 Main Street</address>
           <hometown>Somewhere, USA</hometown>
+          <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
         </classes.User>
       </friends>
       <date></date>
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA984226893827.jpg</image>
       <gender>false</gender>
-      <email>sternetj@rose-hulman.edu</email>
-      <birthday>2013-02-15 00:52:23.95 UTC</birthday>
+      <email>sternetj@example.com</email>
+      <birthday>2013-02-17 18:01:21.442 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -307,8 +190,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -319,10 +202,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA631319860408.jpg</image>
       <gender>false</gender>
       <email>ameslc@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -344,8 +228,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -356,10 +240,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA117476273108.jpg</image>
       <gender>false</gender>
       <email>andrewca@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -381,8 +266,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -393,10 +278,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA206154545857.jpg</image>
       <gender>false</gender>
       <email>campbeeg@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -418,8 +304,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -430,10 +316,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA667385404666.jpg</image>
       <gender>false</gender>
       <email>cookmj@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -455,8 +342,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -467,10 +354,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA496213189669.jpg</image>
       <gender>false</gender>
       <email>darttrf@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -492,8 +380,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -504,10 +392,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA356631901201.jpg</image>
       <gender>false</gender>
       <email>daveyle@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -529,8 +418,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -541,10 +430,11 @@
       <image>http://static5.businessinsider.com/image/505206dc6bb3f7d021000007/kevin-bacon-footloose.jpg</image>
       <gender>false</gender>
       <email>Baconnk@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -566,8 +456,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -578,10 +468,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA025472706770.jpg</image>
       <gender>false</gender>
       <email>hansondg@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -603,8 +494,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -615,10 +506,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA280590849592.jpg</image>
       <gender>false</gender>
       <email>heinmr@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -640,8 +532,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -652,10 +544,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA324286011462.jpg</image>
       <gender>false</gender>
       <email>kowalsif@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -677,8 +570,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -689,10 +582,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA499054679287.jpg</image>
       <gender>false</gender>
       <email>kulczajr@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -714,8 +608,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543096</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -726,10 +620,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA792363723553.jpg</image>
       <gender>false</gender>
       <email>maurerja@example.com</email>
-      <birthday>2013-02-15 00:52:23.96 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -751,8 +646,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -763,10 +658,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA074219886758.jpg</image>
       <gender>false</gender>
       <email>mccormjt@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -788,8 +684,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081443</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -800,10 +696,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA462902089322.jpg</image>
       <gender>false</gender>
       <email>mengx@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.443 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -825,8 +722,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081444</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -837,10 +734,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA499093738515.jpg</image>
       <gender>false</gender>
       <email>sanderib@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.444 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -862,8 +760,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081444</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -874,10 +772,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA831473005455.jpg</image>
       <gender>false</gender>
       <email>pearsojw@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.444 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -899,8 +798,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081444</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -911,10 +810,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA002819062544.jpg</image>
       <gender>false</gender>
       <email>tombn@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.444 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -936,8 +836,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081444</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -948,10 +848,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA805500251911.jpg</image>
       <gender>false</gender>
       <email>satchwsm@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.444 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -973,8 +874,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081444</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -985,10 +886,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA949751781149.jpg</image>
       <gender>false</gender>
       <email>daveyle@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.444 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
   <entry>
@@ -1010,8 +912,8 @@
           </java.util.PriorityQueue>
         </events>
         <cal>
-          <time>1360889543097</time>
-          <timezone>America/New_York</timezone>
+          <time>1361124081444</time>
+          <timezone>America/Indianapolis</timezone>
         </cal>
       </calendar>
       <work></work>
@@ -1022,10 +924,11 @@
       <image>http://angel.rose-hulman.edu/IDphotos/AAAAAAAAAAAAAAAAAA054647514533.jpg</image>
       <gender>false</gender>
       <email>tuckerme@example.com</email>
-      <birthday>2013-02-15 00:52:23.97 UTC</birthday>
+      <birthday>2013-02-17 18:01:21.444 UTC</birthday>
       <phone class="long">123456789</phone>
       <address>123 Main Street</address>
       <hometown>Somewhere, USA</hometown>
+      <about>&lt;html&gt;&lt;User Name&gt;&lt;br /&gt;# Friends = 0&lt;br /&gt;In 0 organization(s)&lt;/html&gt;</about>
     </classes.User>
   </entry>
 </map>

@@ -1,20 +1,16 @@
-import javax.swing.JPanel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import classes.Event;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import classes.Event;
+
 /**
  * TODO Put here a description of what this class does.
- * 
+ *
  * @author sternetj. Created Feb 8, 2013.
  */
 public class EventPanel extends JPanel {
@@ -24,7 +20,7 @@ public class EventPanel extends JPanel {
 
 	/**
 	 * Create the panel.
-	 * 
+	 *
 	 * @param Day
 	 * @param events
 	 */
@@ -43,7 +39,7 @@ public class EventPanel extends JPanel {
 
 	/**
 	 * TODO Put here a description of what this method does.
-	 * 
+	 *
 	 */
 	private void setEvents() {
 		String eventString = "<html>";
@@ -56,10 +52,11 @@ public class EventPanel extends JPanel {
 			}
 		}
 		eventString += "</html>";
-		if (lblEvent != null)
+		if (lblEvent != null) {
 			lblEvent.setText(eventString);
-		else
+		} else {
 			lblEvent = new JLabel(eventString);
+		}
 		lblEvent.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		// lblEvent.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -96,8 +93,9 @@ public class EventPanel extends JPanel {
 	public String getDescription() {
 		String eventString = "<html>";
 		if (events != null) {
-			for (Event ev : this.events)
+			for (Event ev : this.events) {
 				eventString += "<p>" + ev.getDesc() + "</p>";
+			}
 		} else {
 			eventString += "<p>No events today</p>";
 		}

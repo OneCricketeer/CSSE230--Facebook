@@ -186,6 +186,7 @@ public class CalendarPanel extends JPanel {
 		Calendar dCal = Calendar.getInstance();
 		Date date = new Date(this.Year, this.Month, 1);
 
+		if (SixDegrees.getCurrentUser()== null)return;
 		MyCalendar calendar = SixDegrees.getCurrentUser().getCalendar();
 		ArrayList<Event> events = new ArrayList<Event>();
 		for (Event e : calendar.getEvents_List()){

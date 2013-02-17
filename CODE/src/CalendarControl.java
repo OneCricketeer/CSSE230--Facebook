@@ -86,4 +86,7 @@ setLayout(null);
 	public void updateMonth() {
 		lblCalendarMonth.setText(calPanel.getMonthString() + " "+ calPanel.getYear());
 	}
+	public void setDays() {
+		calPanel.setDays();
+	}
 }

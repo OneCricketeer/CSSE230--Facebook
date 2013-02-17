@@ -188,6 +188,9 @@ public class User implements Comparable<User>, Serializable {
 	public String getAbout() {
 		if (about == null)
 			return "AboutText";
+		about = "<html>" + getUserName() + "<br /># Friends = "
+				+ friends.size() + "<br />In " + getOrganizations().size()
+				+ " organization(s)" + "</html>";
 		return about.replace("\n", "<br />");
 
 	}

@@ -184,8 +184,8 @@ public class CalendarPanel extends JPanel {
 			this.Month += 12;
 		}
 		Calendar dCal = Calendar.getInstance();
-		Date date = new Date(this.Year, this.Month, 1);
-
+		dCal.set(this.Year, this.Month, 1);
+		
 		if (SixDegrees.getCurrentUser()== null)return;
 		MyCalendar calendar = SixDegrees.getCurrentUser().getCalendar();
 		ArrayList<Event> events = new ArrayList<Event>();
@@ -220,7 +220,7 @@ public class CalendarPanel extends JPanel {
 					firstDayFound = true;
 				EventPanel panel = this.events[week][day];
 				panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				if (firstDayFound && dayIndex <= maxDay) {
+				if (firstDayFound && dayIndex <= maxDay) {					
 					panel.setDay((dayIndex++));
 				} else if (!firstDayFound) {
 					panel.setDay((dayStart++), Color.LIGHT_GRAY);

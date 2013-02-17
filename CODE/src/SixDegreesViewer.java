@@ -71,7 +71,7 @@ public class SixDegreesViewer {
 	private static ImagePanel profilePictureFrame;
 	private static JLabel lblStatusMessage;
 	private static JLabel lblNameLabel;
-	private static JLabel lblAbouttext;
+	static JLabel lblAbouttext;
 	private static JLabel lblContactinfomessage;
 	private static JLabel lblBasicInfoMessage;
 	// Editable fields
@@ -93,7 +93,7 @@ public class SixDegreesViewer {
 
 	private JLabel lblshiftEnter;
 
-	private static CalendarControl calendarControl;
+	static CalendarControl calendarControl;
 
 
 	/**
@@ -139,6 +139,14 @@ public class SixDegreesViewer {
 		// My Page /////////////////////////////////////////////////
 		myPagePanel = new JPanel();
 		myPagePanel.setLayout(null);
+		myPagePanel.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				myPagePanel.repaint();
+
+			}
+		});
 
 		lblNameLabel = new JLabel("Name");
 		lblNameLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
@@ -526,7 +534,7 @@ public class SixDegreesViewer {
 
 		btnBack = new JButton("Back to Your Page");
 		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		btnBack.setBounds(433, 469, 240, 50);
+		btnBack.setBounds(433, 491, 121, 28);
 		myPagePanel.add(btnBack);
 
 		btnRemoveFromFriends = new JButton("Remove from Friends");
@@ -775,7 +783,8 @@ public class SixDegreesViewer {
 
 	public static void setDisplayedUser(User u) {
 		displayed = u;
-
+		if(profilePictureFrame!=null)
+			myPagePanel.remove(profilePictureFrame);
 		profilePictureFrame = new ImagePanel(u.getImageURL(), 120, 120);
 		profilePictureFrame.setBounds(10, 11, 120, 120);
 		myPagePanel.add(profilePictureFrame);
@@ -785,13 +794,14 @@ public class SixDegreesViewer {
 		lblContactinfomessage.setText(u.getContactInfo());
 		lblBasicInfoMessage.setText(u.getBasicInfo());
 		myPagePanel.repaint();
+		tabViewer.setSelectedIndex(0);
 
 		if (u.compareTo(SixDegrees.getCurrentUser()) != 0) {
 			btnBack.setVisible(true);
 		}
 
 		btnRemoveFromFriends.setVisible(SixDegrees.getCurrentUser().hasFriend(
-				displayed));
+				displayed));		
 	}
 
 	public static void setCurrentUser(User current) {
@@ -802,6 +812,17 @@ public class SixDegreesViewer {
 
 	private void addLogo() {
 		addLogo(myPagePanel);
+		
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SixDegrees.save();
+				tabViewer.removeAll();
+				tabViewer.addTab("Log in", null, LoginPanel, null);
+			}
+		});
+		btnLogOut.setBounds(564, 491, 89, 28);
+		myPagePanel.add(btnLogOut);
 		addLogo(meetingsPanel);
 		addLogo(friendsPanel);
 		addLogo(searchPanel);

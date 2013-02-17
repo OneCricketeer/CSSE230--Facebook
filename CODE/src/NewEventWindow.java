@@ -195,6 +195,7 @@ public class NewEventWindow{
 				if(friend!=null){
 					friend.getCalendar().addEvent(ev);
 				}
+				SixDegreesViewer.calendarControl.setDays();
 				eventWindow.dispose();
 			}
 		});

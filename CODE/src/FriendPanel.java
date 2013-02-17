@@ -46,6 +46,7 @@ public class FriendPanel extends SearchPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SixDegrees.getCurrentUser().addFriend(friend);
+				SixDegreesViewer.lblAbouttext.setText(SixDegrees.getCurrentUser().getAbout());
 				setDistance(1);
 				lblFriendDistance.repaint();
 			}
@@ -57,6 +58,7 @@ public class FriendPanel extends SearchPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = friend != null ? friend.getName() : "Username";
+				new NewEventWindow(friend);
 				System.out.println("Schedule an event with " + name);
 
 			}

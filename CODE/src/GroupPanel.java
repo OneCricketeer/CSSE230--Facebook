@@ -40,12 +40,13 @@ public class GroupPanel extends SearchPanel {
 		super.setAdditionalInfo(group.getDesc());
 		setGroupImage(g);
 
-		if (SixDegrees.getCurrentUser().isInGroup(group)) {
+		if (!SixDegrees.getCurrentUser().isInGroup(group)) {
 			addGroupItem = new JMenuItem("Add Group");
 			addGroupItem.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					SixDegrees.getCurrentUser().addGroup(group);
+					SixDegreesViewer.lblAbouttext.setText(SixDegrees.getCurrentUser().getAbout());
 				}
 			});
 

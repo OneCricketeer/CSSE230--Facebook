@@ -65,6 +65,7 @@ public class EventPanel extends JPanel {
 	}
 
 	public void setDay(int day) {
+		this.lblDate.setForeground(Color.BLACK);
 		this.lblDate.setText(day + "");
 	}
 

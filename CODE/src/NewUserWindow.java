@@ -1,24 +1,20 @@
-import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JRadioButton;
-import java.awt.Component;
-import java.awt.Toolkit;
-import javax.swing.JButton;
-
-import org.omg.CORBA.Current;
+import javax.swing.JTextField;
 
 import classes.SixDegrees;
 import classes.User;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class NewUserWindow {
 
@@ -38,6 +34,7 @@ public class NewUserWindow {
 	private JTextField addressTextField;
 	private JTextField homeTextField;
 	private JTextField imageUrlField;
+	private User created = null;
 
 	/**
 	 * Create the application.
@@ -50,16 +47,19 @@ public class NewUserWindow {
 		this.registerFrame.setVisible(b);
 	}
 
+	public User getCreatedUser() {
+		return created;
+	}
+
 	/**
 	 * Initialize the contents of the frame.
-	 * 
+	 *
 	 */
 	private void initialize() {
 		registerFrame = new JFrame();
 		registerFrame.setTitle("6 Degrees Registration");
 		registerFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(
 				NewUserWindow.class.getResource("/DefaultUserMale.gif")));
-		//registerFrame.setType(Type.POPUP);
 		registerFrame.setResizable(false);
 		registerFrame.setAlwaysOnTop(true);
 		registerFrame.setBounds(100, 100, 250, 440);
@@ -110,38 +110,41 @@ public class NewUserWindow {
 
 		JButton btnCreateUser = new JButton("Create User");
 		btnCreateUser.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				SixDegrees.load();
-				Integer uID = SixDegrees.getMaxUserID()+1;
+				Integer uID = SixDegrees.getMaxUserID() + 1;
 
-				User user = new User();
-				user.setUID(uID);
-				user.setUserName(uNameTextField.getText());
-				user.setFname(FNameTextField.getText());
-				user.setLname(LNameTextField.getText());
-				user.setWork(workTextField.getText());
-				user.setDorm(dormTextField.getText());
-				user.setEmail(emailTextField.getText());
-				user.setAddress(addressTextField.getText());
-				user.setHometown(homeTextField.getText());
-				user.setImage(imageUrlField.getText());
-				if(rdbtnMale.isSelected()){
-					user.setGender(true);
+				created = new User();
+				created.setUID(uID);
+				created.setUserName(uNameTextField.getText());
+				created.setFname(FNameTextField.getText());
+				created.setLname(LNameTextField.getText());
+				created.setWork(workTextField.getText());
+				created.setDorm(dormTextField.getText());
+				created.setEmail(emailTextField.getText());
+				created.setAddress(addressTextField.getText());
+				created.setHometown(homeTextField.getText());
+				created.setImage(imageUrlField.getText());
+				if (rdbtnMale.isSelected()) {
+					created.setGender(true);
 				}
 
 				SimpleDateFormat fmt = new SimpleDateFormat("MM dd yyyy");
+				DecimalFormatSymbols dcFmtSym = new DecimalFormatSymbols();
+				dcFmtSym.setGroupingSeparator(' ');
 				DecimalFormat phoneFmt = new DecimalFormat("####,###,###");
+				phoneFmt.setDecimalFormatSymbols(dcFmtSym);
 
 				try {
-					user.setBirthday(fmt.parse(birthdayTextField.getText()));
-					user.setPhone(phoneFmt.parse(PhoneTextField.getText()));
+					created.setBirthday(fmt.parse(birthdayTextField.getText()));
+					created.setPhone(phoneFmt.parse(PhoneTextField.getText()));
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
 
-				SixDegrees.addUser(user);
+				SixDegrees.addUser(created);
 				SixDegrees.save();
-				SixDegreesViewer.setDisplayedUser(user);
 				setVisible(false);
 			}
 		});
@@ -210,14 +213,15 @@ public class NewUserWindow {
 		JLabel lblHometown = new JLabel("Hometown: ");
 		lblHometown.setBounds(21, 285, 65, 14);
 		registerFrame.getContentPane().add(lblHometown);
-		
+
 		imageUrlField = new JTextField();
 		imageUrlField.setColumns(10);
 		imageUrlField.setBounds(88, 313, 122, 20);
 		registerFrame.getContentPane().add(imageUrlField);
-		
+
 		JLabel lblImageUrl = new JLabel("Image URL: ");
 		lblImageUrl.setBounds(21, 316, 65, 14);
 		registerFrame.getContentPane().add(lblImageUrl);
 	}
+
 }
